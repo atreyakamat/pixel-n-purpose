@@ -1,0 +1,2 @@
+// Placeholder poster image - replace with actual hero poster
+// This file represents where the hero-poster.jpg should be placed

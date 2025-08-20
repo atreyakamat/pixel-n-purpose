@@ -1,0 +1,9 @@
+# Placeholder for hero background video
+# Replace this file with your actual MP4 video
+# Filename should be: hero-video.mp4
+# Recommended specs:
+# - Resolution: 1920x1080 or 1280x720
+# - Format: MP4 (H.264)
+# - File size: Under 10MB
+# - Duration: 30-60 seconds (will loop)
+# - No audio track needed

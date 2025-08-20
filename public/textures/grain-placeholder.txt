@@ -1,0 +1,2 @@
+// This is a placeholder grain texture file - replace with actual grain.png
+// Create a 200x200 subtle texture image for the grain effect
