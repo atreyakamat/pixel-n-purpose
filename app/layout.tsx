@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Libre_Bodoni } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,9 +9,8 @@ const inter = Inter({
   display: "swap",
 });
 
-const libreBodoni = Libre_Bodoni({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const claraClassicist = localFont({
+  src: "../public/fonts/ClaraAntiqua.otf",
   variable: "--font-display",
   display: "swap",
 });
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${libreBodoni.variable}`}>
+    <html lang="en" className={`${inter.variable} ${claraClassicist.variable}`}>
       <body className="bg-canvas text-ink antialiased">
         {children}
       </body>

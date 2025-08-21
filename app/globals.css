@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* Custom Font: Clara Classicist Antiqua */
+@font-face {
+  font-family: 'Clara Classicist Antiqua';
+  src: url('/fonts/ClaraAntiqua.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Clara Classicist Antiqua';
+  src: url('/fonts/ClaraAntiqua.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS Variables for theme colors */
 :root {
   --canvas: #F6F5F2;
