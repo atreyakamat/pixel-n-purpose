@@ -44,9 +44,9 @@ export default function Hero() {
         poster="/hero-poster.jpg"
         aria-label="Background video showcasing luxury brand aesthetics"
       >
-        {/* Replace these with your downloaded video files */}
+        {/* Updated to use your new video file */}
+        <source src="/pnp-hero-video.webm" type="video/webm" />
         <source src="/hero-video.mp4" type="video/mp4" />
-        <source src="/hero-video.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
 
