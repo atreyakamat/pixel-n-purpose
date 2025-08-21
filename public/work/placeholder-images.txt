@@ -1,5 +1,0 @@
-// Placeholder work images - replace with actual project images
-// This file represents where the work images should be placed:
-// - placeholder-1.jpg
-// - placeholder-2.jpg  
-// - placeholder-3.jpg
