@@ -1,66 +1,129 @@
 'use client';
 
 export default function Gallery() {
+  // Original gallery items with proper aspect ratios using real assets
   const galleryItems = [
+    // Column 1 - Start with luxury jewelry image
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1611078489935-0cb964de46d6?w=400&h=400&fit=crop&crop=faces",
-      alt: "Luxury brand social media post"
+      type: 'image',
+      src: "/grid_images/jewellery-1723638_640.jpg",
+      alt: "Luxury jewelry photography for premium brands",
+      size: 'medium'
     },
+    // Video 1 - First video asset
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=600&fit=crop&crop=faces",
-      alt: "Campaign visual design"
+      type: 'video',
+      src: "/grid_images/11289-229221023_small.webm",
+      poster: "/grid_images/architecture-2256489_1280.jpg",
+      alt: "Luxury brand video content creation",
+      size: 'tall'
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=400&h=400&fit=crop&crop=faces",
-      alt: "Brand photography"
+      type: 'image',
+      src: "/grid_images/car-1544342_640.jpg",
+      alt: "Premium automotive brand photography",
+      size: 'small'
     },
+
+    // Column 2 - Start with architecture
     {
       id: 4,
-      image: "https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=500&fit=crop&crop=faces",
-      alt: "Content creation process"
+      type: 'image',
+      src: "/grid_images/architecture-5585737_1280.jpg",
+      alt: "Architectural luxury brand visuals",
+      size: 'tall'
     },
+    // Video 2 - Second video asset
     {
       id: 5,
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop&crop=faces",
-      alt: "Social media strategy"
+      type: 'video',
+      src: "/grid_images/214888_tiny.webm",
+      poster: "/grid_images/building-6011756_1280.jpg",
+      alt: "Dynamic brand storytelling video",
+      size: 'medium'
     },
     {
       id: 6,
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=600&fit=crop&crop=faces",
-      alt: "Digital campaign asset"
+      type: 'image',
+      src: "/grid_images/outdoor-dining-1846137_1280.jpg",
+      alt: "Luxury hospitality brand content",
+      size: 'medium'
     },
+
+    // Column 3 - Start with opal/luxury
     {
       id: 7,
-      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop&crop=faces",
-      alt: "Behind the scenes"
+      type: 'image',
+      src: "/grid_images/opal-4765457_1280.jpg",
+      alt: "Luxury gemstone brand photography",
+      size: 'small'
     },
+    // Video 3 - Third video asset
     {
       id: 8,
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=500&fit=crop&crop=faces",
-      alt: "Luxury product styling"
+      type: 'video',
+      src: "/grid_images/3152-166336023_small.webm",
+      poster: "/grid_images/arra-luxury-8274729_1280.jpg",
+      alt: "Premium brand showcase video",
+      size: 'tall'
     },
     {
       id: 9,
-      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=400&fit=crop&crop=faces",
-      alt: "Brand storytelling"
+      type: 'image',
+      src: "/grid_images/restaurant-4011989_1280.jpg",
+      alt: "Fine dining brand visual identity",
+      size: 'medium'
     },
+
+    // Column 4 - Start with Fiji luxury
     {
       id: 10,
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=600&fit=crop&crop=faces",
-      alt: "Creative direction"
+      type: 'image',
+      src: "/grid_images/fiji-7186952_1280.jpg",
+      alt: "Luxury travel and lifestyle brands",
+      size: 'medium'
     },
+    // Video 4 - Fourth video asset
     {
       id: 11,
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop&crop=faces",
-      alt: "Content planning session"
+      type: 'video',
+      src: "/grid_images/34855-403777679_tiny.webm",
+      poster: "/grid_images/table-5356682_1280.jpg",
+      alt: "Luxury lifestyle content creation",
+      size: 'small'
     },
     {
       id: 12,
-      image: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=400&h=500&fit=crop&crop=faces",
-      alt: "Social media mockup"
+      type: 'image',
+      src: "/grid_images/architecture-2256489_1280.jpg",
+      alt: "Architectural brand photography",
+      size: 'tall'
+    },
+
+    // Additional images for richer layout
+    {
+      id: 13,
+      type: 'image',
+      src: "/grid_images/building-6011756_1280.jpg",
+      alt: "Contemporary architecture branding",
+      size: 'small'
+    },
+    {
+      id: 14,
+      type: 'image',
+      src: "/grid_images/arra-luxury-8274729_1280.jpg",
+      alt: "Premium lifestyle brand imagery",
+      size: 'medium'
+    },
+    {
+      id: 15,
+      type: 'image',
+      src: "/grid_images/table-5356682_1280.jpg",
+      alt: "Luxury dining experience branding",
+      size: 'small'
     }
   ];
 
@@ -73,40 +136,86 @@ export default function Gallery() {
           </h2>
         </div>
 
-        {/* Bento/Masonry Grid */}
-        <div className="columns-1 md:columns-2 lg:columns-4 gap-3 space-y-3" data-reveal>
-          {galleryItems.map((item, index) => (
-            <div
-              key={item.id}
-              className="break-inside-avoid group cursor-pointer"
-              style={{
-                animationDelay: `${index * 100}ms`
-              }}
-            >
-              <div className="relative overflow-hidden rounded-lg bg-panel border border-line hover:border-ink/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-                <div
-                  className="w-full bg-center bg-no-repeat bg-cover"
-                  style={{
-                    backgroundImage: `url("${item.image}")`,
-                    aspectRatio: index % 4 === 1 || index % 4 === 3 ? '1/1.5' : '1/1'
-                  }}
-                  role="img"
-                  aria-label={item.alt}
-                >
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/20 transition-colors duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-8 h-8 text-canvas">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M15 3H6C4.9 3 4 3.9 4 5V16C4 17.1 4.9 18 6 18H15C16.1 18 17 17.1 17 16V5C17 3.9 16.1 3 15 3ZM12 13.5L9.5 10.5L7 13.5H12ZM14 11.5C14.8 11.5 15.5 10.8 15.5 10S14.8 8.5 14 8.5 12.5 9.2 12.5 10 13.2 11.5 14 11.5Z" fill="currentColor"/>
-                        </svg>
-                      </div>
+        {/* Creative Masonry/Bento Grid - Original aspect ratios */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-[200px]" data-reveal>
+          {galleryItems.map((item, index) => {
+            // Original sizing system
+            const getSizeClass = (size: string) => {
+              switch (size) {
+                case 'small': return 'row-span-1';
+                case 'medium': return 'row-span-2';
+                case 'tall': return 'row-span-3';
+                default: return 'row-span-2';
+              }
+            };
+
+            return (
+              <div
+                key={item.id}
+                className={`group cursor-pointer ${getSizeClass(item.size)}`}
+                style={{
+                  animationDelay: `${index * 100}ms`
+                }}
+              >
+                <div className="relative overflow-hidden rounded-lg bg-panel border border-line hover:border-ink/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg h-full w-full">
+                  {item.type === 'image' ? (
+                    // Image Item - Clean with no icons
+                    <div
+                      className="w-full h-full bg-center bg-no-repeat bg-cover"
+                      style={{
+                        backgroundImage: `url("${item.src}")`
+                      }}
+                      role="img"
+                      aria-label={item.alt}
+                    >
+                      {/* Simple hover overlay - no icons */}
+                      <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-300"></div>
                     </div>
-                  </div>
+                  ) : (
+                    // Video Item - Always autoplay, no controls
+                    <div className="w-full h-full relative">
+                      <video
+                        className="w-full h-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        poster={item.poster}
+                        onError={(e) => {
+                          // Fallback to poster image if video fails to load
+                          const target = e.target as HTMLVideoElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      >
+                        <source src={item.src} type="video/mp4" />
+                        <source src={item.src} type="video/webm" />
+                        Your browser does not support the video tag.
+                      </video>
+                      
+                      {/* Fallback image */}
+                      <div
+                        className="hidden w-full h-full bg-center bg-no-repeat bg-cover"
+                        style={{
+                          backgroundImage: `url("${item.poster}")`
+                        }}
+                      ></div>
+                      
+                      {/* Simple hover overlay - no play icons */}
+                      <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-300"></div>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+
+        {/* Optional: Add a subtle description */}
+        <div data-reveal className="text-center mt-12">
+          <p className="text-secondary max-w-2xl mx-auto">
+            From brand storytelling to campaign execution — witness the creative journey that transforms ideas into compelling social narratives.
+          </p>
         </div>
       </div>
     </section>

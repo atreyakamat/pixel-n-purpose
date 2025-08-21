@@ -61,7 +61,7 @@ export default function Hero() {
           </p>
           
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-canvas">
-            Brand your <em className="italic">story</em>
+            Brand <em className="italic font-bold uppercase">YOUR</em> story
           </h1>
           
           <p className="text-base md:text-lg text-canvas/90 mb-8 max-w-2xl mx-auto leading-relaxed">
