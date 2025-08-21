@@ -16,11 +16,11 @@ const libreBodoni = Libre_Bodoni({
 });
 
 export const metadata: Metadata = {
-  title: "Pixel N Purpose — Social strategy for brands with presence",
+  title: "Pixel & Purpose — Social strategy for brands with presence",
   description: "Boutique social and ad partner for luxury houses. Quiet ideas. Measurable impact.",
   metadataBase: new URL("https://pixelnpurpose.com"),
   openGraph: {
-    title: "Pixel N Purpose — Social strategy for brands with presence",
+    title: "Pixel & Purpose — Social strategy for brands with presence",
     description: "Boutique social and ad partner for luxury houses. Quiet ideas. Measurable impact.",
     url: "https://pixelnpurpose.com",
     siteName: "Pixel N Purpose",
