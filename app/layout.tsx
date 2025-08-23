@@ -9,8 +9,8 @@ const inter = Inter({
   display: "swap",
 });
 
-const claraClassicist = localFont({
-  src: "../public/fonts/ClaraAntiqua.otf",
+const minipax = localFont({
+  src: "../public/fonts/Minipax-Medium-BF64ab72727a6bb.ttf",
   variable: "--font-display",
   display: "swap",
 });
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${claraClassicist.variable}`}>
+    <html lang="en" className={`${inter.variable} ${minipax.variable}`}>
       <body className="bg-canvas text-ink antialiased">
         {children}
       </body>
