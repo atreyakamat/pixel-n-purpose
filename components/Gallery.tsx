@@ -4,10 +4,48 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function Gallery() {
   const galleryRef = useRef<HTMLDivElement>(null);
+  const [isAssembled, setIsAssembled] = useState(false);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastScrollRef = useRef(0);
 
+  // Assembly animation on section entry
   useEffect(() => {
-    const handleScroll = () => {
-      if (!galleryRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isAssembled) {
+            setIsAssembled(true);
+            // Trigger staggered assembly animation
+            const items = entry.target.querySelectorAll('.gallery-item');
+            items.forEach((item, index) => {
+              const element = item as HTMLElement;
+              const delay = Math.floor(index / 3) * 80 + (index % 3) * 60; // Row + column stagger
+              setTimeout(() => {
+                element.classList.add('assembled');
+              }, delay);
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    if (galleryRef.current) {
+      observer.observe(galleryRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isAssembled]);
+
+  // Optimized parallax with requestAnimationFrame
+  useEffect(() => {
+    let ticking = false;
+
+    const handleParallax = () => {
+      if (!galleryRef.current || !isAssembled) return;
 
       const rect = galleryRef.current.getBoundingClientRect();
       const scrollY = window.scrollY;
@@ -15,46 +53,65 @@ export default function Gallery() {
       // Only apply parallax when gallery is in viewport
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
 
-      // Calculate how much of the gallery has been scrolled through
-      const scrollProgress = Math.max(0, Math.min(1, -rect.top / (rect.height + window.innerHeight)));
-      
-      // Apply clean parallax to gallery items
-      const items = galleryRef.current.querySelectorAll('.gallery-item');
+      // Calculate scroll progress through gallery
+      const scrollProgress = Math.max(0, Math.min(1, 
+        (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
+      ));
+
+      const items = galleryRef.current.querySelectorAll('.gallery-item.assembled');
       items.forEach((item, index) => {
         const element = item as HTMLElement;
         
-        // Calculate position in 3-column grid
+        // Calculate grid position
         const column = index % 3;
         const row = Math.floor(index / 3);
         
-        // Define subtle parallax speeds (much cleaner, like Studio Nordost)
-        const parallaxSpeeds = [
-          // Row pattern with subtle variation
-          [0.8, 1.0, 0.6], // Row 0
-          [0.4, 0.9, 1.2], // Row 1  
-          [1.1, 0.5, 0.7], // Row 2
-          [0.9, 1.3, 0.3], // Row 3
-          [0.6, 0.8, 1.0]  // Row 4
+        // Define parallax layers with subtle speed variations
+        const parallaxLayers = [
+          // Layer speeds: some faster, some slower, few counter-direction
+          [0.3, -0.1, 0.5],  // Row 0: slow, counter, medium
+          [0.8, 0.2, -0.3],  // Row 1: fast, slow, counter
+          [0.1, 0.6, 0.4],   // Row 2: very slow, medium-fast, medium
+          [-0.2, 0.9, 0.7],  // Row 3: counter, very fast, fast
+          [0.5, 0.3, -0.1]   // Row 4: medium, slow, counter
         ];
         
-        // Get speed for this position
-        const rowIndex = row % parallaxSpeeds.length;
-        const speed = parallaxSpeeds[rowIndex][column];
+        const layerIndex = row % parallaxLayers.length;
+        const speed = parallaxLayers[layerIndex][column] || 0.3;
         
-        // Calculate clean vertical parallax (no rotation, no tilt)
-        const maxMovement = 60; // More subtle movement
-        const movement = scrollProgress * maxMovement * speed;
+        // Calculate parallax offset (max 40px for subtlety)
+        const maxOffset = 40;
+        const offset = scrollProgress * maxOffset * speed;
         
-        // Apply only clean vertical transform
-        element.style.transform = `translateY(${movement}px)`;
+        // Apply clean vertical parallax
+        element.style.transform = `translateY(${offset}px)`;
       });
+
+      ticking = false;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
+    const onScroll = () => {
+      lastScrollRef.current = window.scrollY;
+      if (!ticking) {
+        animationFrameRef.current = requestAnimationFrame(handleParallax);
+        ticking = true;
+      }
+    };
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    // Respect reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isAssembled]);
+
   // Landscape bento/masonry gallery items
   const galleryItems = [
     // Row 1 - Mix of wide and small landscape items
@@ -188,20 +245,20 @@ export default function Gallery() {
           </h2>
         </div>
 
-        {/* Clean Uniform Masonry Gallery */}
+        {/* Premium Bento Grid Gallery */}
         <div 
           ref={galleryRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr items-start" 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[200px]" 
           data-reveal
         >
           {galleryItems.map((item, index) => {
-            // Simplified uniform sizing for clean masonry
+            // Premium bento sizing with clean proportions
             const getSizeClass = (size: string) => {
               switch (size) {
-                case 'small': return 'h-64'; // Uniform height
-                case 'medium': return 'md:col-span-2 h-48'; // Wide but uniform height
-                case 'large': return 'md:col-span-2 h-80'; // Large but uniform height
-                default: return 'h-64';
+                case 'small': return 'row-span-1 col-span-1'; // 1x1 tiles
+                case 'medium': return 'md:col-span-2 row-span-1'; // 2x1 wide tiles
+                case 'large': return 'md:col-span-2 row-span-2'; // 2x2 large tiles
+                default: return 'row-span-1 col-span-1';
               }
             };
 
@@ -209,30 +266,34 @@ export default function Gallery() {
               <div
                 key={item.id}
                 data-index={index}
-                className={`gallery-item group cursor-pointer ${getSizeClass(item.size)} w-full`}
+                className={`gallery-item group cursor-pointer ${getSizeClass(item.size)} 
+                  opacity-0 scale-95 translate-y-4 transition-all duration-700 ease-out`}
                 style={{
-                  willChange: 'transform',
+                  willChange: 'transform, opacity',
                 }}
               >
-                <div className="relative overflow-hidden rounded-lg bg-panel border border-line hover:border-ink/20 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg h-full w-full">
+                <div className="relative overflow-hidden rounded-xl bg-panel border border-line 
+                  transition-all duration-300 ease-out hover:scale-[1.02] hover:border-ink/30 
+                  hover:shadow-xl hover:shadow-ink/5 h-full w-full group-hover:z-10">
                   {item.type === 'image' ? (
-                    // Image Item - Uniform aspect ratio
+                    // Premium image presentation
                     <div
-                      className="w-full h-full bg-center bg-no-repeat bg-cover"
+                      className="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700"
                       style={{
                         backgroundImage: `url("${item.src}")`
                       }}
                       role="img"
                       aria-label={item.alt}
                     >
-                      {/* Simple hover overlay */}
-                      <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-300"></div>
+                      {/* Premium hover overlay with gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   ) : (
-                    // Video Item - Uniform aspect ratio
+                    // Premium video presentation
                     <div className="w-full h-full relative">
                       <video
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700"
                         autoPlay
                         loop
                         muted
@@ -249,7 +310,7 @@ export default function Gallery() {
                         Your browser does not support the video tag.
                       </video>
                       
-                      {/* Fallback image */}
+                      {/* Fallback with premium styling */}
                       <div
                         className="hidden w-full h-full bg-center bg-no-repeat bg-cover"
                         style={{
@@ -257,8 +318,9 @@ export default function Gallery() {
                         }}
                       ></div>
                       
-                      {/* Simple hover overlay */}
-                      <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-300"></div>
+                      {/* Premium video overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   )}
                 </div>

@@ -65,10 +65,30 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Gallery Clean Scroll Parallax (Studio Nordost Style) */
+/* Premium Gallery Assembly & Parallax */
 .gallery-item {
-  will-change: transform;
+  will-change: transform, opacity;
   backface-visibility: hidden;
+}
+
+/* Assembly animation when tiles land into position */
+.gallery-item.assembled {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .gallery-item.assembled {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 body {
