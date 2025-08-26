@@ -1,35 +1,31 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function Gallery() {
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [isAssembled, setIsAssembled] = useState(false);
-  const animationFrameRef = useRef<number | null>(null);
-  const lastScrollRef = useRef(0);
 
-  // Assembly animation on section entry
+  // Simple intersection observer for reveal animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !isAssembled) {
-            setIsAssembled(true);
-            // Trigger staggered assembly animation
+          if (entry.isIntersecting) {
             const items = entry.target.querySelectorAll('.gallery-item');
             items.forEach((item, index) => {
               const element = item as HTMLElement;
-              const delay = Math.floor(index / 3) * 80 + (index % 3) * 60; // Row + column stagger
+              // Staggered reveal with shorter delays
               setTimeout(() => {
-                element.classList.add('assembled');
-              }, delay);
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0) scale(1)';
+              }, index * 80);
             });
           }
         });
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -10% 0px'
+        rootMargin: '0px 0px -5% 0px'
       }
     );
 
@@ -38,89 +34,16 @@ export default function Gallery() {
     }
 
     return () => observer.disconnect();
-  }, [isAssembled]);
+  }, []);
 
-  // Optimized parallax with requestAnimationFrame
-  useEffect(() => {
-    let ticking = false;
-
-    const handleParallax = () => {
-      if (!galleryRef.current || !isAssembled) return;
-
-      const rect = galleryRef.current.getBoundingClientRect();
-      const scrollY = window.scrollY;
-      
-      // Only apply parallax when gallery is in viewport
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-
-      // Calculate scroll progress through gallery
-      const scrollProgress = Math.max(0, Math.min(1, 
-        (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-      ));
-
-      const items = galleryRef.current.querySelectorAll('.gallery-item.assembled');
-      items.forEach((item, index) => {
-        const element = item as HTMLElement;
-        
-        // Calculate grid position
-        const column = index % 3;
-        const row = Math.floor(index / 3);
-        
-        // Define parallax layers with subtle speed variations
-        const parallaxLayers = [
-          // Layer speeds: some faster, some slower, few counter-direction
-          [0.3, -0.1, 0.5],  // Row 0: slow, counter, medium
-          [0.8, 0.2, -0.3],  // Row 1: fast, slow, counter
-          [0.1, 0.6, 0.4],   // Row 2: very slow, medium-fast, medium
-          [-0.2, 0.9, 0.7],  // Row 3: counter, very fast, fast
-          [0.5, 0.3, -0.1]   // Row 4: medium, slow, counter
-        ];
-        
-        const layerIndex = row % parallaxLayers.length;
-        const speed = parallaxLayers[layerIndex][column] || 0.3;
-        
-        // Calculate parallax offset (max 40px for subtlety)
-        const maxOffset = 40;
-        const offset = scrollProgress * maxOffset * speed;
-        
-        // Apply clean vertical parallax
-        element.style.transform = `translateY(${offset}px)`;
-      });
-
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      lastScrollRef.current = window.scrollY;
-      if (!ticking) {
-        animationFrameRef.current = requestAnimationFrame(handleParallax);
-        ticking = true;
-      }
-    };
-
-    // Respect reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReducedMotion) {
-      window.addEventListener('scroll', onScroll, { passive: true });
-    }
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [isAssembled]);
-
-  // Landscape bento/masonry gallery items
+  // Premium bento/masonry gallery items with intelligent sizing
   const galleryItems = [
-    // Row 1 - Mix of wide and small landscape items
     {
       id: 1,
       type: 'image',
       src: "/grid_images/jewellery-1723638_640.jpg",
       alt: "Luxury jewelry photography for premium brands",
-      size: 'small' // Small landscape
+      size: 'small' // Perfect for square jewelry detail shots
     },
     {
       id: 2,
@@ -128,56 +51,50 @@ export default function Gallery() {
       src: "/grid_images/11289-229221023_small.webm",
       poster: "/grid_images/architecture-2256489_1280.jpg",
       alt: "Luxury brand video content creation",
-      size: 'medium' // Wide landscape video
+      size: 'medium' // Wide format perfect for cinematic brand videos
     },
     {
       id: 3,
       type: 'image',
       src: "/grid_images/car-1544342_640.jpg",
       alt: "Premium automotive brand photography",
-      size: 'small' // Small landscape
+      size: 'small' // Automotive detail shots work well in square format
     },
-
-    // Row 2 - Large landscape block and smaller items
     {
       id: 4,
       type: 'video',
       src: "/grid_images/214888_tiny.webm",
       poster: "/grid_images/building-6011756_1280.jpg",
       alt: "Dynamic brand storytelling video",
-      size: 'large' // Large landscape video block
+      size: 'large' // Hero video deserves premium large format
     },
     {
       id: 5,
       type: 'image',
       src: "/grid_images/architecture-5585737_1280.jpg",
       alt: "Architectural luxury brand visuals",
-      size: 'small' // Small landscape
+      size: 'small' // Architectural details in focused square format
     },
-
-    // Row 3 - Wide and small mix
     {
       id: 6,
       type: 'image',
       src: "/grid_images/outdoor-dining-1846137_1280.jpg",
       alt: "Luxury hospitality brand content",
-      size: 'medium' // Wide landscape
+      size: 'medium' // Wide format showcases dining atmosphere
     },
     {
       id: 7,
       type: 'image',
       src: "/grid_images/opal-4765457_1280.jpg",
       alt: "Luxury gemstone brand photography",
-      size: 'small' // Small landscape
+      size: 'small' // Gemstone macro shots perfect in square
     },
-
-    // Row 4 - Video and images
     {
       id: 8,
       type: 'image',
       src: "/grid_images/restaurant-4011989_1280.jpg",
       alt: "Fine dining brand visual identity",
-      size: 'small' // Small landscape
+      size: 'small' // Restaurant details in intimate square format
     },
     {
       id: 9,
@@ -185,23 +102,21 @@ export default function Gallery() {
       src: "/grid_images/3152-166336023_small.webm",
       poster: "/grid_images/arra-luxury-8274729_1280.jpg",
       alt: "Premium brand showcase video",
-      size: 'medium' // Wide landscape video
+      size: 'medium' // Brand showcase videos work well in wide format
     },
-
-    // Row 5 - Final items
     {
       id: 10,
       type: 'image',
       src: "/grid_images/fiji-7186952_1280.jpg",
       alt: "Luxury travel and lifestyle brands",
-      size: 'small' // Small landscape
+      size: 'small' // Travel moments captured in square format
     },
     {
       id: 11,
       type: 'image',
       src: "/grid_images/architecture-2256489_1280.jpg",
       alt: "Architectural brand photography",
-      size: 'small' // Small landscape
+      size: 'medium' // Architecture benefits from wide landscape format
     },
     {
       id: 12,
@@ -209,30 +124,28 @@ export default function Gallery() {
       src: "/grid_images/34855-403777679_tiny.webm",
       poster: "/grid_images/table-5356682_1280.jpg",
       alt: "Luxury lifestyle content creation",
-      size: 'medium' // Wide landscape video
+      size: 'medium' // Lifestyle videos in cinematic wide format
     },
-
-    // Additional landscape items
     {
       id: 13,
       type: 'image',
       src: "/grid_images/building-6011756_1280.jpg",
       alt: "Contemporary architecture branding",
-      size: 'small' // Small landscape
+      size: 'small' // Architectural details in focused format
     },
     {
       id: 14,
       type: 'image',
       src: "/grid_images/arra-luxury-8274729_1280.jpg",
       alt: "Premium lifestyle brand imagery",
-      size: 'small' // Small landscape
+      size: 'small' // Lifestyle details in square format
     },
     {
       id: 15,
       type: 'image',
       src: "/grid_images/table-5356682_1280.jpg",
       alt: "Luxury dining experience branding",
-      size: 'small' // Small landscape
+      size: 'small' // Dining details perfect in square format
     }
   ];
 
@@ -245,19 +158,19 @@ export default function Gallery() {
           </h2>
         </div>
 
-        {/* Premium Bento Grid Gallery */}
+        {/* Premium Bento Grid Masonry Gallery */}
         <div 
           ref={galleryRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[200px]" 
           data-reveal
         >
           {galleryItems.map((item, index) => {
-            // Premium bento sizing with clean proportions
+            // Intelligent bento sizing based on content type and format
             const getSizeClass = (size: string) => {
               switch (size) {
-                case 'small': return 'row-span-1 col-span-1'; // 1x1 tiles
-                case 'medium': return 'md:col-span-2 row-span-1'; // 2x1 wide tiles
-                case 'large': return 'md:col-span-2 row-span-2'; // 2x2 large tiles
+                case 'small': return 'row-span-1 col-span-1'; // Perfect for details, portraits, square content
+                case 'medium': return 'md:col-span-2 row-span-1'; // Wide format for landscapes, cinematic content
+                case 'large': return 'md:col-span-2 row-span-2'; // Hero content that demands attention
                 default: return 'row-span-1 col-span-1';
               }
             };
@@ -266,34 +179,57 @@ export default function Gallery() {
               <div
                 key={item.id}
                 data-index={index}
-                className={`gallery-item group cursor-pointer ${getSizeClass(item.size)} 
-                  opacity-0 scale-95 translate-y-4 transition-all duration-700 ease-out`}
+                className={`gallery-item group cursor-pointer ${getSizeClass(item.size)}`}
                 style={{
+                  opacity: 0,
+                  transform: 'translateY(20px) scale(0.95)',
+                  transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
                   willChange: 'transform, opacity',
                 }}
               >
                 <div className="relative overflow-hidden rounded-xl bg-panel border border-line 
-                  transition-all duration-300 ease-out hover:scale-[1.02] hover:border-ink/30 
-                  hover:shadow-xl hover:shadow-ink/5 h-full w-full group-hover:z-10">
+                  transition-all duration-500 ease-out hover:scale-[1.02] hover:border-ink/30 
+                  hover:shadow-2xl hover:shadow-ink/10 h-full w-full group-hover:z-10">
                   {item.type === 'image' ? (
-                    // Premium image presentation
+                    // Premium image presentation with intelligent positioning
                     <div
-                      className="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700"
+                      className="w-full h-full bg-center bg-no-repeat bg-cover transition-all duration-700 
+                        group-hover:scale-105"
                       style={{
-                        backgroundImage: `url("${item.src}")`
+                        backgroundImage: `url("${item.src}")`,
+                        backgroundPosition: 'center center',
+                        minHeight: '200px' // Ensure minimum height for visibility
                       }}
                       role="img"
                       aria-label={item.alt}
                     >
-                      {/* Premium hover overlay with gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent 
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* Multi-layer hover overlay for depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-ink/5 to-transparent 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ink/20
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                      
+                      {/* Content type indicator */}
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 delay-200">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-full p-2">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   ) : (
-                    // Premium video presentation
-                    <div className="w-full h-full relative">
+                    // Premium video presentation with intelligent aspect handling
+                    <div className="w-full h-full relative group">
                       <video
-                        className="w-full h-full object-cover transition-transform duration-700"
+                        className="w-full h-full object-cover transition-all duration-700 
+                          group-hover:scale-105"
+                        style={{
+                          objectPosition: item.size === 'large' ? 'center center' : 
+                                        item.size === 'medium' ? 'center center' : 'center center'
+                        }}
                         autoPlay
                         loop
                         muted
@@ -310,28 +246,61 @@ export default function Gallery() {
                         Your browser does not support the video tag.
                       </video>
                       
-                      {/* Fallback with premium styling */}
+                      {/* Fallback with same styling as video */}
                       <div
-                        className="hidden w-full h-full bg-center bg-no-repeat bg-cover"
+                        className="hidden w-full h-full bg-center bg-no-repeat bg-cover 
+                          transition-transform duration-700 group-hover:scale-105"
                         style={{
-                          backgroundImage: `url("${item.poster}")`
+                          backgroundImage: `url("${item.poster}")`,
+                          backgroundPosition: 'center center'
                         }}
                       ></div>
                       
-                      {/* Premium video overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent 
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* Multi-layer video overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-ink/5 to-transparent 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ink/20
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                      
+                      {/* Video play indicator */}
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 delay-200">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-full p-2">
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                              d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2 2 0 001.5-2V6a2 2 0 011.5-1.5H15M9 14h1.5a2 2 0 001.5-2v-2a2 2 0 011.5-1.5H15" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      {/* Video progress indicator (aesthetic) */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-300">
+                        <div className="h-full bg-white/60 w-0 group-hover:w-full 
+                          transition-all duration-[3000ms] ease-linear"></div>
+                      </div>
                     </div>
                   )}
+
+                  {/* Content info overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 
+                    transform translate-y-full group-hover:translate-y-0 
+                    transition-transform duration-500 ease-out
+                    bg-gradient-to-t from-ink/80 to-transparent">
+                    <p className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 
+                      transition-opacity duration-300 delay-300">
+                      {item.alt}
+                    </p>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Optional: Add a subtle description */}
-        <div data-reveal className="text-center mt-12">
-          <p className="text-secondary max-w-2xl mx-auto">
+        {/* Enhanced description */}
+        <div data-reveal className="text-center mt-16">
+          <p className="text-secondary max-w-2xl mx-auto leading-relaxed">
             From brand storytelling to campaign execution — witness the creative journey that transforms ideas into compelling social narratives.
           </p>
         </div>
@@ -339,3 +308,5 @@ export default function Gallery() {
     </section>
   );
 }
+
+
