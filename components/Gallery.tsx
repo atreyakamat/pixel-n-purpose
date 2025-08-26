@@ -281,17 +281,6 @@ export default function Gallery() {
                       </div>
                     </div>
                   )}
-
-                  {/* Content info overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 
-                    transform translate-y-full group-hover:translate-y-0 
-                    transition-transform duration-500 ease-out
-                    bg-gradient-to-t from-ink/80 to-transparent">
-                    <p className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 
-                      transition-opacity duration-300 delay-300">
-                      {item.alt}
-                    </p>
-                  </div>
                 </div>
               </div>
             );
