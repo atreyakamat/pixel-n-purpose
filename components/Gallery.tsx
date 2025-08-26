@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 export default function Gallery() {
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  // Simple intersection observer for reveal animation
+  // Enhanced intersection observer with parallax scroll effect
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,6 +34,61 @@ export default function Gallery() {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  // Parallax scroll effect for gallery items
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!galleryRef.current) return;
+
+      const scrollY = window.scrollY;
+      const items = galleryRef.current.querySelectorAll('.gallery-item');
+      
+      items.forEach((item, index) => {
+        const element = item as HTMLElement;
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top + scrollY;
+        const elementHeight = rect.height;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate if element is in viewport
+        const isInViewport = rect.top < windowHeight && rect.bottom > 0;
+        
+        if (isInViewport) {
+          // Create different parallax speeds for different sized items
+          const speed = element.classList.contains('row-span-2') ? 0.5 : // Large items slower
+                       element.classList.contains('md:col-span-2') ? 0.3 : // Medium items medium speed
+                       0.2; // Small items faster
+          
+          // Calculate parallax offset based on scroll position
+          const yPos = -(scrollY - elementTop) * speed;
+          
+          // Apply subtle parallax transform while maintaining scale
+          element.style.transform = `translateY(${yPos}px) scale(1)`;
+        }
+      });
+    };
+
+    // Throttle scroll events for performance
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollListener, { passive: true });
+    
+    // Initial call
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', scrollListener);
+    };
   }, []);
 
   // Premium bento/masonry gallery items with intelligent sizing
@@ -183,7 +238,7 @@ export default function Gallery() {
                 style={{
                   opacity: 0,
                   transform: 'translateY(20px) scale(0.95)',
-                  transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+                  transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.1s linear',
                   willChange: 'transform, opacity',
                 }}
               >
