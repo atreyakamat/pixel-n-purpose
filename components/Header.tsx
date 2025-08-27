@@ -6,12 +6,20 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Track scroll position for dynamic styling based on hero section
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const heroSection = document.getElementById('hero');
+      if (heroSection) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const currentScroll = window.scrollY + 100; // Add offset for smoother transition
+        setIsScrolled(currentScroll > heroBottom);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -24,128 +32,103 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-canvas/95 backdrop-blur-lg border-b border-line shadow-sm py-2' 
-        : 'bg-transparent py-3'
+        ? 'bg-canvas/95 backdrop-blur-lg border-b border-line shadow-sm pt-1 pb-0' 
+        : 'bg-transparent pt-0.5 pb-0'
     }`}>
       <div className="container flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-4">
-          <div className="w-4 h-4">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clipPath="url(#clip0_6_330)">
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
-                  fill="currentColor"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_6_330">
-                  <rect width="48" height="48" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
+        {/* Logo Only - No Text */}
+        <div className="flex items-start">
+          <div className="w-25 h-25 -mt-4">
+            <img 
+              src={isScrolled 
+                ? "/PNP-black.png" 
+                : "/PNP-white.png"
+              }
+              alt="Pixel & Purpose Logo" 
+              className="w-full h-full object-contain transition-all duration-500"
+            />
           </div>
-          <h1 className="font-display text-lg font-bold leading-tight tracking-[-0.015em] text-ink">
-            Pixel N Purpose
-          </h1>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <button
-            onClick={() => scrollToSection('hero')}
-            className="text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200"
-          >
-            Home
-          </button>
-          <button
-            onClick={() => scrollToSection('gallery')}
-            className="text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200"
-          >
-            Gallery
-          </button>
-          <button
-            onClick={() => scrollToSection('services')}
-            className="text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200"
-          >
-            Services
-          </button>
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200"
-          >
-            Contact
-          </button>
-        </nav>
-
-        {/* CTA Button */}
+        {/* Hamburger Menu Button - Now visible on all screen sizes */}
         <button
-          onClick={() => scrollToSection('contact')}
-          className="hidden md:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-ink text-canvas text-sm font-bold leading-normal tracking-[0.015em] hover:bg-ink/90 transition-colors duration-200"
-        >
-          <span>Contact Us</span>
-        </button>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2"
+          className="p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle mobile menu"
+          aria-label="Toggle menu"
         >
           <div className="w-6 h-6 flex flex-col justify-center">
-            <span className={`block h-0.5 w-6 bg-ink transition-all duration-200 ${
+            <span className={`block h-0.5 w-6 transition-all duration-200 ${
               isMobileMenuOpen ? 'rotate-45 translate-y-0.5' : ''
+            } ${
+              isScrolled ? 'bg-ink' : 'bg-white'
             }`} />
-            <span className={`block h-0.5 w-6 bg-ink transition-all duration-200 mt-1 ${
+            <span className={`block h-0.5 w-6 transition-all duration-200 mt-1 ${
               isMobileMenuOpen ? 'opacity-0' : ''
+            } ${
+              isScrolled ? 'bg-ink' : 'bg-white'
             }`} />
-            <span className={`block h-0.5 w-6 bg-ink transition-all duration-200 mt-1 ${
+            <span className={`block h-0.5 w-6 transition-all duration-200 mt-1 ${
               isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
+            } ${
+              isScrolled ? 'bg-ink' : 'bg-white'
             }`} />
           </div>
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-        isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+      {/* Full Screen Menu Overlay - Works for all screen sizes */}
+      <div className={`fixed inset-0 z-40 transition-all duration-500 ${
+        isMobileMenuOpen 
+          ? 'opacity-100 visible' 
+          : 'opacity-0 invisible'
       }`}>
-        <nav className="bg-canvas/95 backdrop-blur-lg border-t border-line px-4 py-4 space-y-4">
-          <button
-            onClick={() => scrollToSection('hero')}
-            className="block w-full text-left text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200 py-2"
-          >
-            Home
-          </button>
-          <button
-            onClick={() => scrollToSection('gallery')}
-            className="block w-full text-left text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200 py-2"
-          >
-            Gallery
-          </button>
-          <button
-            onClick={() => scrollToSection('services')}
-            className="block w-full text-left text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200 py-2"
-          >
-            Services
-          </button>
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="block w-full text-left text-sm font-medium text-ink hover:text-ink/80 transition-colors duration-200 py-2"
-          >
-            Contact
-          </button>
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="w-full mt-4 flex items-center justify-center rounded-lg h-10 px-4 bg-ink text-canvas text-sm font-bold leading-normal tracking-[0.015em] hover:bg-ink/90 transition-colors duration-200"
-          >
-            Contact Us
-          </button>
-        </nav>
+        {/* Black background overlay */}
+        <div className="absolute inset-0 bg-black" />
+        
+        {/* Close button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="absolute top-8 right-8 z-50 p-2 text-white hover:text-champagne transition-colors duration-300"
+          aria-label="Close menu"
+        >
+          <div className="w-8 h-8 flex items-center justify-center">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+        </button>
+        
+        {/* Menu content */}
+        <div className="relative h-full flex items-center justify-center">
+          <nav className="text-center space-y-8">
+            <button
+              onClick={() => scrollToSection('hero')}
+              className="block w-full text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne transition-colors duration-300 py-4"
+            >
+              Home
+            </button>
+            <button
+              onClick={() => scrollToSection('gallery')}
+              className="block w-full text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne transition-colors duration-300 py-4"
+            >
+              Gallery
+            </button>
+            <button
+              onClick={() => scrollToSection('services')}
+              className="block w-full text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne transition-colors duration-300 py-4"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="block w-full text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne transition-colors duration-300 py-4"
+            >
+              Contact
+            </button>
+          </nav>
+        </div>
       </div>
     </header>
   );

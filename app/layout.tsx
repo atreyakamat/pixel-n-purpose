@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     title: "Pixel & Purpose — Social strategy for brands with presence",
     description: "Boutique social and ad partner for luxury houses. Quiet ideas. Measurable impact.",
     url: "https://pixelnpurpose.com",
-    siteName: "Pixel N Purpose",
+    siteName: "Pixel & Purpose",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pixel N Purpose — Social strategy for brands with presence",
+    title: "Pixel & Purpose — Social strategy for brands with presence",
     description: "Boutique social and ad partner for luxury houses. Quiet ideas. Measurable impact.",
   },
 };

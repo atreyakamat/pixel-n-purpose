@@ -4,6 +4,7 @@ import { ShineBorder } from '@/components/magicui/shine-border';
 
 interface ServiceData {
   title: string;
+  boldDesc: string;
   description: string;
   image: string;
 }
@@ -11,29 +12,34 @@ interface ServiceData {
 export default function Services() {
   const services: ServiceData[] = [
     {
-      title: "Social Strategy",
-      description: "Crafting bespoke social media strategies that elevate your brand's presence with precision and purpose.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop&crop=faces"
+      title: "Brand Identity & Design",
+      boldDesc: "Be Bold. Look Sharp. Leave a mark.",
+      description: "We craft identities that don’t just look good — they speak. From logos to rebrands, we design the details that make first impressions unforgettable.",
+      image: "/services-pics/person-600476_1280.jpg"
     },
     {
-      title: "Content Creation", 
-      description: "Producing visually stunning content that resonates with your brand identity across all platforms.",
-      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop&crop=faces"
+      title: "Content & Storytelling", 
+      boldDesc: "Say it right. Say it bold.",
+      description: "Your brand is more than visuals — it’s the words, the tone, the story. We shape messaging that connects, from websites to social to campaigns. Because a brand without a voice is just noise.",
+      image: "/services-pics/camera-6745942.jpg"
     },
     {
-      title: "Campaign Management",
-      description: "Executing optimized social campaigns that maximize reach, engagement, and measurable conversions.", 
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=faces"
+      title: "Digital Presence & Marketing",
+      boldDesc: "Be seen. Be found. Be trusted.",
+      description: "From websites to digital campaigns, we build experiences that perform. Smart design meets smart strategy — making your brand impossible to ignore.",
+      image: "/services-pics/domain-5243252.jpg"
     },
     {
-      title: "Brand Analytics",
-      description: "Delivering comprehensive insights and data-driven recommendations to amplify your brand's performance.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=faces"
+      title: "Campaigns & Creative Collateral",
+      boldDesc: "Ideas that move. Designs that stay.",
+      description: " We turn big ideas into branded experiences — launches, campaigns, events, presentations. Wherever your audience is, your brand shows up strong and consistent.",
+      image: "/services-pics/swimmer-1678307 (1).jpg"
     },
     {
-      title: "Digital Marketing",
-      description: "Comprehensive digital marketing solutions that drive engagement and convert audiences into loyal customers.",
-      image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=400&h=300&fit=crop&crop=faces"
+      title: "Consulting & Training",
+      boldDesc: "Clarity. Confidence. Control.",
+      description: "We don’t just build brands. We empower teams to manage them. Workshops, strategy sessions, creative direction — so your brand stays sharp long after launch.",
+      image: "/services-pics/children-1822688.jpg"
     }
   ];
 
@@ -61,6 +67,9 @@ export default function Services() {
               <h3 className="font-display text-xl font-bold leading-tight text-ink group-hover:text-champagne transition-colors duration-300">
                 {service.title}
               </h3>
+              <p className="text-black text-sm font-bold uppercase tracking-wider">
+                {service.boldDesc}
+              </p>
               <p className="text-ink/70 text-sm leading-relaxed group-hover:text-ink/80 transition-colors duration-300">
                 {service.description}
               </p>
@@ -76,16 +85,33 @@ export default function Services() {
       <div className="container">
         <div data-reveal className="text-center mb-12">
           <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] text-ink">
-            Our Services
+            The Workbench
           </h2>
           <p className="text-ink/70 mt-4 max-w-2xl mx-auto">
             Elevating luxury brands through strategic social media excellence and premium digital experiences.
           </p>
+          <div className="mt-6">
+            
+          </div>
         </div>
         
-        {/* Responsive Grid Layout - 5 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {services.map((service, index) => renderServiceCard(service, index))}
+        {/* Responsive Grid Layout - 5 cards - Centered for PC */}
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+            {services.slice(0, 3).map((service, index) => renderServiceCard(service, index))}
+          </div>
+        </div>
+        
+        {/* Bottom row - Same grid structure as top, but only 2 cards centered */}
+        <div className="flex justify-center mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl">
+            <div className="lg:col-start-2">
+              {renderServiceCard(services[3], 3)}
+            </div>
+            <div className="lg:col-start-3">
+              {renderServiceCard(services[4], 4)}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -209,7 +209,7 @@ export default function Gallery() {
       <div className="container">
         <div data-reveal className="text-center mb-12">
           <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] text-ink">
-            What We Create
+            Stories We Shape
           </h2>
         </div>
 
