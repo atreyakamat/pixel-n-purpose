@@ -62,17 +62,17 @@ export default function Header() {
             <span className={`block h-0.5 w-6 transition-all duration-200 ${
               isMobileMenuOpen ? 'rotate-45 translate-y-0.5' : ''
             } ${
-              isScrolled ? 'bg-ink' : 'bg-white'
+              isMobileMenuOpen ? 'bg-white' : (isScrolled ? 'bg-ink' : 'bg-white')
             }`} />
             <span className={`block h-0.5 w-6 transition-all duration-200 mt-1 ${
               isMobileMenuOpen ? 'opacity-0' : ''
             } ${
-              isScrolled ? 'bg-ink' : 'bg-white'
+              isMobileMenuOpen ? 'bg-white' : (isScrolled ? 'bg-ink' : 'bg-white')
             }`} />
             <span className={`block h-0.5 w-6 transition-all duration-200 mt-1 ${
               isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
             } ${
-              isScrolled ? 'bg-ink' : 'bg-white'
+              isMobileMenuOpen ? 'bg-white' : (isScrolled ? 'bg-ink' : 'bg-white')
             }`} />
           </div>
         </button>

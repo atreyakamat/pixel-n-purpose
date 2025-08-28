@@ -95,21 +95,25 @@ export default function Services() {
           </div>
         </div>
         
-        {/* Responsive Grid Layout - 5 cards - Centered for PC */}
+        {/* Responsive Grid Layout - 5 cards - All equal sizes */}
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
             {services.slice(0, 3).map((service, index) => renderServiceCard(service, index))}
           </div>
         </div>
         
-        {/* Bottom row - Same grid structure as top, but only 2 cards centered */}
+        {/* Bottom row - Same grid structure and card sizes */}
         <div className="flex justify-center mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl">
-            <div className="lg:col-start-2">
-              {renderServiceCard(services[3], 3)}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+            <div className="lg:col-start-1 lg:col-end-2 flex justify-center">
+              <div className="w-full max-w-sm">
+                {renderServiceCard(services[3], 3)}
+              </div>
             </div>
-            <div className="lg:col-start-3">
-              {renderServiceCard(services[4], 4)}
+            <div className="lg:col-start-2 lg:col-end-3 flex justify-center">
+              <div className="w-full max-w-sm">
+                {renderServiceCard(services[4], 4)}
+              </div>
             </div>
           </div>
         </div>
