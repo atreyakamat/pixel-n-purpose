@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ShineBorder } from '@/components/magicui/shine-border';
 
 interface ServiceData {
@@ -56,12 +57,16 @@ export default function Services() {
           shineColor={["#C7A977", "#0B0B0B", "#C7A977"]}
         />
         <div className="flex flex-col h-full relative z-10">
-          <div 
-            className="w-full h-48 bg-center bg-no-repeat bg-cover rounded-lg mb-6 transition-transform duration-500 group-hover:scale-105"
-            style={{ backgroundImage: `url("${service.image}")` }}
-            role="img"
-            aria-label={`${service.title} service illustration`}
-          />
+          <div className="w-full h-48 rounded-lg mb-6 overflow-hidden relative">
+            <Image 
+              src={service.image}
+              alt={`${service.title} service illustration`}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={index < 3}
+            />
+          </div>
           <div className="flex flex-col gap-4 flex-grow">
             <div className="flex flex-col gap-3">
               <h3 className="font-display text-xl font-bold leading-tight text-ink group-hover:text-champagne transition-colors duration-300">

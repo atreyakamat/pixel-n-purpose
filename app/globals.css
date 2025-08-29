@@ -1,15 +1,15 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
-/* Custom Font: Minipax */
+/* Preload critical fonts */
 @font-face {
   font-family: 'Minipax';
   src: url('/fonts/Minipax-Medium-BF64ab72727a6bb.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'calt' 1;
 }
 
 @font-face {
@@ -18,6 +18,7 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'calt' 1;
 }
 
 /* CSS Variables for theme colors */

@@ -41,6 +41,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${minipax.variable}`}>
+      <head>
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        
+        {/* Preload critical assets */}
+        <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/hero-poster.jpg" as="image" />
+        
+        {/* DNS prefetch for performance */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        
+        {/* Viewport meta */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
       <body className="bg-canvas text-ink antialiased">
         {children}
       </body>

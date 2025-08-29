@@ -1,12 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Gallery from '@/components/Gallery';
-import Services from '@/components/Services';
-import Footer from '@/components/Footer';
 import { setupReveal } from '@/lib/reveal';
+
+// Lazy load non-critical components
+const Gallery = lazy(() => import('@/components/Gallery'));
+const Services = lazy(() => import('@/components/Services'));
+const Footer = lazy(() => import('@/components/Footer'));
+
+// Loading component
+const ComponentLoader = () => (
+  <div className="flex items-center justify-center py-12">
+    <div className="w-8 h-8 border-2 border-champagne border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 export default function Home() {
   useEffect(() => {
@@ -18,10 +27,16 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Gallery />
-        <Services />
+        <Suspense fallback={<ComponentLoader />}>
+          <Gallery />
+        </Suspense>
+        <Suspense fallback={<ComponentLoader />}>
+          <Services />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<ComponentLoader />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

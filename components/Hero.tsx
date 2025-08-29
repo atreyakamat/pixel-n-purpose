@@ -41,6 +41,7 @@ export default function Hero() {
         muted
         loop
         playsInline
+        preload="metadata"
         poster="/hero-poster.jpg"
         aria-label="Background video showcasing luxury brand aesthetics"
       >
