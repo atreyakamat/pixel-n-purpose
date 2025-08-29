@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
 
+interface LayoutShiftEntry extends PerformanceEntry {
+  value: number;
+  hadRecentInput: boolean;
+}
+
 export function usePerformanceMonitoring() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -19,7 +24,7 @@ export function usePerformanceMonitoring() {
       // Monitor Cumulative Layout Shift
       let clsValue = 0;
       const clsObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
+        for (const entry of list.getEntries() as LayoutShiftEntry[]) {
           if (!entry.hadRecentInput) {
             clsValue += entry.value;
             console.log('CLS:', clsValue);
