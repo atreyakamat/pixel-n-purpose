@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "npx serve@latest out",
+    "cleanup": "node scripts/cleanup.js",
+    "optimize": "npm run cleanup && npm run build",
+    "fresh": "npm run cleanup && npm install && npm run build"
   },
   "dependencies": {
     "@react-three/fiber": "^9.0.0-alpha.8",
@@ -27,6 +30,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.179.0",
+    "serve": "^14.2.4",
     "tw-animate-css": "^1.3.7",
     "typescript": "^5"
   }

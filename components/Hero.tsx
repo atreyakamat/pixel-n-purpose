@@ -34,30 +34,25 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden" role="banner">
-      {/* Background Video */}
+      {/* Background Video - Optimized for performance */}
       <video
         className="absolute inset-0 w-full h-full object-cover z-0"
         autoPlay
         muted
         loop
         playsInline
-        preload="none"
+        preload="metadata"
         poster="/hero-poster.jpg"
-        aria-label="Background video showcasing luxury brand aesthetics"
+        aria-label="Background video showcasing Pixel & Purpose brand aesthetics"
         style={{ contentVisibility: 'auto' }}
-        onLoadStart={() => {
-          // Lazy load video after critical content
-          const video = document.querySelector('video');
-          if (video && 'requestIdleCallback' in window) {
-            window.requestIdleCallback(() => {
-              video.preload = 'metadata';
-            });
-          }
+        onError={(e) => {
+          console.warn('Hero video failed to load:', e);
+          // Fallback to poster image if video fails
         }}
       >
-        {/* Optimized video sources */}
-        <source src="/hero-video.webm" type="video/webm" />
-        <source src="/hero-video.mp4" type="video/mp4" />
+        {/* Optimized video sources - using actual file names */}
+        <source src="/pnp-hero-video.webm" type="video/webm" />
+        <source src="/pnp-hero-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
