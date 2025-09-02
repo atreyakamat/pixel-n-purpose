@@ -46,9 +46,11 @@ export default function Services() {
 
   const renderServiceCard = (service: ServiceData, index: number) => {
     return (
-      <div 
+      <article 
         key={index}
-        className="relative p-6 rounded-xl bg-canvas border border-line hover:border-champagne/30 transition-all duration-500 h-full group"
+        className="relative p-6 rounded-xl bg-canvas border border-line hover:border-champagne/30 focus-within:border-champagne/50 transition-all duration-500 h-full group"
+        role="article"
+        aria-labelledby={`service-title-${index}`}
       >
         <ShineBorder
           className="absolute inset-0"
@@ -69,10 +71,16 @@ export default function Services() {
           </div>
           <div className="flex flex-col gap-4 flex-grow">
             <div className="flex flex-col gap-3">
-              <h3 className="font-display text-xl font-bold leading-tight text-ink group-hover:text-champagne transition-colors duration-300">
+              <h3 
+                id={`service-title-${index}`}
+                className="font-display text-xl font-bold leading-tight text-ink group-hover:text-champagne transition-colors duration-300"
+              >
                 {service.title}
               </h3>
-              <p className="text-black text-sm font-bold uppercase tracking-wider">
+              <p 
+                className="text-black text-sm font-bold uppercase tracking-wider"
+                aria-label={`Service tagline: ${service.boldDesc}`}
+              >
                 {service.boldDesc}
               </p>
               <p className="text-ink/70 text-sm leading-relaxed group-hover:text-ink/80 transition-colors duration-300">
@@ -81,15 +89,18 @@ export default function Services() {
             </div>
           </div>
         </div>
-      </div>
+      </article>
     );
   };
 
   return (
-    <section id="services" className="py-16 md:py-24 bg-panel">
+    <section id="services" className="py-16 md:py-24 bg-panel" role="region" aria-labelledby="services-heading">
       <div className="container">
-        <div data-reveal className="text-center mb-12">
-          <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] text-ink">
+        <header data-reveal className="text-center mb-12">
+          <h2 
+            id="services-heading"
+            className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] text-ink"
+          >
             The Workbench
           </h2>
           <p className="text-ink/70 mt-4 max-w-2xl mx-auto">
@@ -98,24 +109,28 @@ export default function Services() {
           <div className="mt-6">
             
           </div>
-        </div>
+        </header>
         
         {/* Responsive Grid Layout - 5 cards - All equal sizes */}
         <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
-            {services.slice(0, 3).map((service, index) => renderServiceCard(service, index))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl" role="list" aria-label="Our services">
+            {services.slice(0, 3).map((service, index) => (
+              <div key={index} role="listitem">
+                {renderServiceCard(service, index)}
+              </div>
+            ))}
           </div>
         </div>
         
         {/* Bottom row - Same grid structure and card sizes */}
         <div className="flex justify-center mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
-            <div className="lg:col-start-1 lg:col-end-2 flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl" role="list" aria-label="Additional services">
+            <div className="lg:col-start-1 lg:col-end-2 flex justify-center" role="listitem">
               <div className="w-full max-w-sm">
                 {renderServiceCard(services[3], 3)}
               </div>
             </div>
-            <div className="lg:col-start-2 lg:col-end-3 flex justify-center">
+            <div className="lg:col-start-2 lg:col-end-3 flex justify-center" role="listitem">
               <div className="w-full max-w-sm">
                 {renderServiceCard(services[4], 4)}
               </div>
