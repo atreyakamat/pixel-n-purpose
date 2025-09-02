@@ -42,7 +42,7 @@ export default function Hero() {
         loop
         playsInline
         preload="metadata"
-        poster="/hero-poster.jpg"
+        poster="/PNP-white.png"
         aria-label="Background video showcasing Pixel & Purpose brand aesthetics"
         style={{ contentVisibility: 'auto' }}
         onError={(e) => {
