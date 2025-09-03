@@ -5,11 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cloudflare": "npm run cleanup && npm run build",
-    "start": "npx serve@latest out",
     "cleanup": "node scripts/cleanup.js",
-    "optimize": "npm run cleanup && npm run build",
-    "fresh": "npm run cleanup && npm install && npm run build"
+    "preview": "npx serve@latest out"
   },
   "dependencies": {
     "@react-three/fiber": "^9.0.0-alpha.8",
