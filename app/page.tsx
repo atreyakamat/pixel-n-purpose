@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import { setupReveal } from '@/lib/reveal';
 
 // Lazy load non-critical components
+const AboutUs = lazy(() => import('@/components/AboutUs'));
 const Gallery = lazy(() => import('@/components/Gallery'));
 const Services = lazy(() => import('@/components/Services'));
 const Footer = lazy(() => import('@/components/Footer'));
@@ -27,6 +28,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Suspense fallback={<ComponentLoader />}>
+          <AboutUs />
+        </Suspense>
         <Suspense fallback={<ComponentLoader />}>
           <Gallery />
         </Suspense>

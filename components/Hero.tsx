@@ -63,7 +63,7 @@ export default function Hero() {
       <div className="relative z-10 container text-center text-canvas">
         <div data-reveal className="max-w-4xl mx-auto">          
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-tight mb-8 text-canvas font-bold">
-            Brand <span className="font-bold uppercase text-champagne">YOUR</span> Story
+            Brand <span className="font-bold uppercase text-white">YOUR</span> Story
           </h1>
           <button 
             onClick={scrollToContact}

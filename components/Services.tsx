@@ -103,7 +103,7 @@ export default function Services() {
           >
             The Workbench
           </h2>
-          <p className="text-ink/70 mt-4 max-w-2xl mx-auto">
+          <p className="text-ink mt-4 max-w-2xl mx-auto">
             Elevating luxury brands through strategic social media excellence and premium digital experiences.
           </p>
           <div className="mt-6">

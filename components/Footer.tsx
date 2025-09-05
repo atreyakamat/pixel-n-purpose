@@ -134,6 +134,22 @@ export default function Footer() {
                 />
               </div>
 
+              {/* Privacy Note */}
+              <div className="bg-canvas/5 rounded-lg p-4 border border-canvas/20">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 mt-0.5">
+                    <svg className="w-4 h-4 text-canvas/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-canvas/80 text-sm leading-relaxed">
+                      <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your inquiry. Read our <a href="/privacy-policy" className="text-canvas hover:text-canvas/80 underline">Privacy Policy</a> for details.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <div className="pt-6">
                 <button
                   type="submit"
@@ -144,15 +160,35 @@ export default function Footer() {
                 </button>
                 
                 {submitStatus === 'success' && (
-                  <p className="text-canvas/80 mt-4 text-sm">
-                    Message sent successfully! We'll be in touch soon.
-                  </p>
+                  <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 mt-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex-shrink-0">
+                        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-green-400 font-medium text-sm">Message sent successfully!</p>
+                        <p className="text-canvas/80 text-sm mt-1">We'll get back to you within 24 hours.</p>
+                      </div>
+                    </div>
+                  </div>
                 )}
                 
                 {submitStatus === 'error' && (
-                  <p className="text-canvas/60 mt-4 text-sm">
-                    Something went wrong. Please try again or email us directly.
-                  </p>
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mt-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex-shrink-0">
+                        <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-red-400 font-medium text-sm">Something went wrong</p>
+                        <p className="text-canvas/80 text-sm mt-1">Please try again or email us directly at hello@pixelnpurpose.com</p>
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
             </form>
@@ -183,6 +219,12 @@ export default function Footer() {
                 Home
               </button>
               <button
+                onClick={() => scrollToSection('about')}
+                className="text-canvas/80 text-base font-normal hover:text-canvas transition-colors duration-200"
+              >
+                About Us
+              </button>
+              <button
                 onClick={() => scrollToSection('gallery')}
                 className="text-canvas/80 text-base font-normal hover:text-canvas transition-colors duration-200"
               >
@@ -201,13 +243,13 @@ export default function Footer() {
                 Contact
               </button>
               <a
-                href="#"
+                href="/privacy-policy"
                 className="text-canvas/80 text-base font-normal hover:text-canvas transition-colors duration-200"
               >
                 Privacy Policy
               </a>
               <a
-                href="#"
+                href="/terms-of-service"
                 className="text-canvas/80 text-base font-normal hover:text-canvas transition-colors duration-200"
               >
                 Terms of Service

@@ -344,7 +344,7 @@ export default function Gallery() {
 
         {/* Enhanced description */}
         <div data-reveal className="text-center mt-16">
-          <p className="text-secondary max-w-2xl mx-auto leading-relaxed">
+          <p className="text-ink max-w-2xl mx-auto leading-relaxed">
             From brand storytelling to campaign execution — witness the creative journey that transforms ideas into compelling social narratives.
           </p>
         </div>

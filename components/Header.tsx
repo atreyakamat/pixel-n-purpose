@@ -84,7 +84,7 @@ export default function Header() {
 
       {/* Full Screen Menu Overlay with Better Accessibility */}
       <div 
-        className={`fixed inset-0 z-40 transition-all duration-500 ${
+        className={`fixed inset-0 z-50 transition-all duration-500 ${
           isMobileMenuOpen 
             ? 'opacity-100 visible' 
             : 'opacity-0 invisible'
@@ -124,12 +124,12 @@ export default function Header() {
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('gallery')}
+                <a
+                  href="/about"
                   className="block w-full text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne focus:text-champagne focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-black rounded-lg transition-colors duration-300 py-4"
                 >
-                  Gallery
-                </button>
+                  About Us
+                </a>
               </li>
               <li>
                 <button
