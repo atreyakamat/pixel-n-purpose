@@ -142,12 +142,13 @@ export default function Header() {
             <h2 id="menu-title" className="sr-only">Main Navigation</h2>
             <ul className="text-center space-y-4 sm:space-y-8" role="list">
               <li>
-                <button
-                  onClick={() => scrollToSection('about')}
+                <a
+                  href="/about"
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne focus:text-champagne focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-black rounded-lg transition-colors duration-300 py-2 sm:py-4"
                 >
                   About Us
-                </button>
+                </a>
               </li>
               <li>
                 <button
