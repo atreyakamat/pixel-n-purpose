@@ -151,12 +151,13 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('services')}
+                <a
+                  href="/#services"
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
                 >
                   Services
-                </button>
+                </a>
               </li>
               <li>
                 <a

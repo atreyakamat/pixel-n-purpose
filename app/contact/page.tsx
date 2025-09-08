@@ -55,18 +55,22 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-black backdrop-blur-lg">
-        <div className="container flex items-center justify-between py-4">
-          <a href="/" className="text-white hover:text-white transition-colors">
-            <img 
-              src="/PNP-white.png" 
-              alt="Pixel & Purpose Logo" 
-              className="h-8 w-auto"
-            />
-          </a>
+      <header className="fixed top-0 w-full z-50 bg-black backdrop-blur-lg pt-1 pb-0">
+        <div className="container flex items-center justify-between">
+          <div className="flex items-start">
+            <a href="/" className="w-25 h-25 -mt-4 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
+              <img 
+                src="/PNP-white.png" 
+                alt="Pixel & Purpose Logo" 
+                className="w-full h-full object-contain transition-all duration-500"
+                width="100"
+                height="100"
+              />
+            </a>
+          </div>
           <nav className="flex items-center gap-6">
             <a href="/" className="text-white hover:text-white transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
             </a>
