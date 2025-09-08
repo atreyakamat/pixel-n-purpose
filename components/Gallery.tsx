@@ -147,60 +147,9 @@ export default function Gallery() {
     {
       id: 8,
       type: 'image',
-      src: "/grid_images/restaurant-4011989_1280.jpg",
-      alt: "Fine dining brand visual identity",
-      size: 'small' // Restaurant details in intimate square format
-    },
-    {
-      id: 9,
-      type: 'video',
-      src: "/grid_images/3152-166336023_small.webm",
-      poster: "/grid_images/arra-luxury-8274729_1280.jpg",
-      alt: "Premium brand showcase video",
-      size: 'medium' // Brand showcase videos work well in wide format
-    },
-    {
-      id: 10,
-      type: 'image',
-      src: "/grid_images/fiji-7186952_1280.jpg",
-      alt: "Luxury travel and lifestyle brands",
-      size: 'small' // Travel moments captured in square format
-    },
-    {
-      id: 11,
-      type: 'image',
-      src: "/grid_images/architecture-2256489_1280.jpg",
-      alt: "Architectural brand photography",
-      size: 'medium' // Architecture benefits from wide landscape format
-    },
-    {
-      id: 12,
-      type: 'video',
-      src: "/grid_images/34855-403777679_tiny.webm",
-      poster: "/grid_images/table-5356682_1280.jpg",
-      alt: "Luxury lifestyle content creation",
-      size: 'medium' // Lifestyle videos in cinematic wide format
-    },
-    {
-      id: 13,
-      type: 'image',
-      src: "/grid_images/building-6011756_1280.jpg",
-      alt: "Contemporary architecture branding",
-      size: 'small' // Architectural details in focused format
-    },
-    {
-      id: 14,
-      type: 'image',
-      src: "/grid_images/arra-luxury-8274729_1280.jpg",
-      alt: "Premium lifestyle brand imagery",
-      size: 'small' // Lifestyle details in square format
-    },
-    {
-      id: 15,
-      type: 'image',
       src: "/grid_images/table-5356682_1280.jpg",
       alt: "Luxury dining experience branding",
-      size: 'small' // Dining details perfect in square format
+      size: 'medium' // Dining details in wide format
     }
   ];
 

@@ -126,7 +126,7 @@ export default function Header() {
         {/* Close button with better accessibility */}
         <button
           onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[10000] p-2 text-white hover:text-white focus:outline-none rounded-lg transition-colors duration-300"
+          className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[10000] p-2 text-white hover:text-white focus:outline-none rounded-lg"
           aria-label="Close navigation menu"
         >
           <div className="w-8 h-8 flex items-center justify-center">

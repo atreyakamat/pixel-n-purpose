@@ -7,20 +7,30 @@ export const metadata: Metadata = {
 
 export default function AboutUs() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-canvas text-ink">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-lg border-b border-gray-800">
+      <header className="fixed top-0 w-full z-50 bg-canvas backdrop-blur-lg border-b border-line">
         <div className="container flex items-center justify-between py-4">
-          <a href="/" className="text-white hover:text-gray-300 transition-colors">
+          <a href="/" className="text-ink hover:text-ink transition-colors">
             <img 
-              src="/PNP-white.png" 
+              src="/PNP-black.png" 
               alt="Pixel & Purpose Logo" 
               className="h-8 w-auto"
             />
           </a>
           <nav className="flex items-center gap-6">
-            <a href="/contact" className="text-white hover:text-gray-300 transition-colors">Contact</a>
-            <a href="/" className="text-white hover:text-gray-300 transition-colors">Home</a>
+            <a href="/contact" className="text-ink hover:text-ink transition-colors flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              Contact
+            </a>
+            <a href="/" className="text-ink hover:text-ink transition-colors flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              Home
+            </a>
           </nav>
         </div>
       </header>
@@ -49,31 +59,30 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="mt-16 pt-8 border-t border-gray-800">
+          <div className="mt-16 pt-8 border-t border-line">
             <a 
               href="/"
-              className="inline-flex items-center gap-2 text-white hover:text-gray-300 transition-colors duration-200"
+              className="inline-flex items-center text-ink hover:text-ink transition-colors duration-200"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              Back to Home
             </a>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 border-t border-gray-800">
+      <footer className="bg-canvas border-t border-line">
         <div className="container py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-6">
-              <a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a>
-              <a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
-              <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">Terms</a>
+              <a href="/" className="text-ink hover:text-ink transition-colors">Home</a>
+              <a href="/contact" className="text-ink hover:text-ink transition-colors">Contact</a>
+              <a href="/privacy-policy" className="text-ink hover:text-ink transition-colors">Privacy Policy</a>
+              <a href="/terms-of-service" className="text-ink hover:text-ink transition-colors">Terms</a>
             </div>
-            <p className="text-gray-500 text-sm">© 2025 Pixel & Purpose. All rights reserved.</p>
+            <p className="text-ink text-sm">© 2025 Pixel & Purpose. All rights reserved.</p>
           </div>
         </div>
       </footer>
