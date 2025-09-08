@@ -63,10 +63,10 @@ export default function Header() {
         ? 'bg-canvas/95 backdrop-blur-lg border-b border-line shadow-sm pt-1 pb-0' 
         : 'bg-transparent pt-0.5 pb-0'
     }`} role="banner">
-      <div className="container flex items-center justify-between">
+      <div className="w-full flex items-center justify-between px-4 sm:px-6">
         {/* Logo with proper accessibility */}
         <div className="flex items-start">
-          <a href="/" className="w-25 h-25 -mt-4 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
+          <a href="/" className="w-[150px] h-[150px] -mt-2 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
             <img 
               src={isScrolled 
                 ? "/PNP-black.png" 
@@ -74,8 +74,8 @@ export default function Header() {
               }
               alt="Pixel & Purpose Logo" 
               className="w-full h-full object-contain transition-all duration-500"
-              width="100"
-              height="100"
+              width="150"
+              height="150"
             />
           </a>
         </div>
@@ -88,21 +88,21 @@ export default function Header() {
           aria-expanded={isMobileMenuOpen}
           aria-controls="navigation-menu"
         >
-          <div className="w-6 h-6 flex flex-col justify-center items-center relative">
-            <span className={`block h-0.5 w-6 transition-all duration-300 transform ${
+          <div className="w-10 h-10 flex flex-col justify-center items-center relative">
+            <span className={`block h-1 w-10 transition-all duration-300 transform ${
               isMobileMenuOpen 
                 ? 'rotate-45 translate-y-0 bg-white' 
-                : `translate-y-[-4px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
+                : `translate-y-[-6px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
             }`} />
-            <span className={`block h-0.5 w-6 transition-all duration-300 transform ${
+            <span className={`block h-1 w-10 transition-all duration-300 transform ${
               isMobileMenuOpen 
                 ? 'opacity-0 scale-0' 
                 : `opacity-100 scale-100 ${isScrolled ? 'bg-ink' : 'bg-white'}`
             }`} />
-            <span className={`block h-0.5 w-6 transition-all duration-300 transform ${
+            <span className={`block h-1 w-10 transition-all duration-300 transform ${
               isMobileMenuOpen 
                 ? '-rotate-45 translate-y-0 bg-white' 
-                : `translate-y-[4px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
+                : `translate-y-[6px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
             }`} />
           </div>
         </button>
@@ -129,8 +129,8 @@ export default function Header() {
           className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[10000] p-2 text-white hover:text-white focus:outline-none rounded-lg"
           aria-label="Close navigation menu"
         >
-          <div className="w-8 h-8 flex items-center justify-center">
-            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <div className="w-10 h-10 flex items-center justify-center">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </div>

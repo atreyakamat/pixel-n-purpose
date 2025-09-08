@@ -1,56 +1,140 @@
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'About Us - Pixel & Purpose',
-  description: 'Learn about our boutique creative agency specializing in social strategy for luxury brands with presence.',
-}
+import { useState, useEffect } from 'react'
 
-export default function AboutUs() {
+export default function About() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.width = '100%';
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="fixed top-0 w-full z-50 bg-black backdrop-blur-lg pt-1 pb-0">
-        <div className="container flex items-center justify-between">
+        <div className="w-full flex items-center justify-between px-4 sm:px-6">
           <div className="flex items-start">
-            <a href="/" className="w-25 h-25 -mt-4 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
+            <a href="/" className="w-[150px] h-[150px] -mt-2 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
               <img 
                 src="/PNP-white.png" 
                 alt="Pixel & Purpose Logo" 
                 className="w-full h-full object-contain transition-all duration-500"
-                width="100"
-                height="100"
+                width="150"
+                height="150"
               />
             </a>
           </div>
-          <nav className="flex items-center gap-6">
-            <a href="/contact" className="text-white hover:text-white transition-colors">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </a>
-            <a href="/" className="text-white hover:text-white transition-colors">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </a>
-          </nav>
+          
+          {/* Hamburger Menu Button */}
+          <button
+            className="p-2 focus:outline-none rounded-lg"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="navigation-menu"
+          >
+            <div className="w-10 h-10 flex flex-col justify-center items-center relative">
+              <span className={`block h-1 w-10 transition-all duration-300 transform ${
+                isMobileMenuOpen 
+                  ? 'rotate-45 translate-y-0 bg-white' 
+                  : 'translate-y-[-6px] bg-white'
+              }`} />
+              <span className={`block h-1 w-10 transition-all duration-300 transform ${
+                isMobileMenuOpen 
+                  ? 'opacity-0 scale-0' 
+                  : 'opacity-100 scale-100 bg-white'
+              }`} />
+              <span className={`block h-1 w-10 transition-all duration-300 transform ${
+                isMobileMenuOpen 
+                  ? '-rotate-45 translate-y-0 bg-white' 
+                  : 'translate-y-[6px] bg-white'
+              }`} />
+            </div>
+          </button>
         </div>
       </header>
 
+      {/* Full Screen Menu Overlay */}
+      <div 
+        className={`fixed inset-0 z-[9999] transition-all duration-500 ${
+          isMobileMenuOpen 
+            ? 'opacity-100 visible' 
+            : 'opacity-0 invisible pointer-events-none'
+        }`}
+        id="navigation-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="menu-title"
+      >
+        {/* Black background overlay */}
+        <div className="absolute inset-0 bg-black/95 backdrop-blur-sm" />
+        
+        {/* Close button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[10000] p-2 text-white hover:text-white focus:outline-none rounded-lg"
+          aria-label="Close navigation menu"
+        >
+          <div className="w-10 h-10 flex items-center justify-center">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+        </button>
+        
+        {/* Menu content */}
+        <div className="relative h-full flex items-center justify-center p-4 overflow-y-auto">
+          <nav aria-label="Main navigation" role="navigation" className="w-full max-w-md">
+            <h2 id="menu-title" className="sr-only">Main Navigation</h2>
+            <ul className="text-center space-y-4 sm:space-y-8" role="list">
+              <li>
+                <a
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
+                >
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#services"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
+                >
+                  Services
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
       <main className="container py-24">
         <div className="max-w-4xl mx-auto">
-          {/* Back to Home Button - First */}
-          <div className="mb-12">
-            <a 
-              href="/"
-              className="inline-flex items-center text-white hover:text-white transition-colors duration-200"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </a>
-          </div>
-
           {/* About Content */}
           <div className="space-y-12 text-lg md:text-xl leading-relaxed">
             <p>
@@ -75,21 +159,6 @@ export default function AboutUs() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-black border-t border-white">
-        <div className="container py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-6">
-              <a href="/" className="text-white hover:text-white transition-colors">Home</a>
-              <a href="/contact" className="text-white hover:text-white transition-colors">Contact</a>
-              <a href="/privacy-policy" className="text-white hover:text-white transition-colors">Privacy Policy</a>
-              <a href="/terms-of-service" className="text-white hover:text-white transition-colors">Terms</a>
-            </div>
-            <p className="text-white text-sm">© 2025 Pixel & Purpose. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
-  )
+  );
 }
