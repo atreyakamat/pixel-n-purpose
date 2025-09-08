@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "start": "npx serve@latest out",
     "cleanup": "node scripts/cleanup.js",
     "preview": "npx serve@latest out"
   },
