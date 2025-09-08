@@ -176,7 +176,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <main className="container pt-8 pb-24">
+      <main className="container pt-40 pb-24">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -319,17 +319,6 @@ export default function Contact() {
               className="text-white hover:text-white transition-colors duration-200 font-medium"
             >
               hello@pixelnpurpose.com
-            </a>
-          </div>
-
-          <div className="mt-16 pt-8 border-t border-white">
-            <a 
-              href="/"
-              className="inline-flex items-center text-white hover:text-white transition-colors duration-200"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
             </a>
           </div>
         </div>
