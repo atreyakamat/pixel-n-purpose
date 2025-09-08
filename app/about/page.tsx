@@ -138,23 +138,23 @@ export default function About() {
           {/* About Content */}
           <div className="space-y-12 text-lg md:text-xl leading-relaxed">
             <p>
-              We were founded as an ad agency that didn't like advertising.
+              We were founded with one belief: brands don't just need advertising — they need meaning.
             </p>
             
             <p>
-              A company with no guiding principle other than to make great work for inspiring clients.
+              Pixel & Purpose began as a creative studio that wanted to challenge the usual playbook. No jargon, no fluff — just work that's sharp, human, and built to last.
             </p>
             
             <p>
-              We try to be the kind of place where creatively-driven people with the widest perspectives possible can come to do the best work of their lives and find ways to use the work to say something.
+              We're a place where design, storytelling, and strategy meet — where creatively driven people can come together to do their best work and help brands say something real.
             </p>
             
             <p>
-              And for over 40 years we've made work that helps build brands and influence culture. From "Just Do It" to "This Is SportsCenter" to "Dilly Dilly" we've tried to use creativity to make a dent in the world across every medium and every discipline.
+              Our mission isn't just to make brands look good. It's to help them leave a mark, shape conversations, and tell stories that matter.
             </p>
             
             <p>
-              Most people out there have no idea who we are, but they probably know some of the things we've made.
+              Most people may not know us yet, but they'll remember the stories we help create.
             </p>
           </div>
         </div>
