@@ -53,19 +53,19 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-canvas text-ink">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-canvas backdrop-blur-lg">
+      <header className="fixed top-0 w-full z-50 bg-black backdrop-blur-lg">
         <div className="container flex items-center justify-between py-4">
-          <a href="/" className="text-ink hover:text-ink transition-colors">
+          <a href="/" className="text-white hover:text-white transition-colors">
             <img 
-              src="/PNP-black.png" 
+              src="/PNP-white.png" 
               alt="Pixel & Purpose Logo" 
               className="h-8 w-auto"
             />
           </a>
           <nav className="flex items-center gap-6">
-            <a href="/" className="text-ink hover:text-ink transition-colors">
+            <a href="/" className="text-white hover:text-white transition-colors">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
@@ -80,7 +80,7 @@ export default function Contact() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Let's Create Together
             </h1>
-            <p className="text-ink text-lg leading-relaxed">
+            <p className="text-white text-lg leading-relaxed">
               Ready to elevate your brand's story? Get in touch and let's discuss your vision.
             </p>
           </div>
@@ -88,7 +88,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-ink mb-3 text-sm uppercase tracking-wider">
+                <label htmlFor="name" className="block text-white mb-3 text-sm uppercase tracking-wider">
                   Name *
                 </label>
                 <input
@@ -98,13 +98,13 @@ export default function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b border-ink pb-3 text-ink placeholder-ink/50 focus:outline-none focus:border-ink transition-colors duration-200"
+                  className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200"
                   placeholder="Your name"
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-ink mb-3 text-sm uppercase tracking-wider">
+                <label htmlFor="email" className="block text-white mb-3 text-sm uppercase tracking-wider">
                   Email *
                 </label>
                 <input
@@ -114,14 +114,14 @@ export default function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b border-ink pb-3 text-ink placeholder-ink/50 focus:outline-none focus:border-ink transition-colors duration-200"
+                  className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="brand" className="block text-ink mb-3 text-sm uppercase tracking-wider">
+              <label htmlFor="brand" className="block text-white mb-3 text-sm uppercase tracking-wider">
                 Brand
               </label>
               <input
@@ -130,13 +130,13 @@ export default function Contact() {
                 name="brand"
                 value={formData.brand}
                 onChange={handleChange}
-                className="w-full bg-transparent border-b border-ink pb-3 text-ink placeholder-ink/50 focus:outline-none focus:border-ink transition-colors duration-200"
+                className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200"
                 placeholder="Brand or company"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-ink mb-3 text-sm uppercase tracking-wider">
+              <label htmlFor="message" className="block text-white mb-3 text-sm uppercase tracking-wider">
                 Message *
               </label>
               <textarea
@@ -146,22 +146,22 @@ export default function Contact() {
                 rows={4}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full bg-transparent border-b border-ink pb-3 text-ink placeholder-ink/50 focus:outline-none focus:border-ink transition-colors duration-200 resize-none"
+                className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200 resize-none"
                 placeholder="Tell us about your project..."
               />
             </div>
 
             {/* Privacy Note */}
-            <div className="bg-canvas rounded-lg p-4 border border-line">
+            <div className="bg-black rounded-lg p-4 border border-white">
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-ink text-sm leading-relaxed">
-                    <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your inquiry. Read our <a href="/privacy-policy" className="text-ink hover:text-ink underline">Privacy Policy</a> for details.
+                  <p className="text-white text-sm leading-relaxed">
+                    <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your inquiry. Read our <a href="/privacy-policy" className="text-white hover:text-white underline">Privacy Policy</a> for details.
                   </p>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-green-400 font-medium text-sm">Message sent successfully!</p>
-                      <p className="text-ink text-sm mt-1">We'll get back to you within 24 hours.</p>
+                      <p className="text-white text-sm mt-1">We'll get back to you within 24 hours.</p>
                     </div>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-red-400 font-medium text-sm">Something went wrong</p>
-                      <p className="text-ink text-sm mt-1">Please try again or email us directly at hello@pixelnpurpose.com</p>
+                      <p className="text-white text-sm mt-1">Please try again or email us directly at hello@pixelnpurpose.com</p>
                     </div>
                   </div>
                 </div>
@@ -211,19 +211,19 @@ export default function Contact() {
           </form>
 
           <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-            <p className="text-ink mb-2">Or reach us directly:</p>
+            <p className="text-white mb-2">Or reach us directly:</p>
             <a 
               href="mailto:hello@pixelnpurpose.com"
-              className="text-ink hover:text-ink transition-colors duration-200 font-medium"
+              className="text-white hover:text-white transition-colors duration-200 font-medium"
             >
               hello@pixelnpurpose.com
             </a>
           </div>
 
-          <div className="mt-16 pt-8 border-t border-line">
+          <div className="mt-16 pt-8 border-t border-white">
             <a 
               href="/"
-              className="inline-flex items-center text-ink hover:text-ink transition-colors duration-200"
+              className="inline-flex items-center text-white hover:text-white transition-colors duration-200"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -234,15 +234,15 @@ export default function Contact() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-line py-8">
+      <footer className="border-t border-white py-8">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <nav className="flex items-center gap-6">
-              <a href="/" className="text-ink hover:text-ink transition-colors">Home</a>
-              <a href="/about" className="text-ink hover:text-ink transition-colors">About</a>
-              <a href="/contact" className="text-ink hover:text-ink transition-colors">Contact</a>
+              <a href="/" className="text-white hover:text-white transition-colors">Home</a>
+              <a href="/about" className="text-white hover:text-white transition-colors">About</a>
+              <a href="/contact" className="text-white hover:text-white transition-colors">Contact</a>
             </nav>
-            <p className="text-ink text-sm">
+            <p className="text-white text-sm">
               © 2025 Pixel & Purpose. All rights reserved.
             </p>
           </div>
