@@ -176,7 +176,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <main className="container py-24">
+      <main className="container pt-8 pb-24">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
