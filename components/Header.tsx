@@ -66,7 +66,7 @@ export default function Header() {
       <div className="container flex items-center justify-between">
         {/* Logo with proper accessibility */}
         <div className="flex items-start">
-          <a href="/" className="w-25 h-25 -mt-4 focus:ring-2 focus:ring-champagne focus:ring-offset-2 rounded-lg" aria-label="Pixel & Purpose - Home">
+          <a href="/" className="w-25 h-25 -mt-4 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
             <img 
               src={isScrolled 
                 ? "/PNP-black.png" 
@@ -82,7 +82,7 @@ export default function Header() {
 
         {/* Hamburger Menu Button with better accessibility */}
         <button
-          className="p-2 focus:ring-2 focus:ring-champagne focus:ring-offset-2 rounded-lg"
+          className="p-2 focus:outline-none rounded-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMobileMenuOpen}
@@ -126,7 +126,7 @@ export default function Header() {
         {/* Close button with better accessibility */}
         <button
           onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[10000] p-2 text-white hover:text-champagne focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-black rounded-lg transition-colors duration-300"
+          className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[10000] p-2 text-white hover:text-white focus:outline-none rounded-lg transition-colors duration-300"
           aria-label="Close navigation menu"
         >
           <div className="w-8 h-8 flex items-center justify-center">
@@ -145,7 +145,7 @@ export default function Header() {
                 <a
                   href="/about"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne focus:text-champagne focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-black rounded-lg transition-colors duration-300 py-2 sm:py-4"
+                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
                 >
                   About Us
                 </a>
@@ -153,7 +153,7 @@ export default function Header() {
               <li>
                 <button
                   onClick={() => scrollToSection('services')}
-                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne focus:text-champagne focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-black rounded-lg transition-colors duration-300 py-2 sm:py-4"
+                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
                 >
                   Services
                 </button>
@@ -162,7 +162,7 @@ export default function Header() {
                 <a
                   href="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-champagne focus:text-champagne focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-black rounded-lg transition-colors duration-300 py-2 sm:py-4"
+                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
                 >
                   Contact
                 </a>

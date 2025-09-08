@@ -54,6 +54,23 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <header className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-lg border-b border-gray-800">
+        <div className="container flex items-center justify-between py-4">
+          <a href="/" className="text-white hover:text-gray-300 transition-colors">
+            <img 
+              src="/PNP-white.png" 
+              alt="Pixel & Purpose Logo" 
+              className="h-8 w-auto"
+            />
+          </a>
+          <nav className="flex items-center gap-6">
+            <a href="/about" className="text-white hover:text-gray-300 transition-colors">About</a>
+            <a href="/" className="text-white hover:text-gray-300 transition-colors">Home</a>
+          </nav>
+        </div>
+      </header>
+
       <main className="container py-24">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
@@ -213,6 +230,22 @@ export default function Contact() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-800 py-8">
+        <div className="container">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <nav className="flex items-center gap-6">
+              <a href="/" className="text-white hover:text-gray-300 transition-colors">Home</a>
+              <a href="/about" className="text-white hover:text-gray-300 transition-colors">About</a>
+              <a href="/contact" className="text-white hover:text-gray-300 transition-colors">Contact</a>
+            </nav>
+            <p className="text-gray-400 text-sm">
+              © 2024 Pixel & Purpose. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

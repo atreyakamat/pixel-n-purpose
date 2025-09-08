@@ -48,7 +48,7 @@ export default function Services() {
     return (
       <article 
         key={index}
-        className="relative p-6 rounded-xl bg-canvas border border-line hover:border-champagne/30 focus-within:border-champagne/50 transition-all duration-500 h-full group"
+        className="relative p-6 rounded-xl bg-canvas border border-line hover:border-line focus-within:border-line transition-all duration-500 h-full group"
         role="article"
         aria-labelledby={`service-title-${index}`}
       >

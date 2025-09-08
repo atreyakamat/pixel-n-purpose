@@ -8,6 +8,23 @@ export const metadata: Metadata = {
 export default function AboutUs() {
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <header className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-lg border-b border-gray-800">
+        <div className="container flex items-center justify-between py-4">
+          <a href="/" className="text-white hover:text-gray-300 transition-colors">
+            <img 
+              src="/PNP-white.png" 
+              alt="Pixel & Purpose Logo" 
+              className="h-8 w-auto"
+            />
+          </a>
+          <nav className="flex items-center gap-6">
+            <a href="/contact" className="text-white hover:text-gray-300 transition-colors">Contact</a>
+            <a href="/" className="text-white hover:text-gray-300 transition-colors">Home</a>
+          </nav>
+        </div>
+      </header>
+
       <main className="container py-24">
         <div className="max-w-4xl mx-auto">
           <div className="space-y-12 text-lg md:text-xl leading-relaxed">
@@ -45,6 +62,21 @@ export default function AboutUs() {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 border-t border-gray-800">
+        <div className="container py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-6">
+              <a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a>
+              <a href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
+              <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">Terms</a>
+            </div>
+            <p className="text-gray-500 text-sm">© 2025 Pixel & Purpose. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

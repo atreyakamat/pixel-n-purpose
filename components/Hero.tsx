@@ -67,7 +67,7 @@ export default function Hero() {
           </h1>
           <button 
             onClick={scrollToContact}
-            className="inline-flex items-center justify-center min-w-[84px] max-w-[480px] cursor-pointer overflow-hidden rounded-lg h-12 px-6 bg-canvas text-ink text-sm font-bold leading-normal tracking-[0.015em] hover:bg-canvas/90 focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200"
+            className="inline-flex items-center justify-center min-w-[84px] max-w-[480px] cursor-pointer overflow-hidden rounded-lg h-12 px-6 bg-canvas text-ink text-sm font-bold leading-normal tracking-[0.015em] hover:bg-canvas/90 focus:outline-none transition-all duration-200"
             aria-label="Contact us to take the lead with your brand"
           >
             Take The LEAD
