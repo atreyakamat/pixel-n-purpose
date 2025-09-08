@@ -88,21 +88,21 @@ export default function Header() {
           aria-expanded={isMobileMenuOpen}
           aria-controls="navigation-menu"
         >
-          <div className="w-6 h-6 flex flex-col justify-center">
-            <span className={`block h-0.5 w-6 transition-all duration-200 ${
-              isMobileMenuOpen ? 'rotate-45 translate-y-0.5 bg-white' : ''
-            } ${
-              !isMobileMenuOpen ? (isScrolled ? 'bg-ink' : 'bg-white') : ''
+          <div className="w-6 h-6 flex flex-col justify-center items-center relative">
+            <span className={`block h-0.5 w-6 transition-all duration-300 transform ${
+              isMobileMenuOpen 
+                ? 'rotate-45 translate-y-0 bg-white' 
+                : `translate-y-[-4px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
             }`} />
-            <span className={`block h-0.5 w-6 transition-all duration-200 mt-1 ${
-              isMobileMenuOpen ? 'opacity-0' : ''
-            } ${
-              !isMobileMenuOpen ? (isScrolled ? 'bg-ink' : 'bg-white') : ''
+            <span className={`block h-0.5 w-6 transition-all duration-300 transform ${
+              isMobileMenuOpen 
+                ? 'opacity-0 scale-0' 
+                : `opacity-100 scale-100 ${isScrolled ? 'bg-ink' : 'bg-white'}`
             }`} />
-            <span className={`block h-0.5 w-6 transition-all duration-200 mt-1 ${
-              isMobileMenuOpen ? '-rotate-45 -translate-y-1.5 bg-white' : ''
-            } ${
-              !isMobileMenuOpen ? (isScrolled ? 'bg-ink' : 'bg-white') : ''
+            <span className={`block h-0.5 w-6 transition-all duration-300 transform ${
+              isMobileMenuOpen 
+                ? '-rotate-45 translate-y-0 bg-white' 
+                : `translate-y-[4px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
             }`} />
           </div>
         </button>
