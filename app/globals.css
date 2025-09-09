@@ -2,6 +2,30 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Header transition optimizations */
+header {
+  border: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  will-change: background-color, backdrop-filter, box-shadow;
+}
+
+header * {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Preload critical fonts */
 @font-face {
   font-family: 'Minipax';

@@ -103,10 +103,10 @@ export default function Gallery() {
     {
       id: 2,
       type: 'video',
-      src: "/grid_images/11289-229221023_small.webm",
+      src: "/pnp-hero-video.webm",
       poster: "/grid_images/architecture-2256489_1280.jpg",
       alt: "Luxury brand video content creation",
-      size: 'medium' // Wide format perfect for cinematic brand videos
+      size: 'large' // Hero video deserves premium large format
     },
     {
       id: 3,
@@ -117,11 +117,10 @@ export default function Gallery() {
     },
     {
       id: 4,
-      type: 'video',
-      src: "/grid_images/214888_tiny.webm",
-      poster: "/grid_images/building-6011756_1280.jpg",
-      alt: "Dynamic brand storytelling video",
-      size: 'large' // Hero video deserves premium large format
+      type: 'image',
+      src: "/grid_images/arra-luxury-8274729_1280.jpg",
+      alt: "Luxury resort and hospitality branding",
+      size: 'medium' // Wide format showcases luxury resort atmosphere
     },
     {
       id: 5,
@@ -150,6 +149,27 @@ export default function Gallery() {
       src: "/grid_images/table-5356682_1280.jpg",
       alt: "Luxury dining experience branding",
       size: 'medium' // Dining details in wide format
+    },
+    {
+      id: 9,
+      type: 'image',
+      src: "/grid_images/fiji-7186952_1280.jpg",
+      alt: "Luxury travel and destination branding",
+      size: 'small' // Travel destination in square format
+    },
+    {
+      id: 10,
+      type: 'image',
+      src: "/grid_images/restaurant-4011989_1280.jpg",
+      alt: "Premium restaurant and culinary branding",
+      size: 'medium' // Restaurant atmosphere in wide format
+    },
+    {
+      id: 11,
+      type: 'image',
+      src: "/grid_images/building-6011756_1280.jpg",
+      alt: "Modern architecture and real estate branding",
+      size: 'small' // Architectural details in square format
     }
   ];
 
@@ -195,18 +215,28 @@ export default function Gallery() {
                   transition-all duration-500 ease-out hover:scale-[1.02] hover:border-ink/30 
                   hover:shadow-2xl hover:shadow-ink/10 h-full w-full group-hover:z-10">
                   {item.type === 'image' ? (
-                    // Premium image presentation with intelligent positioning
-                    <div
-                      className="w-full h-full bg-center bg-no-repeat bg-cover transition-all duration-700 
-                        group-hover:scale-105"
-                      style={{
-                        backgroundImage: `url("${item.src}")`,
-                        backgroundPosition: 'center center',
-                        minHeight: '200px' // Ensure minimum height for visibility
-                      }}
-                      role="img"
-                      aria-label={item.alt}
-                    >
+                    // Premium image presentation with intelligent positioning and lazy loading
+                    <div className="w-full h-full relative">
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover transition-all duration-700 
+                          group-hover:scale-105"
+                        style={{
+                          minHeight: '200px', // Ensure minimum height for visibility
+                          objectPosition: 'center center'
+                        }}
+                        onLoad={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.opacity = '1';
+                        }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
                       {/* Multi-layer hover overlay for depth */}
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-ink/5 to-transparent 
                         opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -231,13 +261,13 @@ export default function Gallery() {
                         className="w-full h-full object-cover transition-all duration-700 
                           group-hover:scale-105"
                         style={{
-                          objectPosition: item.size === 'large' ? 'center center' : 
-                                        item.size === 'medium' ? 'center center' : 'center center'
+                          objectPosition: 'center center'
                         }}
                         autoPlay
                         loop
                         muted
                         playsInline
+                        preload="metadata"
                         poster={item.poster}
                         onError={(e) => {
                           const target = e.target as HTMLVideoElement;
@@ -245,8 +275,8 @@ export default function Gallery() {
                           target.nextElementSibling?.classList.remove('hidden');
                         }}
                       >
-                        <source src={item.src} type="video/mp4" />
                         <source src={item.src} type="video/webm" />
+                        <source src={item.src} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                       

@@ -34,8 +34,14 @@ export default function About() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-black backdrop-blur-lg pt-1 pb-0">
-        <div className="w-full flex items-center justify-between px-4 sm:px-6">
+      <header className="fixed top-0 w-full z-50 bg-black backdrop-blur-lg pt-1 pb-0 border-none"
+        style={{
+          border: 'none',
+          boxShadow: '0 2px 20px rgba(0, 0, 0, 0.1)',
+          borderBottom: 'none'
+        }}>
+        <div className="w-full flex items-center justify-between px-4 sm:px-6"
+          style={{ border: 'none', boxShadow: 'none' }}>
           <div className="flex items-start">
             <a href="/" className="w-[150px] h-[150px] -mt-2 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
               <img 

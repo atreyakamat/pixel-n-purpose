@@ -6,21 +6,29 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Track scroll position for dynamic styling based on hero section
+  // Track scroll position for smooth header transition
   useEffect(() => {
     const handleScroll = () => {
-      const heroSection = document.getElementById('hero');
-      if (heroSection) {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        const currentScroll = window.scrollY + 100; // Add offset for smoother transition
-        setIsScrolled(currentScroll > heroBottom);
+      const scrollThreshold = 50; // Smooth transition starts after 50px scroll
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
+
+    // Throttle scroll event for better performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
     handleScroll(); // Check initial position
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, []);
 
   // Prevent body scroll when menu is open
@@ -58,24 +66,31 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out border-none ${
       isScrolled 
-        ? 'bg-canvas/95 backdrop-blur-lg border-b border-line shadow-sm pt-1 pb-0' 
+        ? 'bg-black/95 backdrop-blur-lg shadow-lg pt-1 pb-0' 
         : 'bg-transparent pt-0.5 pb-0'
-    }`} role="banner">
-      <div className="w-full flex items-center justify-between px-4 sm:px-6">
+    }`} 
+    style={{
+      border: 'none',
+      boxShadow: isScrolled ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none',
+      borderBottom: 'none'
+    }}
+    role="banner">
+      <div className="w-full flex items-center justify-between px-4 sm:px-6"
+        style={{ border: 'none', boxShadow: 'none' }}>
         {/* Logo with proper accessibility */}
         <div className="flex items-start">
           <a href="/" className="w-[150px] h-[150px] -mt-2 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
             <img 
-              src={isScrolled 
-                ? "/PNP-black.png" 
-                : "/PNP-white.png"
-              }
+              src="/PNP-white.png"
               alt="Pixel & Purpose Logo" 
-              className="w-full h-full object-contain transition-all duration-500"
+              className="w-full h-full object-contain transition-all duration-300 ease-out"
               width="150"
               height="150"
+              style={{
+                filter: isScrolled ? 'invert(1) brightness(100%)' : 'none'
+              }}
             />
           </a>
         </div>
@@ -87,22 +102,23 @@ export default function Header() {
           aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMobileMenuOpen}
           aria-controls="navigation-menu"
+          style={{ border: 'none', boxShadow: 'none' }}
         >
           <div className="w-10 h-10 flex flex-col justify-center items-center relative">
-            <span className={`block h-1 w-10 transition-all duration-300 transform ${
+            <span className={`block h-1 w-10 transition-all duration-300 ease-out transform ${
               isMobileMenuOpen 
                 ? 'rotate-45 translate-y-0 bg-white' 
-                : `translate-y-[-6px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
+                : `translate-y-[-6px] bg-white`
             }`} />
-            <span className={`block h-1 w-10 transition-all duration-300 transform ${
+            <span className={`block h-1 w-10 transition-all duration-300 ease-out transform ${
               isMobileMenuOpen 
                 ? 'opacity-0 scale-0' 
-                : `opacity-100 scale-100 ${isScrolled ? 'bg-ink' : 'bg-white'}`
+                : `opacity-100 scale-100 bg-white`
             }`} />
-            <span className={`block h-1 w-10 transition-all duration-300 transform ${
+            <span className={`block h-1 w-10 transition-all duration-300 ease-out transform ${
               isMobileMenuOpen 
                 ? '-rotate-45 translate-y-0 bg-white' 
-                : `translate-y-[6px] ${isScrolled ? 'bg-ink' : 'bg-white'}`
+                : `translate-y-[6px] bg-white`
             }`} />
           </div>
         </button>
