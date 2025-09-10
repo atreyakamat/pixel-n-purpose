@@ -2,15 +2,27 @@
 
 import { useState, useEffect } from 'react';
 
-export default function Header() {
+interface HeaderProps {
+  isHomePage?: boolean;
+}
+
+export default function Header({ isHomePage = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOverHero, setIsOverHero] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Track scroll position for smooth header transition
+  // Track scroll position for smooth header transition and hero detection
   useEffect(() => {
     const handleScroll = () => {
       const scrollThreshold = 50; // Smooth transition starts after 50px scroll
+      const heroHeight = window.innerHeight; // Assume hero is full viewport height
+      
       setIsScrolled(window.scrollY > scrollThreshold);
+      
+      // Check if we're still over the hero section
+      if (isHomePage) {
+        setIsOverHero(window.scrollY < heroHeight - 100); // 100px buffer
+      }
     };
 
     // Throttle scroll event for better performance
@@ -83,9 +95,13 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out border-none ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-lg shadow-lg pt-1 pb-0' 
-          : 'bg-transparent pt-0.5 pb-0'
+        isHomePage 
+          ? (isScrolled 
+              ? 'bg-white/95 backdrop-blur-lg shadow-lg pt-1 pb-0' 
+              : 'bg-transparent pt-0.5 pb-0')
+          : (isScrolled 
+              ? 'bg-canvas/95 backdrop-blur-lg shadow-lg pt-1 pb-0' 
+              : 'bg-transparent pt-0.5 pb-0')
       }`} 
       style={{
         border: 'none',
@@ -99,7 +115,10 @@ export default function Header() {
           <div className="flex items-start">
             <a href="/" className="w-[150px] h-[150px] -mt-2 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
               <img 
-                src={isScrolled ? "/PNP-black.png" : "/PNP-white.png"}
+                src={isHomePage 
+                  ? (isOverHero ? "/PNP-white.png" : "/PNP-black.png")
+                  : (isScrolled ? "/PNP-black.png" : "/PNP-white.png")
+                }
                 alt="Pixel & Purpose Logo" 
                 className="w-full h-full object-contain transition-all duration-300 ease-out"
                 width="150"
@@ -120,18 +139,18 @@ export default function Header() {
             <div className="w-10 h-10 flex flex-col justify-center items-center relative">
               <span className={`block h-1 w-10 transition-all duration-300 ease-out transform ${
                 isMobileMenuOpen 
-                  ? `rotate-45 translate-y-0 ${isScrolled ? 'bg-black' : 'bg-white'}` 
-                  : `translate-y-[-6px] ${isScrolled ? 'bg-black' : 'bg-white'}`
+                  ? `rotate-45 translate-y-0 ${isHomePage ? (isOverHero ? 'bg-white' : 'bg-black') : 'bg-ink'}` 
+                  : `translate-y-[-6px] ${isHomePage ? (isOverHero ? 'bg-white' : 'bg-black') : 'bg-ink'}`
               }`} />
               <span className={`block h-1 w-10 transition-all duration-300 ease-out transform ${
                 isMobileMenuOpen 
                   ? 'opacity-0 scale-0' 
-                  : `opacity-100 scale-100 ${isScrolled ? 'bg-black' : 'bg-white'}`
+                  : `opacity-100 scale-100 ${isHomePage ? (isOverHero ? 'bg-white' : 'bg-black') : 'bg-ink'}`
               }`} />
               <span className={`block h-1 w-10 transition-all duration-300 ease-out transform ${
                 isMobileMenuOpen 
-                  ? `-rotate-45 translate-y-0 ${isScrolled ? 'bg-black' : 'bg-white'}` 
-                  : `translate-y-[6px] ${isScrolled ? 'bg-black' : 'bg-white'}`
+                  ? `-rotate-45 translate-y-0 ${isHomePage ? (isOverHero ? 'bg-white' : 'bg-black') : 'bg-ink'}` 
+                  : `translate-y-[6px] ${isHomePage ? (isOverHero ? 'bg-white' : 'bg-black') : 'bg-ink'}`
               }`} />
             </div>
           </button>
@@ -155,7 +174,7 @@ export default function Header() {
         }}
       >
         {/* Black background overlay */}
-        <div className="absolute inset-0 bg-black/95 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-canvas/95 backdrop-blur-sm" />
         
         {/* Close button with better accessibility */}
         <button
@@ -198,7 +217,7 @@ export default function Header() {
                 <a
                   href="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white  focus:text-gray-300 focus:outline-none rounded-lg transition-all duration-300 py-3 sm:py-6 transform hover:scale-105"
+                  className="block w-full text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white hover:text-gray-300 focus:text-gray-300 focus:outline-none rounded-lg transition-all duration-300 py-3 sm:py-6 transform hover:scale-105"
                 >
                   Contact
                 </a>

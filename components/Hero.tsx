@@ -60,14 +60,14 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/20 z-1"></div>
 
       {/* Content with better accessibility */}
-      <div className="relative z-10 container text-center text-canvas">
+      <div className="relative z-10 container text-center text-white">
         <div data-reveal className="max-w-4xl mx-auto">          
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-tight mb-8 text-canvas font-bold">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-tight mb-8 text-white font-bold">
             Brand <span className="font-bold uppercase text-white">YOUR</span> Story
           </h1>
           <button 
             onClick={scrollToContact}
-            className="inline-flex items-center justify-center min-w-[84px] max-w-[480px] cursor-pointer overflow-hidden rounded-lg h-12 px-6 bg-canvas text-ink text-sm font-bold leading-normal tracking-[0.015em] hover:bg-canvas/90 focus:outline-none transition-all duration-200"
+            className="inline-flex items-center justify-center min-w-[84px] max-w-[480px] cursor-pointer overflow-hidden rounded-lg h-12 px-6 bg-white text-black text-sm font-bold leading-normal tracking-[0.015em] hover:bg-white/90 focus:outline-none transition-all duration-200"
             aria-label="Contact us to take the lead with your brand"
           >
             Take The LEAD

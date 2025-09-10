@@ -110,7 +110,7 @@ export default function RootLayout({
       </head>
       <body className="bg-canvas text-ink antialiased font-sans">
         <noscript>
-          <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#F6F5F2'}}>
+          <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#F6F5F2', color: '#0B0B0B'}}>
             This website requires JavaScript to function properly. Please enable JavaScript in your browser.
           </div>
         </noscript>

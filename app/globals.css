@@ -47,12 +47,12 @@ html {
 
 /* CSS Variables for theme colors */
 :root {
-  --canvas: #F6F5F2;
-  --panel: #EDEBE7;
-  --ink: #0B0B0B;
-  --line: rgba(26, 26, 26, 0.16);
+  --canvas: #0B0B0B;
+  --panel: #1A1A1A;
+  --ink: #F6F5F2;
+  --line: rgba(246, 245, 242, 0.16);
   --champagne: #C7A977;
-  --focus: rgba(11, 11, 11, 0.3);
+  --focus: rgba(246, 245, 242, 0.3);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);

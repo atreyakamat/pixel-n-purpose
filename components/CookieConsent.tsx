@@ -26,7 +26,7 @@ export default function CookieConsent() {
   if (!showBanner) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-ink text-canvas p-4 shadow-lg z-50 border-t border-line">
+    <div className="fixed bottom-0 left-0 right-0 bg-panel text-ink p-4 shadow-lg z-50 border-t border-line">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex-1">
@@ -45,7 +45,7 @@ export default function CookieConsent() {
           <div className="flex gap-3">
             <button
               onClick={declineCookies}
-              className="px-4 py-2 text-sm border border-canvas text-canvas hover:bg-canvas hover:text-ink transition-colors duration-200 rounded"
+              className="px-4 py-2 text-sm border border-ink text-ink hover:bg-ink hover:text-canvas transition-colors duration-200 rounded"
             >
               Decline
             </button>

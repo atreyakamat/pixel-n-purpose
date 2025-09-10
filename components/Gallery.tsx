@@ -2,7 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 
-export default function Gallery() {
+interface GalleryProps {
+  isHomePage?: boolean;
+}
+
+export default function Gallery({ isHomePage = false }: GalleryProps) {
   const galleryRef = useRef<HTMLDivElement>(null);
 
   // Enhanced intersection observer with parallax scroll effect
@@ -174,10 +178,10 @@ export default function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="py-16 md:py-24">
+    <section id="gallery" className={`pt-20 pb-6 ${isHomePage ? 'bg-white' : ''}`}>
       <div className="container">
         <div data-reveal className="text-center mb-12">
-          <h2 className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] text-ink">
+          <h2 className={`font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] ${isHomePage ? 'text-black' : 'text-ink'}`}>
             Stories We Shape
           </h2>
         </div>
@@ -188,7 +192,7 @@ export default function Gallery() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[200px]" 
           data-reveal
         >
-          {galleryItems.map((item, index) => {
+          {galleryItems.filter(item => item.type !== 'video').map((item, index) => {
             // Intelligent bento sizing based on content type and format
             const getSizeClass = (size: string) => {
               switch (size) {
@@ -246,8 +250,8 @@ export default function Gallery() {
                       {/* Content type indicator */}
                       <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 
                         transition-opacity duration-300 delay-200">
-                        <div className="bg-white/10 backdrop-blur-sm rounded-full p-2">
-                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-ink/10 backdrop-blur-sm rounded-full p-2">
+                          <svg className="w-4 h-4 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
                               d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
@@ -299,8 +303,8 @@ export default function Gallery() {
                       {/* Video play indicator */}
                       <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 
                         transition-opacity duration-300 delay-200">
-                        <div className="bg-white/10 backdrop-blur-sm rounded-full p-2">
-                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-ink/10 backdrop-blur-sm rounded-full p-2">
+                          <svg className="w-4 h-4 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
                               d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2 2 0 001.5-2V6a2 2 0 011.5-1.5H15M9 14h1.5a2 2 0 001.5-2v-2a2 2 0 011.5-1.5H15" />
                           </svg>
@@ -308,9 +312,9 @@ export default function Gallery() {
                       </div>
 
                       {/* Video progress indicator (aesthetic) */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-ink/20 
                         opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-300">
-                        <div className="h-full bg-white/60 w-0 group-hover:w-full 
+                        <div className="h-full bg-ink/60 w-0 group-hover:w-full 
                           transition-all duration-[3000ms] ease-linear"></div>
                       </div>
                     </div>
@@ -322,8 +326,8 @@ export default function Gallery() {
         </div>
 
         {/* Enhanced description */}
-        <div data-reveal className="text-center mt-16">
-          <p className="text-ink max-w-2xl mx-auto leading-relaxed">
+        <div data-reveal className="text-center mt-24 pt-8">
+          <p className={`max-w-2xl mx-auto leading-relaxed ${isHomePage ? 'text-black' : 'text-ink'}`}>
             From brand storytelling to campaign execution — witness the creative journey that transforms ideas into compelling social narratives.
           </p>
         </div>

@@ -9,12 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: '#F6F5F2', // Pantone 11-0602 TCX "Snow White"
-        panel: '#EDEBE7',   // Pantone 12-0605 TCX "Gardenia"
-        ink: '#0B0B0B',     // Deep black typography
-        line: 'rgba(26,26,26,0.16)', // Hairline/Lines
-        champagne: '#C7A977', // Accent (sparingly)
-        focus: 'rgba(11,11,11,0.3)', // Focus ring
+        canvas: '#F6F5F2',     // Snow White background
+        panel: '#EDEBE7',     // Gardenia panels
+        ink: '#0B0B0B',       // Deep black text
+        line: 'rgba(11,11,11,0.16)', // Dark hairlines
+        champagne: '#C7A977', // Keep accent color
+        focus: 'rgba(11,11,11,0.3)', // Dark focus ring
+        accent: '#C7A977',    // Ensure accent is available
       },
       fontFamily: {
         display: ['var(--font-display)', 'serif'],

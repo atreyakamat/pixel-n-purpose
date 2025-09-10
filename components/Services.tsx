@@ -10,7 +10,11 @@ interface ServiceData {
   image: string;
 }
 
-export default function Services() {
+interface ServicesProps {
+  isHomePage?: boolean;
+}
+
+export default function Services({ isHomePage = false }: ServicesProps) {
   const services: ServiceData[] = [
     {
       title: "Brand Identity & Design",
@@ -48,7 +52,11 @@ export default function Services() {
     return (
       <article 
         key={index}
-        className="relative p-6 rounded-xl bg-canvas border border-line hover:border-line focus-within:border-line transition-all duration-500 h-full group"
+        className={`relative p-6 rounded-xl border transition-all duration-500 h-full group ${
+          isHomePage 
+            ? 'bg-white border-gray-200 hover:border-gray-300 focus-within:border-gray-300' 
+            : 'bg-canvas border-line hover:border-line focus-within:border-line'
+        }`}
         role="article"
         aria-labelledby={`service-title-${index}`}
       >
@@ -73,7 +81,9 @@ export default function Services() {
             <div className="flex flex-col gap-3">
               <h3 
                 id={`service-title-${index}`}
-                className="font-display text-xl font-bold leading-tight text-ink group-hover:text-champagne transition-colors duration-300"
+                className={`font-display text-xl font-bold leading-tight group-hover:text-champagne transition-colors duration-300 ${
+                  isHomePage ? 'text-black' : 'text-ink'
+                }`}
               >
                 {service.title}
               </h3>
@@ -83,7 +93,11 @@ export default function Services() {
               >
                 {service.boldDesc}
               </p>
-              <p className="text-ink/70 text-sm leading-relaxed group-hover:text-ink/80 transition-colors duration-300">
+              <p className={`text-sm leading-relaxed transition-colors duration-300 ${
+                isHomePage 
+                  ? 'text-gray-600 group-hover:text-gray-700' 
+                  : 'text-ink/70 group-hover:text-ink/80'
+              }`}>
                 {service.description}
               </p>
             </div>
@@ -94,16 +108,16 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-16 md:py-24 bg-panel" role="region" aria-labelledby="services-heading">
+    <section id="services" className={`py-16 md:py-24 ${isHomePage ? 'bg-white' : 'bg-panel'}`} role="region" aria-labelledby="services-heading">
       <div className="container">
         <header data-reveal className="text-center mb-12">
           <h2 
             id="services-heading"
-            className="font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] text-ink"
+            className={`font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] ${isHomePage ? 'text-black' : 'text-ink'}`}
           >
             The Workbench
           </h2>
-          <p className="text-ink mt-4 max-w-2xl mx-auto">
+          <p className={`mt-4 max-w-2xl mx-auto ${isHomePage ? 'text-black' : 'text-ink'}`}>
             Elevating luxury brands through strategic social media excellence and premium digital experiences.
           </p>
           <div className="mt-6">

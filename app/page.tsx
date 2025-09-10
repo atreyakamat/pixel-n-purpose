@@ -23,19 +23,19 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative flex size-full min-h-screen flex-col bg-canvas">
-      <Header />
+    <div className="relative flex size-full min-h-screen flex-col bg-white">
+      <Header isHomePage={true} />
       <main>
         <Hero />
         <Suspense fallback={<ComponentLoader />}>
-          <Gallery />
+          <Gallery isHomePage={true} />
         </Suspense>
         <Suspense fallback={<ComponentLoader />}>
-          <Services />
+          <Services isHomePage={true} />
         </Suspense>
       </main>
       <Suspense fallback={<ComponentLoader />}>
-        <Footer />
+        <Footer isHomePage={true} />
       </Suspense>
     </div>
   );
