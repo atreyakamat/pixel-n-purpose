@@ -139,7 +139,10 @@ export default function About() {
         </div>
       </div>
 
-      <main className="container py-24">
+      {/* Spacer to account for fixed header */}
+      <div className="h-32 sm:h-36 lg:h-40"></div>
+      
+      <main className="container px-4 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto">
           {/* About Content */}
           <div className="space-y-12 text-lg md:text-xl leading-relaxed">
