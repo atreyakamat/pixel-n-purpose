@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -44,21 +45,29 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // EmailJS configuration
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
       
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', brand: '', message: '' });
-      } else {
-        setSubmitStatus('error');
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS configuration is missing');
       }
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        brand: formData.brand,
+        message: formData.message,
+        to_email: 'hello@pixelnpurpose.com', // Your email address
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', brand: '', message: '' });
     } catch (error) {
+      console.error('Email sending failed:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
