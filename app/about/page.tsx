@@ -160,7 +160,7 @@ export default function About() {
             </p>
             
             <p>
-              Most people may not know us yet, but they'll remember the stories we help create.
+              We’re here to create stories that people remember.
             </p>
           </div>
         </div>
