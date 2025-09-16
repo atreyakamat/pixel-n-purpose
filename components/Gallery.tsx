@@ -9,7 +9,7 @@ interface GalleryProps {
 export default function Gallery({ isHomePage = false }: GalleryProps) {
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  // Enhanced intersection observer with parallax scroll effect
+  // Simple intersection observer for reveal animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -40,61 +40,6 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     return () => observer.disconnect();
   }, []);
 
-  // Parallax scroll effect for gallery items
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!galleryRef.current) return;
-
-      const scrollY = window.scrollY;
-      const items = galleryRef.current.querySelectorAll('.gallery-item');
-      
-      items.forEach((item, index) => {
-        const element = item as HTMLElement;
-        const rect = element.getBoundingClientRect();
-        const elementTop = rect.top + scrollY;
-        const elementHeight = rect.height;
-        const windowHeight = window.innerHeight;
-        
-        // Calculate if element is in viewport
-        const isInViewport = rect.top < windowHeight && rect.bottom > 0;
-        
-        if (isInViewport) {
-          // Create different parallax speeds for different sized items
-          const speed = element.classList.contains('row-span-2') ? 0.5 : // Large items slower
-                       element.classList.contains('md:col-span-2') ? 0.3 : // Medium items medium speed
-                       0.2; // Small items faster
-          
-          // Calculate parallax offset based on scroll position
-          const yPos = -(scrollY - elementTop) * speed;
-          
-          // Apply subtle parallax transform while maintaining scale
-          element.style.transform = `translateY(${yPos}px) scale(1)`;
-        }
-      });
-    };
-
-    // Throttle scroll events for performance
-    let ticking = false;
-    const scrollListener = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', scrollListener, { passive: true });
-    
-    // Initial call
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', scrollListener);
-    };
-  }, []);
-
   // Premium bento/masonry gallery items with intelligent sizing
   const galleryItems = [
     {
@@ -107,10 +52,10 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     {
       id: 2,
       type: 'video',
-      src: "/pnp-hero-video.webm",
+      src: "/grid_images/11289-229221023_small.webm",
       poster: "/grid_images/architecture-2256489_1280.jpg",
       alt: "Luxury brand video content creation",
-      size: 'large' // Hero video deserves premium large format
+      size: 'medium' // Wide format perfect for cinematic brand videos
     },
     {
       id: 3,
@@ -121,10 +66,11 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     },
     {
       id: 4,
-      type: 'image',
-      src: "/grid_images/arra-luxury-8274729_1280.jpg",
-      alt: "Luxury resort and hospitality branding",
-      size: 'medium' // Wide format showcases luxury resort atmosphere
+      type: 'video',
+      src: "/grid_images/214888_tiny.webm",
+      poster: "/grid_images/building-6011756_1280.jpg",
+      alt: "Dynamic brand storytelling video",
+      size: 'large' // Hero video deserves premium large format
     },
     {
       id: 5,
@@ -150,30 +96,60 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     {
       id: 8,
       type: 'image',
-      src: "/grid_images/table-5356682_1280.jpg",
-      alt: "Luxury dining experience branding",
-      size: 'medium' // Dining details in wide format
+      src: "/grid_images/restaurant-4011989_1280.jpg",
+      alt: "Fine dining brand visual identity",
+      size: 'small' // Restaurant details in intimate square format
     },
     {
       id: 9,
-      type: 'image',
-      src: "/grid_images/fiji-7186952_1280.jpg",
-      alt: "Luxury travel and destination branding",
-      size: 'small' // Travel destination in square format
+      type: 'video',
+      src: "/grid_images/3152-166336023_small.webm",
+      poster: "/grid_images/arra-luxury-8274729_1280.jpg",
+      alt: "Premium brand showcase video",
+      size: 'medium' // Brand showcase videos work well in wide format
     },
     {
       id: 10,
       type: 'image',
-      src: "/grid_images/restaurant-4011989_1280.jpg",
-      alt: "Premium restaurant and culinary branding",
-      size: 'medium' // Restaurant atmosphere in wide format
+      src: "/grid_images/fiji-7186952_1280.jpg",
+      alt: "Luxury travel and lifestyle brands",
+      size: 'small' // Travel moments captured in square format
     },
     {
       id: 11,
       type: 'image',
+      src: "/grid_images/architecture-2256489_1280.jpg",
+      alt: "Architectural brand photography",
+      size: 'medium' // Architecture benefits from wide landscape format
+    },
+    {
+      id: 12,
+      type: 'video',
+      src: "/grid_images/34855-403777679_tiny.webm",
+      poster: "/grid_images/table-5356682_1280.jpg",
+      alt: "Luxury lifestyle content creation",
+      size: 'medium' // Lifestyle videos in cinematic wide format
+    },
+    {
+      id: 13,
+      type: 'image',
       src: "/grid_images/building-6011756_1280.jpg",
-      alt: "Modern architecture and real estate branding",
-      size: 'small' // Architectural details in square format
+      alt: "Contemporary architecture branding",
+      size: 'small' // Architectural details in focused format
+    },
+    {
+      id: 14,
+      type: 'image',
+      src: "/grid_images/arra-luxury-8274729_1280.jpg",
+      alt: "Premium lifestyle brand imagery",
+      size: 'small' // Lifestyle details in square format
+    },
+    {
+      id: 15,
+      type: 'image',
+      src: "/grid_images/table-5356682_1280.jpg",
+      alt: "Luxury dining experience branding",
+      size: 'small' // Dining details perfect in square format
     }
   ];
 
@@ -182,7 +158,7 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
       <div className="container">
         <div data-reveal className="text-center mb-12">
           <h2 className={`font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] ${isHomePage ? 'text-black' : 'text-ink'}`}>
-            Stories We Shape
+            What We Create
           </h2>
         </div>
 
