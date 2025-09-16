@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Hero() {
   const [videoPaused, setVideoPaused] = useState(false);
@@ -20,13 +21,6 @@ export default function Hero() {
 
   const scrollToGallery = () => {
     const element = document.getElementById('gallery');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -65,13 +59,13 @@ export default function Hero() {
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-tight mb-8 text-white font-bold">
             Brand <span className="font-bold uppercase text-white">YOUR</span> Story
           </h1>
-          <button 
-            onClick={scrollToContact}
+          <Link 
+            href="/contact"
             className="inline-flex items-center justify-center min-w-[84px] max-w-[480px] cursor-pointer overflow-hidden rounded-lg h-12 px-6 bg-white text-black text-sm font-bold leading-normal tracking-[0.015em] hover:bg-white/90 focus:outline-none transition-all duration-200"
             aria-label="Contact us to take the lead with your brand"
           >
             Take The LEAD
-          </button>
+          </Link>
         </div>
       </div>
     </section>
