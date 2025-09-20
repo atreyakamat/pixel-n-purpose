@@ -118,12 +118,19 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     {
       id: 11,
       type: 'image',
+      src: "/grid_images/table-5356682_1280.jpg",
+      alt: "Luxury retail store brand photography",
+      size: 'small' // Wide format showcases retail atmosphere
+    },
+    {
+      id: 12,
+      type: 'image',
       src: "/grid_images/architecture-2256489_1280.jpg",
       alt: "Architectural brand photography",
       size: 'medium' // Architecture benefits from wide landscape format
     },
     {
-      id: 12,
+      id: 13,
       type: 'video',
       src: "/grid_images/34855-403777679_tiny.webm",
       poster: "/grid_images/table-5356682_1280.jpg",
@@ -131,25 +138,32 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
       size: 'medium' // Lifestyle videos in cinematic wide format
     },
     {
-      id: 13,
+      id: 14,
       type: 'image',
       src: "/grid_images/building-6011756_1280.jpg",
       alt: "Contemporary architecture branding",
       size: 'small' // Architectural details in focused format
     },
     {
-      id: 14,
+      id: 15,
       type: 'image',
       src: "/grid_images/arra-luxury-8274729_1280.jpg",
       alt: "Premium lifestyle brand imagery",
       size: 'small' // Lifestyle details in square format
     },
     {
-      id: 15,
+      id: 16,
       type: 'image',
-      src: "/grid_images/table-5356682_1280.jpg",
-      alt: "Luxury dining experience branding",
-      size: 'small' // Dining details perfect in square format
+      src: "/grid_images/apparel-1850804.jpg",
+      alt: "Luxury apparel branding",
+      size: 'small' // Apparel details perfect in square format
+    },
+    {
+      id: 17,
+      type: 'image',
+      src: "/grid_images/restaurant-1837150.jpg",
+      alt: "Premium restaurant interior branding",
+      size: 'small' // Wide format showcases interior design
     }
   ];
 
