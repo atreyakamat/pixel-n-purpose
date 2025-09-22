@@ -12,10 +12,34 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   experimental: {
-    optimizePackageImports: ['lucide-react', '@react-three/fiber'],
+    optimizePackageImports: ['lucide-react', '@emailjs/browser'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Performance optimizations
+  webpack: (config, { dev, isServer }) => {
+    // Bundle splitting for better caching
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        cacheGroups: {
+          ...config.optimization.splitChunks.cacheGroups,
+          styles: {
+            name: 'styles',
+            test: /\.(css|scss)$/,
+            chunks: 'all',
+            enforce: true,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      };
+    }
+    return config;
   },
   // Cloudflare Pages optimization
   distDir: 'out'

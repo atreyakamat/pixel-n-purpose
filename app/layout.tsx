@@ -84,18 +84,11 @@ export default function RootLayout({
         
         {/* Preload critical assets */}
         <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/hero-poster.jpg" as="image" />
         <link rel="preload" href="/PNP-white.png" as="image" />
-        <link rel="preload" href="/grid_images/jewellery-1723638_640.jpg" as="image" />
         <link rel="preload" href="/pnp-hero-video.webm" as="video" type="video/webm" />
         
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        
-        {/* Resource hints for better performance */}
-        <link rel="prefetch" href="/grid_images/car-1544342_640.jpg" />
-        <link rel="prefetch" href="/grid_images/arra-luxury-8274729_1280.jpg" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         
         {/* Favicon and icons */}

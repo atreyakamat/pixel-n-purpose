@@ -51,11 +51,10 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     },
     {
       id: 2,
-      type: 'video',
-      src: "/grid_images/11289-229221023_small.webm",
-      poster: "/grid_images/architecture-2256489_1280.jpg",
-      alt: "Luxury brand video content creation",
-      size: 'medium' // Wide format perfect for cinematic brand videos
+      type: 'image',
+      src: "/grid_images/architecture-2256489_1280.jpg",
+      alt: "Luxury architectural brand photography",
+      size: 'medium' // Wide format perfect for architectural shots
     },
     {
       id: 3,
@@ -66,11 +65,10 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     },
     {
       id: 4,
-      type: 'video',
-      src: "/grid_images/214888_tiny.webm",
-      poster: "/grid_images/building-6011756_1280.jpg",
-      alt: "Dynamic brand storytelling video",
-      size: 'large' // Hero video deserves premium large format
+      type: 'image',
+      src: "/grid_images/building-6011756_1280.jpg",
+      alt: "Contemporary commercial brand photography",
+      size: 'large' // Large format showcases commercial architecture
     },
     {
       id: 5,
@@ -96,17 +94,16 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     {
       id: 8,
       type: 'image',
-      src: "/grid_images/restaurant-4011989_1280.jpg",
+      src: "/grid_images/restaurant-1837150.jpg",
       alt: "Fine dining brand visual identity",
       size: 'small' // Restaurant details in intimate square format
     },
     {
       id: 9,
-      type: 'video',
-      src: "/grid_images/3152-166336023_small.webm",
-      poster: "/grid_images/arra-luxury-8274729_1280.jpg",
-      alt: "Premium brand showcase video",
-      size: 'medium' // Brand showcase videos work well in wide format
+      type: 'image',
+      src: "/grid_images/arra-luxury-8274729_1280.jpg",
+      alt: "Premium luxury brand showcase",
+      size: 'medium' // Luxury brands work well in wide format
     },
     {
       id: 10,
@@ -131,11 +128,10 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     },
     {
       id: 13,
-      type: 'video',
-      src: "/grid_images/34855-403777679_tiny.webm",
-      poster: "/grid_images/table-5356682_1280.jpg",
-      alt: "Luxury lifestyle content creation",
-      size: 'medium' // Lifestyle videos in cinematic wide format
+      type: 'image',
+      src: "/grid_images/apparel-1850804.jpg",
+      alt: "Luxury apparel brand photography",
+      size: 'medium' // Fashion photography in wide format
     },
     {
       id: 14,
@@ -182,7 +178,7 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[200px]" 
           data-reveal
         >
-          {galleryItems.filter(item => item.type !== 'video').map((item, index) => {
+          {galleryItems.map((item, index) => {
             // Intelligent bento sizing based on content type and format
             const getSizeClass = (size: string) => {
               switch (size) {
@@ -208,96 +204,34 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
                 <div className="relative overflow-hidden rounded-xl bg-panel border border-line 
                   transition-all duration-500 ease-out hover:scale-[1.02] hover:border-ink/30 
                   hover:shadow-2xl hover:shadow-ink/10 h-full w-full group-hover:z-10">
-                  {item.type === 'image' ? (
-                    // Premium image presentation with intelligent positioning and lazy loading
-                    <div className="w-full h-full relative">
-                      <img
-                        src={item.src}
-                        alt={item.alt}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover transition-all duration-700 
-                          group-hover:scale-105"
-                        style={{
-                          minHeight: '200px', // Ensure minimum height for visibility
-                          objectPosition: 'center center'
-                        }}
-                        onLoad={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.opacity = '1';
-                        }}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
-                      />
-                      {/* Multi-layer hover overlay for depth */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-ink/5 to-transparent 
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ink/20
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    </div>
-                  ) : (
-                    // Premium video presentation with intelligent aspect handling
-                    <div className="w-full h-full relative group">
-                      <video
-                        className="w-full h-full object-cover transition-all duration-700 
-                          group-hover:scale-105"
-                        style={{
-                          objectPosition: 'center center'
-                        }}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        poster={item.poster}
-                        onError={(e) => {
-                          const target = e.target as HTMLVideoElement;
-                          target.style.display = 'none';
-                          target.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      >
-                        <source src={item.src} type="video/webm" />
-                        <source src={item.src} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      
-                      {/* Fallback with same styling as video */}
-                      <div
-                        className="hidden w-full h-full bg-center bg-no-repeat bg-cover 
-                          transition-transform duration-700 group-hover:scale-105"
-                        style={{
-                          backgroundImage: `url("${item.poster}")`,
-                          backgroundPosition: 'center center'
-                        }}
-                      ></div>
-                      
-                      {/* Multi-layer video overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-ink/5 to-transparent 
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ink/20
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                      
-                      {/* Video play indicator */}
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 
-                        transition-opacity duration-300 delay-200">
-                        <div className="bg-ink/10 backdrop-blur-sm rounded-full p-2">
-                          <svg className="w-4 h-4 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
-                              d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2 2 0 001.5-2V6a2 2 0 011.5-1.5H15M9 14h1.5a2 2 0 001.5-2v-2a2 2 0 011.5-1.5H15" />
-                          </svg>
-                        </div>
-                      </div>
-
-                      {/* Video progress indicator (aesthetic) */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-ink/20 
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-300">
-                        <div className="h-full bg-ink/60 w-0 group-hover:w-full 
-                          transition-all duration-[3000ms] ease-linear"></div>
-                      </div>
-                    </div>
-                  )}
+                  {/* Premium image presentation with intelligent positioning and lazy loading */}
+                  <div className="w-full h-full relative">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-all duration-700 
+                        group-hover:scale-105"
+                      style={{
+                        minHeight: '200px', // Ensure minimum height for visibility
+                        objectPosition: 'center center'
+                      }}
+                      onLoad={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.opacity = '1';
+                      }}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
+                    />
+                    {/* Multi-layer hover overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-ink/5 to-transparent 
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ink/20
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  </div>
                 </div>
               </div>
             );
