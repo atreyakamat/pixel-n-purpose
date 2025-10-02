@@ -63,17 +63,15 @@ export default function Contact() {
       emailjs.init(publicKey);
       
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
+        name: formData.name,
+        email: formData.email,
         brand: formData.brand,
         message: formData.message,
-        to_name: 'Pixel & Purpose', // Add recipient name
-        reply_to: formData.email, // Add reply-to field
       };
 
       console.log('Sending email with params:', templateParams); // Debug log
       
-      const result = await emailjs.send(serviceId, templateId, templateParams);
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
       
       console.log('Email sent successfully:', result); // Debug log
       
@@ -81,6 +79,10 @@ export default function Contact() {
       setFormData({ name: '', email: '', brand: '', message: '' });
     } catch (error) {
       console.error('Email sending failed:', error);
+      if (error instanceof Error) {
+        console.error('Error message:', error.message);
+        console.error('Error details:', error);
+      }
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

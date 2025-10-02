@@ -83,7 +83,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* Preload critical assets */}
-        <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/truetype" crossOrigin="anonymous" />
         <link rel="preload" href="/PNP-white.png" as="image" />
         <link rel="preload" href="/pnp-hero-video.webm" as="video" type="video/webm" />
         
@@ -93,8 +93,6 @@ export default function RootLayout({
         
         {/* Favicon and icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         
         {/* Security headers */}
