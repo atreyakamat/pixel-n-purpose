@@ -10,5 +10,5 @@
 [build.environment]
   NODE_VERSION = "18"
   NEXT_PUBLIC_EMAILJS_SERVICE_ID = "service_hqpejaj"
-  NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = "template_ibfjhno"
+  NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = "template_n32edle"
   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = "5oUjsaZQ0kDhDVrm3"

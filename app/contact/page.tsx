@@ -70,7 +70,8 @@ export default function Contact() {
         from_name: formData.name,
         from_email: formData.email,
         brand: formData.brand,
-        message: formData.message
+        message: formData.message,
+        to_email: 'hello@pixelnpurpose.com'
       };
       
       Object.entries(fields).forEach(([key, value]) => {

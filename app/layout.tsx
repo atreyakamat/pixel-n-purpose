@@ -91,7 +91,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         
         {/* Favicon and icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="manifest" href="/manifest.json" />
         
         {/* Security headers */}
