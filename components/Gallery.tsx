@@ -57,18 +57,18 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
       size: 'medium' // Wide format perfect for architectural shots
     },
     {
-      id: 3,
+      id: 4,
       type: 'image',
       src: "/grid_images/car-1544342_640.jpg",
       alt: "Premium automotive brand photography",
-      size: 'small' // Automotive detail shots work well in square format
+      size: 'medium' // Automotive detail shots work well in square format
     },
     {
-      id: 4,
+      id: 3,
       type: 'image',
       src: "/grid_images/building-6011756_1280.jpg",
       alt: "Contemporary commercial brand photography",
-      size: 'large' // Large format showcases commercial architecture
+      size: 'small' // Large format showcases commercial architecture
     },
     {
       id: 5,
@@ -89,21 +89,14 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
       type: 'image',
       src: "/grid_images/opal-4765457_1280.jpg",
       alt: "Luxury gemstone brand photography",
-      size: 'small' // Gemstone macro shots perfect in square
-    },
-    {
-      id: 8,
-      type: 'image',
-      src: "/grid_images/restaurant-1837150.jpg",
-      alt: "Fine dining brand visual identity",
-      size: 'small' // Restaurant details in intimate square format
+      size: 'medium' // Gemstone macro shots perfect in square
     },
     {
       id: 9,
       type: 'image',
       src: "/grid_images/arra-luxury-8274729_1280.jpg",
       alt: "Premium luxury brand showcase",
-      size: 'medium' // Luxury brands work well in wide format
+      size: 'small' // Luxury brands work well in wide format
     },
     {
       id: 10,
@@ -117,42 +110,14 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
       type: 'image',
       src: "/grid_images/table-5356682_1280.jpg",
       alt: "Luxury retail store brand photography",
-      size: 'small' // Wide format showcases retail atmosphere
-    },
-    {
-      id: 12,
-      type: 'image',
-      src: "/grid_images/architecture-2256489_1280.jpg",
-      alt: "Architectural brand photography",
-      size: 'medium' // Architecture benefits from wide landscape format
-    },
-    {
-      id: 13,
-      type: 'image',
-      src: "/grid_images/apparel-1850804.jpg",
-      alt: "Luxury apparel brand photography",
-      size: 'medium' // Fashion photography in wide format
-    },
-    {
-      id: 14,
-      type: 'image',
-      src: "/grid_images/building-6011756_1280.jpg",
-      alt: "Contemporary architecture branding",
-      size: 'small' // Architectural details in focused format
-    },
-    {
-      id: 15,
-      type: 'image',
-      src: "/grid_images/arra-luxury-8274729_1280.jpg",
-      alt: "Premium lifestyle brand imagery",
-      size: 'small' // Lifestyle details in square format
+      size: 'medium' // Wide format showcases retail atmosphere
     },
     {
       id: 16,
       type: 'image',
       src: "/grid_images/apparel-1850804.jpg",
       alt: "Luxury apparel branding",
-      size: 'small' // Apparel details perfect in square format
+      size: 'medium' // Apparel details perfect in square format
     },
     {
       id: 17,
