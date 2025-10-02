@@ -62,16 +62,32 @@ export default function Contact() {
       // Initialize EmailJS
       emailjs.init(publicKey);
       
-      const templateParams = {
-        name: formData.name,
-        email: formData.email,
-        brand: formData.brand,
-        message: formData.message,
-      };
-
-      console.log('Sending email with params:', templateParams); // Debug log
+      // Use sendForm method instead of send for better compatibility
+      const form = document.createElement('form');
+      form.style.display = 'none';
       
-      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      const fields = {
+        from_name: formData.name,
+        from_email: formData.email,
+        brand: formData.brand,
+        message: formData.message
+      };
+      
+      Object.entries(fields).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+      
+      document.body.appendChild(form);
+      
+      console.log('Sending email with form data:', fields); // Debug log
+      
+      const result = await emailjs.sendForm(serviceId, templateId, form, publicKey);
+      
+      document.body.removeChild(form);
       
       console.log('Email sent successfully:', result); // Debug log
       
@@ -79,10 +95,20 @@ export default function Contact() {
       setFormData({ name: '', email: '', brand: '', message: '' });
     } catch (error) {
       console.error('Email sending failed:', error);
+      
+      // Handle EmailJS specific errors
+      if (error && typeof error === 'object') {
+        const errorObj = error as any;
+        console.error('Error status:', errorObj.status || 'unknown');
+        console.error('Error text:', errorObj.text || 'no message');
+        console.error('Full error object:', JSON.stringify(error, null, 2));
+      }
+      
       if (error instanceof Error) {
         console.error('Error message:', error.message);
-        console.error('Error details:', error);
+        console.error('Error stack:', error.stack);
       }
+      
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

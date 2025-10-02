@@ -83,9 +83,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* Preload critical assets */}
-        <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/truetype" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <link rel="preload" href="/PNP-white.png" as="image" />
-        <link rel="preload" href="/pnp-hero-video.webm" as="video" type="video/webm" />
         
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
