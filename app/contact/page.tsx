@@ -50,27 +50,32 @@ export default function Contact() {
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
       
+      console.log('EmailJS Configuration:', { serviceId, templateId, publicKey }); // Debug log
+      
       // Check if EmailJS is configured
-      if (!serviceId || !templateId || !publicKey || 
-          serviceId === 'your_service_id_here' || 
-          templateId === 'your_template_id_here' || 
-          publicKey === 'your_public_key_here') {
-        console.error('EmailJS not configured. Please set up your environment variables.');
-        // For now, show success message so the form doesn't break
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', brand: '', message: '' });
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS not configured. Missing environment variables.');
+        setSubmitStatus('error');
         return;
       }
+      
+      // Initialize EmailJS
+      emailjs.init(publicKey);
       
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         brand: formData.brand,
         message: formData.message,
-        to_email: 'hello@pixelnpurpose.com', // Your email address
+        to_name: 'Pixel & Purpose', // Add recipient name
+        reply_to: formData.email, // Add reply-to field
       };
 
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('Sending email with params:', templateParams); // Debug log
+      
+      const result = await emailjs.send(serviceId, templateId, templateParams);
+      
+      console.log('Email sent successfully:', result); // Debug log
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', brand: '', message: '' });
