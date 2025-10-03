@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pixel & Purpose — Social strategy for brands with presence",
+    title: "Pixel ’N’ Purpose | Pixpur Design House",
     description: "We don’t just brand. We build meaning. Creativity with impact, clarity, and purpose.",
     url: "https://pixelnpurpose.com",
-    siteName: "Pixel & Purpose",
+    siteName: "Pixel ’N’ Purpose | Pixpur Design House",
     locale: "en_US",
     type: "website",
     images: [
