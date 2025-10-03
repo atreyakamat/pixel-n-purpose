@@ -7,32 +7,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: 'https://pixelnpurpose.com',
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://pixelnpurpose.com/#about',
+      url: 'https://pixelnpurpose.com/about',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://pixelnpurpose.com/#gallery',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://pixelnpurpose.com/#services',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://pixelnpurpose.com/#contact',
+      url: 'https://pixelnpurpose.com/contact',
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.5,
+      priority: 0.9,
+    },
+    {
+      url: 'https://pixelnpurpose.com/marketing-agency-goa',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: 'https://pixelnpurpose.com/marketing-agency-jaipur',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: 'https://pixelnpurpose.com/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: 'https://pixelnpurpose.com/terms',
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ]
 }

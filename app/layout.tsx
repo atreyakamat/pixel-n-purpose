@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import WebVitals from "@/components/WebVitals";
+import StructuredData from "@/components/StructuredData";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -98,6 +100,7 @@ export default function RootLayout({
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body className="bg-canvas text-ink antialiased font-sans">
+        <StructuredData data={[organizationSchema, websiteSchema]} />
         <noscript>
           <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#F6F5F2', color: '#0B0B0B'}}>
             This website requires JavaScript to function properly. Please enable JavaScript in your browser.
