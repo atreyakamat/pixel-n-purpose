@@ -94,7 +94,7 @@ export const localBusinessJaipurSchema = {
   "image": "https://pixelnpurpose.com/PNP-white.png",
   "@id": "https://pixelnpurpose.com/marketing-agency-jaipur",
   "url": "https://pixelnpurpose.com/marketing-agency-jaipur",
-  "telephone": "+91-XXXXXXXXXX",
+  "telephone": "+91-98766 65379",
   "email": "hello@pixelnpurpose.com",
   "priceRange": "$$",
   "address": {
