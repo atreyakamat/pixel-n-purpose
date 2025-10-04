@@ -131,7 +131,7 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
   return (
     <section id="gallery" className={`pt-20 pb-6 ${isHomePage ? 'bg-white' : ''}`}>
       <div className="container">
-        <div data-reveal className="text-center mb-12">
+        <div data-reveal className="text-center mb-12" suppressHydrationWarning>
           <h2 className={`font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] ${isHomePage ? 'text-black' : 'text-ink'}`}>
             What We Create
           </h2>
@@ -142,6 +142,7 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
           ref={galleryRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[200px]" 
           data-reveal
+          suppressHydrationWarning
         >
           {galleryItems.map((item, index) => {
             // Intelligent bento sizing based on content type and format
@@ -204,7 +205,7 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
         </div>
 
         {/* Enhanced description */}
-        <div data-reveal className="text-center mt-16 pt-8">
+        <div data-reveal className="text-center mt-16 pt-8" suppressHydrationWarning>
           <p className={`max-w-2xl mx-auto leading-relaxed ${isHomePage ? 'text-black' : 'text-ink'}`}>
             From brand storytelling to campaign execution — witness the creative journey that transforms ideas into compelling social narratives.
           </p>

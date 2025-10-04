@@ -18,68 +18,88 @@ export default function Footer({ isHomePage = false }: FooterProps) {
       <div className="border-t border-canvas/20">
         <div className="container py-8">
           <div className="flex flex-col items-center justify-center gap-6 text-center">
-            {/* Navigation Links */}
-            <div className="flex flex-wrap items-center justify-center gap-6">
-              <button
-                onClick={() => scrollToSection('hero')}
-                className={`text-base font-normal transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-black hover:text-gray-700' 
-                    : 'text-canvas/80 hover:text-canvas'
-                }`}
-              >
-                Home
-              </button>
-              <button
-                onClick={() => scrollToSection('services')}
-                className={`text-base font-normal transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-black hover:text-gray-700' 
-                    : 'text-canvas/80 hover:text-canvas'
-                }`}
-              >
-                Services
-              </button>
-              <a
-                href="/about"
-                className={`text-base font-normal transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-black hover:text-gray-700' 
-                    : 'text-canvas/80 hover:text-canvas'
-                }`}
-              >
-                About Us
-              </a>
-              <a
-                href="/contact"
-                className={`text-base font-normal transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-black hover:text-gray-700' 
-                    : 'text-canvas/80 hover:text-canvas'
-                }`}
-              >
-                Contact
-              </a>
-              <a
-                href="/privacy"
-                className={`text-base font-normal transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-black hover:text-gray-700' 
-                    : 'text-canvas/80 hover:text-canvas'
-                }`}
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/terms"
-                className={`text-base font-normal transition-colors duration-200 ${
-                  isHomePage 
-                    ? 'text-black hover:text-gray-700' 
-                    : 'text-canvas/80 hover:text-canvas'
-                }`}
-              >
-                Terms of Service
-              </a>
+            {/* Navigation Links and DesignRush Badge */}
+            <div className="flex items-center justify-between gap-6 w-full">
+              {/* Left spacer for centering */}
+              <div className="flex-1"></div>
+              
+              {/* Navigation Links - Centered */}
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                <button
+                  onClick={() => scrollToSection('hero')}
+                  className={`text-base font-normal transition-colors duration-200 ${
+                    isHomePage 
+                      ? 'text-black hover:text-gray-700' 
+                      : 'text-canvas/80 hover:text-canvas'
+                  }`}
+                >
+                  Home
+                </button>
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className={`text-base font-normal transition-colors duration-200 ${
+                    isHomePage 
+                      ? 'text-black hover:text-gray-700' 
+                      : 'text-canvas/80 hover:text-canvas'
+                  }`}
+                >
+                  Services
+                </button>
+                <a
+                  href="/about"
+                  className={`text-base font-normal transition-colors duration-200 ${
+                    isHomePage 
+                      ? 'text-black hover:text-gray-700' 
+                      : 'text-canvas/80 hover:text-canvas'
+                  }`}
+                >
+                  About Us
+                </a>
+                <a
+                  href="/contact"
+                  className={`text-base font-normal transition-colors duration-200 ${
+                    isHomePage 
+                      ? 'text-black hover:text-gray-700' 
+                      : 'text-canvas/80 hover:text-canvas'
+                  }`}
+                >
+                  Contact
+                </a>
+                <a
+                  href="/privacy"
+                  className={`text-base font-normal transition-colors duration-200 ${
+                    isHomePage 
+                      ? 'text-black hover:text-gray-700' 
+                      : 'text-canvas/80 hover:text-canvas'
+                  }`}
+                >
+                  Privacy Policy
+                </a>
+                <a
+                  href="/terms"
+                  className={`text-base font-normal transition-colors duration-200 ${
+                    isHomePage 
+                      ? 'text-black hover:text-gray-700' 
+                      : 'text-canvas/80 hover:text-canvas'
+                  }`}
+                >
+                  Terms of Service
+                </a>
+              </div>
+              
+              {/* DesignRush Badge - Right side */}
+              <div className="flex flex-col items-center gap-1 lg:items-end flex-1">
+                <img 
+                  src="/Verified Agency v2.png" 
+                  alt="Pixel & Purpose featured on DesignRush" 
+                  className="h-10 w-auto"
+                />
+                <p className={`text-xs font-normal text-center lg:text-right ${
+                  isHomePage ? 'text-black/70' : 'text-canvas/50'
+                }`}>
+                  Featured on DesignRush
+                </p>
+              </div>
             </div>
 
             {/* Social Links */}

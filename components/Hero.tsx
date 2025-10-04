@@ -55,7 +55,7 @@ export default function Hero() {
 
       {/* Content with better accessibility */}
       <div className="relative z-10 container text-center text-white">
-        <div data-reveal className="max-w-4xl mx-auto">          
+        <div data-reveal className="max-w-4xl mx-auto" suppressHydrationWarning>          
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-tight mb-8 text-white font-bold">
             Brand <span className="font-bold uppercase text-white">YOUR</span> Story
           </h1>
