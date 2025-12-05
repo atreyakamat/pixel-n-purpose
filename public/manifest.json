@@ -8,12 +8,12 @@
   "theme_color": "#C7A977",
   "icons": [
     {
-      "src": "/PNP-black.png",
+      "src": "/PNP-manifest.png",
       "sizes": "48x48",
       "type": "image/x-icon"
     },
     {
-      "src": "/PNP-black.png",
+      "src": "/PNP-manifest.png",
       "sizes": "192x192",
       "type": "image/png"
     }
