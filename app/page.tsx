@@ -8,6 +8,7 @@ import { setupReveal } from '@/lib/reveal';
 // Lazy load non-critical components
 const Gallery = lazy(() => import('@/components/Gallery'));
 const Services = lazy(() => import('@/components/Services'));
+const BrandShowcase = lazy(() => import('@/components/BrandShowcase'));
 const Footer = lazy(() => import('@/components/Footer'));
 
 // Loading component
@@ -32,6 +33,9 @@ export default function Home() {
         </Suspense>
         <Suspense fallback={<ComponentLoader />}>
           <Services isHomePage={true} />
+        </Suspense>
+        <Suspense fallback={<ComponentLoader />}>
+          <BrandShowcase isHomePage={true} />
         </Suspense>
       </main>
       <Suspense fallback={<ComponentLoader />}>

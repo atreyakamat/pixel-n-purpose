@@ -133,7 +133,7 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
       <div className="container">
         <div data-reveal className="text-center mb-12" suppressHydrationWarning>
           <h2 className={`font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] ${isHomePage ? 'text-black' : 'text-ink'}`}>
-            What We Create
+            <b>What We Create</b>
           </h2>
         </div>
 

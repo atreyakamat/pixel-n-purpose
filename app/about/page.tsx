@@ -147,23 +147,23 @@ export default function About() {
           {/* About Content */}
           <div className="space-y-12 text-lg md:text-xl leading-relaxed">
             <p>
-              We were founded with one belief: brands don't just need advertising — they need meaning.
+              We were founded with one <i>belief</i>: brands don't just need advertising — they need <i>meaning.</i>
             </p>
             
             <p>
-              Pixel & Purpose began as a creative studio that wanted to challenge the usual playbook. No jargon, no fluff — just work that's sharp, human, and built to last.
+              Pixel & Purpose began as a <i>creative studio</i> that wanted to challenge the usual <i>playbook.</i> No jargon, no fluff — just work that's <i>sharp, human, and built to last.</i>
             </p>
             
             <p>
-              We're a place where design, storytelling, and strategy meet — where creatively driven people can come together to do their best work and help brands say something real.
+              We're a place where design, storytelling, and strategy meet — where creatively driven people can come together to do their <i>best work</i> and help brands say something <i>real.</i>
             </p>
             
             <p>
-              Our mission isn't just to make brands look good. It's to help them leave a mark, shape conversations, and tell stories that matter.
+              Our mission isn't just to make brands look good. It's to help them leave a <i>mark</i>, shape conversations, and tell stories that <i>matter.</i>
             </p>
             
             <p>
-              We’re here to create stories that people remember.
+              We’re here to <i>create</i> stories that people <i>remember.</i>
             </p>
           </div>
         </div>

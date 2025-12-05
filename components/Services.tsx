@@ -115,7 +115,7 @@ export default function Services({ isHomePage = false }: ServicesProps) {
             id="services-heading"
             className={`font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] ${isHomePage ? 'text-black' : 'text-ink'}`}
           >
-            The Workbench
+            <b>The Workbench</b>
           </h2>
           <p className={`mt-4 max-w-2xl mx-auto ${isHomePage ? 'text-black' : 'text-ink'}`}>
             Elevating luxury brands through strategic social media excellence and premium digital experiences.
