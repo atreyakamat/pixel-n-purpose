@@ -55,7 +55,7 @@ export default function BrandShowcase({ isHomePage = false }: BrandShowcaseProps
             <b>The Workbench</b>
           </h2>
           <p className={`mt-4 max-w-2xl mx-auto ${isHomePage ? 'text-black' : 'text-ink'}`}>
-            Elevating luxury brands through strategic social media excellence and premium digital experiences.
+            Building clarity-driven digital experiences through refined website design, bespoke branding, and curated social storytelling.
           </p>
         </header>
       </div>
