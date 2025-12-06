@@ -327,7 +327,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-white text-sm leading-relaxed">
-                    <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your inquiry. Read our <a href="/privacy-policy" className="text-white hover:text-white underline">Privacy Policy</a> for details.
+                    <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your enquiry. Read our <a href="/privacy-policy" className="text-white hover:text-white underline">Privacy Policy</a> for details.
                   </p>
                 </div>
               </div>

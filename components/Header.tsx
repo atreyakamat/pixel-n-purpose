@@ -207,7 +207,7 @@ export default function Header({ isHomePage = false }: HeaderProps) {
               </li>
               <li>
                 <a
-                  href="/#services"
+                  href="/#brand-showcase"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block w-full text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white hover:text-gray-300 focus:text-gray-300 focus:outline-none rounded-lg transition-all duration-300 py-3 sm:py-6 transform hover:scale-105"
                 >
