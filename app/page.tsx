@@ -28,12 +28,12 @@ export default function Home() {
       <Header isHomePage={true} />
       <main>
         <Hero />
-        <Suspense fallback={<ComponentLoader />}>
+        {/* <Suspense fallback={<ComponentLoader />}>
           <Gallery isHomePage={true} />
         </Suspense>
         <Suspense fallback={<ComponentLoader />}>
           <Services isHomePage={true} />
-        </Suspense>
+        </Suspense> */}
         <Suspense fallback={<ComponentLoader />}>
           <BrandShowcase isHomePage={true} />
         </Suspense>
