@@ -35,8 +35,8 @@ export default function Footer({ isHomePage = false }: FooterProps) {
                 >
                   Home
                 </button>
-                <button
-                  onClick={() => scrollToSection('services')}
+                <a
+                  href="/#brand-showcase"
                   className={`text-base font-normal transition-colors duration-200 ${
                     isHomePage 
                       ? 'text-black hover:text-gray-700' 
@@ -44,7 +44,7 @@ export default function Footer({ isHomePage = false }: FooterProps) {
                   }`}
                 >
                   Services
-                </button>
+                </a>
                 <a
                   href="/about"
                   className={`text-base font-normal transition-colors duration-200 ${

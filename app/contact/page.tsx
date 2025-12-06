@@ -43,6 +43,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
     try {
       // EmailJS configuration
@@ -50,23 +51,25 @@ export default function Contact() {
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
       
-      console.log('EmailJS Configuration:', { serviceId, templateId, publicKey }); // Debug log
+      console.log('EmailJS Configuration Check:');
+      console.log('- Service ID:', serviceId ? 'Present' : 'Missing');
+      console.log('- Template ID:', templateId ? 'Present' : 'Missing');
+      console.log('- Public Key:', publicKey ? 'Present' : 'Missing');
       
       // Check if EmailJS is configured
       if (!serviceId || !templateId || !publicKey) {
         console.error('EmailJS not configured. Missing environment variables.');
+        alert('Email service is not configured. Please contact the administrator.');
         setSubmitStatus('error');
+        setIsSubmitting(false);
         return;
       }
       
-      // Initialize EmailJS
+      // Initialize EmailJS with public key
       emailjs.init(publicKey);
       
-      // Use sendForm method instead of send for better compatibility
-      const form = document.createElement('form');
-      form.style.display = 'none';
-      
-      const fields = {
+      // Prepare template parameters
+      const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         brand: formData.brand,
@@ -74,26 +77,28 @@ export default function Contact() {
         to_email: 'hello@pixelnpurpose.com'
       };
       
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
+      console.log('Sending email with parameters:', {
+        service: serviceId,
+        template: templateId,
+        params: { ...templateParams, message: templateParams.message.substring(0, 50) + '...' }
       });
       
-      document.body.appendChild(form);
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
       
-      console.log('Sending email with form data:', fields); // Debug log
-      
-      const result = await emailjs.sendForm(serviceId, templateId, form, publicKey);
-      
-      document.body.removeChild(form);
-      
-      console.log('Email sent successfully:', result); // Debug log
+      console.log('Email sent successfully!', result);
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', brand: '', message: '' });
+      
+      // Show success message
+      alert('Message sent successfully! We will get back to you soon.');
+      
     } catch (error) {
       console.error('Email sending failed:', error);
       
@@ -111,6 +116,8 @@ export default function Contact() {
       }
       
       setSubmitStatus('error');
+      alert('Failed to send message. Please try again or email us directly at hello@pixelnpurpose.com');
+      
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setSubmitStatus('idle'), 5000);

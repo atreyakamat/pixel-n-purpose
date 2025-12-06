@@ -45,8 +45,8 @@ export default function BrandShowcase({ isHomePage = false }: BrandShowcaseProps
 
   return (
     
-    <section className={`${isHomePage ? 'bg-white' : 'bg-panel'}`}>
-      <div className="container py-16">
+    <section id="brand-showcase" className={`${isHomePage ? 'bg-white' : 'bg-panel'}`}>
+      <div className="container py-16 md:py-20">
         <header data-reveal className="text-center" suppressHydrationWarning>
           <h2 
             id="services-heading"
