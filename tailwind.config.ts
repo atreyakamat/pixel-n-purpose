@@ -9,17 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: '#F6F5F2',     // Snow White background
-        panel: '#EDEBE7',     // Gardenia panels
-        ink: '#0B0B0B',       // Deep black text
-        line: 'rgba(11,11,11,0.16)', // Dark hairlines
-        champagne: '#C7A977', // Keep accent color
-        focus: 'rgba(11,11,11,0.3)', // Dark focus ring
-        accent: '#C7A977',    // Ensure accent is available
+        // Luxury Brand Palette
+        charcoal: '#1a1a1a',
+        'soft-black': '#0d0d0d',
+        ivory: '#faf9f7',
+        'warm-ivory': '#f5f4f0',
+        stone: '#e8e6e1',
+        taupe: '#d4cfc5',
+        sand: '#c9c2b5',
+        brass: '#b8985a',
+        'muted-brass': '#a68b4d',
+        clay: '#9a7b4f',
+        // Legacy colors
+        primary: '#b8985a',
+        'background-light': '#faf9f7',
+        'background-dark': '#1a1a1a',
+        canvas: '#faf9f7',
+        panel: '#f5f4f0',
+        ink: '#1a1a1a',
+        line: 'rgba(26,26,26,0.12)',
+        champagne: '#b8985a',
+        focus: 'rgba(26,26,26,0.3)',
+        accent: '#b8985a',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'serif'],
-        sans: ['var(--font-sans)', 'Inter', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
+        display: ['var(--font-minipax)', 'serif'],
       },
       spacing: {
         24: '6rem',   // 96px
@@ -38,6 +54,8 @@ const config: Config = {
       },
       letterSpacing: {
         caps: '0.08em',
+        tight: '-0.02em',
+        wide: '0.2em',
       },
       backgroundImage: {
         grain: "url('/textures/grain.png')",

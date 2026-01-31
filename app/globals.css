@@ -2,339 +2,673 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Header transition optimizations */
-header {
-  border: none !important;
-  box-shadow: none !important;
-  border-bottom: none !important;
-  will-change: background-color, backdrop-filter, box-shadow;
-}
+/* ═══════════════════════════════════════════════════════════════════════════════
+   LUXURY BRAND STUDIO — CINEMATIC ANIMATION SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════════
+   
+   Philosophy: Motion should feel like natural presence, not effects.
+   If motion is noticeable, it's already too much.
+   
+   Timing: Luxury-slow, not "responsive fast"
+   Easing: Gentle, organic — never bounce, elastic, or spring
+   
+═══════════════════════════════════════════════════════════════════════════════ */
 
-header * {
-  border: none !important;
-  box-shadow: none !important;
-}
+/* ───────────────────────────────────────────────────────────────────────────────
+   FOUNDATION
+─────────────────────────────────────────────────────────────────────────────── */
 
-/* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
-}
-
-/* Performance optimizations */
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Preload critical fonts */
-@font-face {
-  font-family: 'Minipax';
-  src: url('/fonts/Minipax-Medium-BF64ab72727a6bb.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'calt' 1;
-}
-
-@font-face {
-  font-family: 'Minipax';
-  src: url('/fonts/Minipax-Medium-BF64ab72727a6bb.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'calt' 1;
-}
-
-/* CSS Variables for theme colors */
-:root {
-  --canvas: #0B0B0B;
-  --panel: #1A1A1A;
-  --ink: #F6F5F2;
-  --line: rgba(246, 245, 242, 0.16);
-  --champagne: #C7A977;
-  --focus: rgba(246, 245, 242, 0.3);
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
-}
-
-@theme {
-  --color-canvas: var(--canvas);
-  --color-panel: var(--panel);
-  --color-ink: var(--ink);
-  --color-line: var(--line);
-  --color-champagne: var(--champagne);
-  --color-focus: var(--focus);
-
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
-
-  --spacing-24: 6rem;
-  --spacing-32: 8rem;
-  --spacing-48: 12rem;
-  --spacing-64: 16rem;
-  --spacing-96: 24rem;
-  --spacing-128: 32rem;
-
-  --font-size-display-1: 64px;
-  --line-height-display-1: 72px;
-  --font-size-display-2: 40px;
-  --line-height-display-2: 48px;
-  --font-size-h3: 24px;
-  --line-height-h3: 32px;
-  --font-size-body: 16px;
-  --line-height-body: 24px;
-  --font-size-caption: 12px;
-  --line-height-caption: 16px;
-
-  --letter-spacing-caps: 0.08em;
-  --max-width-container: 1320px;
-}
-
-/* Base styles */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Premium Gallery Assembly & Parallax */
-.gallery-item {
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-}
-
-/* Assembly animation when tiles land into position */
-.gallery-item.assembled {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-}
-
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .gallery-item {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .gallery-item.assembled {
-    opacity: 1;
-    transform: none;
-  }
+  font-size: 16px;
 }
 
 body {
-  background-color: var(--canvas);
-  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
-/* Utility classes */
-.hairline {
-  border-color: var(--line);
+/* Serif font for editorial headlines */
+.font-serif {
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
-.caps {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+/* Selection — subtle brass tint */
+::selection {
+  background-color: rgba(184, 152, 90, 0.15);
+  color: inherit;
 }
 
-.tnum {
-  font-variant-numeric: tabular-nums;
+/* ───────────────────────────────────────────────────────────────────────────────
+   LUXURY EASING CURVES
+   All motion uses these organic, slow curves
+─────────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Primary luxury easing — slow, organic, confident */
+  --ease-luxury: cubic-bezier(0.25, 0.1, 0.25, 1);
+  
+  /* For reveals — slightly more presence at start */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* For fades — extremely gentle */
+  --ease-fade: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Timing — all intentionally slow */
+  --duration-fast: 0.4s;      /* Micro-interactions */
+  --duration-normal: 0.8s;    /* Standard reveals */
+  --duration-slow: 1.2s;      /* Hero elements */
+  --duration-slower: 1.6s;    /* Background elements */
+  --duration-slowest: 2.4s;   /* Cinematic reveals */
 }
 
-.grain {
-  background-image: url('/textures/grain.png');
-  background-size: 200px 200px;
-  background-repeat: repeat;
-  opacity: 0.04;
+/* ═══════════════════════════════════════════════════════════════════════════════
+   HERO SECTION — CINEMATIC PAGE LOAD
+   Background → Overlay → Headline (line by line) → CTA
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Hero background — slow fade in */
+@keyframes hero-bg-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.4;
+  }
 }
 
-/* Link underline animation */
+.hero-bg {
+  animation: hero-bg-reveal var(--duration-slower) var(--ease-fade) forwards;
+}
+
+/* Hero overlay — settles gently */
+@keyframes hero-overlay-settle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-overlay {
+  animation: hero-overlay-settle var(--duration-slow) var(--ease-fade) 0.3s forwards;
+  opacity: 0;
+}
+
+/* Hero content container */
+@keyframes hero-content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content {
+  animation: hero-content-reveal var(--duration-slow) var(--ease-reveal) 0.6s forwards;
+  opacity: 0;
+}
+
+/* Hero tagline — appears first */
+.hero-tagline {
+  animation: hero-content-reveal var(--duration-normal) var(--ease-reveal) 0.8s forwards;
+  opacity: 0;
+}
+
+/* Hero headline — line by line reveal */
+.hero-headline {
+  animation: hero-content-reveal var(--duration-slow) var(--ease-reveal) 1s forwards;
+  opacity: 0;
+}
+
+.hero-headline-line-1 {
+  animation: hero-content-reveal var(--duration-slow) var(--ease-reveal) 1s forwards;
+  opacity: 0;
+}
+
+.hero-headline-line-2 {
+  animation: hero-content-reveal var(--duration-slow) var(--ease-reveal) 1.15s forwards;
+  opacity: 0;
+}
+
+/* Hero description */
+.hero-description {
+  animation: hero-content-reveal var(--duration-normal) var(--ease-reveal) 1.4s forwards;
+  opacity: 0;
+}
+
+/* Hero CTA — appears last with subtle accent */
+@keyframes hero-cta-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-cta {
+  animation: hero-cta-reveal var(--duration-normal) var(--ease-reveal) 1.8s forwards;
+  opacity: 0;
+}
+
+/* Scroll indicator — extremely subtle pulse */
+@keyframes scroll-indicator {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(0) translateX(-50%);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(8px) translateX(-50%);
+  }
+}
+
+.scroll-indicator {
+  animation: scroll-indicator 3s var(--ease-fade) infinite;
+  animation-delay: 2.5s;
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SCROLL REVEAL SYSTEM — Progressive Disclosure
+   Elements reveal in layers: Background → Headline → Subheadline → Body → Accent
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Base reveal state — invisible, slightly below */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: 
+    opacity var(--duration-normal) var(--ease-reveal),
+    transform var(--duration-normal) var(--ease-reveal);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveals within containers */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: 
+    opacity var(--duration-normal) var(--ease-reveal),
+    transform var(--duration-normal) var(--ease-reveal);
+}
+
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 120ms; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 240ms; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 360ms; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 480ms; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 600ms; }
+
+.reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Service section progressive reveal */
+.service-reveal {
+  opacity: 0;
+}
+
+.service-reveal.revealed {
+  opacity: 1;
+}
+
+.service-reveal .service-bg {
+  opacity: 0;
+  transition: opacity var(--duration-slower) var(--ease-fade);
+}
+
+.service-reveal.revealed .service-bg {
+  opacity: 0.3;
+  transition-delay: 0ms;
+}
+
+.service-reveal .service-label {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 
+    opacity var(--duration-normal) var(--ease-reveal),
+    transform var(--duration-normal) var(--ease-reveal);
+}
+
+.service-reveal.revealed .service-label {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 200ms;
+}
+
+.service-reveal .service-headline {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-reveal),
+    transform var(--duration-slow) var(--ease-reveal);
+}
+
+.service-reveal.revealed .service-headline {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 350ms;
+}
+
+.service-reveal .service-subheadline {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 
+    opacity var(--duration-normal) var(--ease-reveal),
+    transform var(--duration-normal) var(--ease-reveal);
+}
+
+.service-reveal.revealed .service-subheadline {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 550ms;
+}
+
+.service-reveal .service-body {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 
+    opacity var(--duration-normal) var(--ease-reveal),
+    transform var(--duration-normal) var(--ease-reveal);
+}
+
+.service-reveal.revealed .service-body {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 700ms;
+}
+
+.service-reveal .service-tags {
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-fade);
+}
+
+.service-reveal.revealed .service-tags {
+  opacity: 1;
+  transition-delay: 900ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   IMAGE MOTION — Quietly Breathing
+   Extremely subtle scale and drift
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Subtle breathing effect on images */
+@keyframes image-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+.image-breathe {
+  animation: image-breathe 12s var(--ease-fade) infinite;
+}
+
+/* Parallax container */
+.parallax-slow {
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+/* Image reveal on scroll */
+.image-reveal {
+  opacity: 0;
+  transform: scale(1.02);
+  transition: 
+    opacity var(--duration-slower) var(--ease-fade),
+    transform var(--duration-slowest) var(--ease-luxury);
+}
+
+.image-reveal.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   TYPOGRAPHY MOTION — Placed, Not Animated
+   Subtle vertical rise with opacity
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Text reveal — minimal movement */
+.text-reveal {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: 
+    opacity var(--duration-normal) var(--ease-reveal),
+    transform var(--duration-normal) var(--ease-reveal);
+}
+
+.text-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Line by line headline reveal */
+.headline-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-reveal),
+    transform var(--duration-slow) var(--ease-reveal);
+}
+
+.headline-line.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.headline-line:nth-child(1) { transition-delay: 0ms; }
+.headline-line:nth-child(2) { transition-delay: 150ms; }
+.headline-line:nth-child(3) { transition-delay: 300ms; }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   HOVER INTERACTIONS — Micro-Luxury
+   Reward intention, don't distract
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Base transition for all interactive elements */
+a, button {
+  transition: 
+    color var(--duration-fast) var(--ease-luxury),
+    background-color var(--duration-fast) var(--ease-luxury),
+    border-color var(--duration-fast) var(--ease-luxury),
+    opacity var(--duration-fast) var(--ease-luxury);
+}
+
+/* Button hover — subtle background shift */
+.btn-luxury {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-fast) var(--ease-luxury);
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-luxury);
+}
+
+.btn-luxury:hover::before {
+  opacity: 0.05;
+}
+
+/* Link underline — elegant slide */
 .link-underline {
   position: relative;
+  text-decoration: none;
 }
 
 .link-underline::after {
   content: '';
   position: absolute;
-  left: 0;
   bottom: -2px;
-  height: 1px;
+  left: 0;
   width: 0;
-  background-color: var(--ink);
-  transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: 1px;
+  background: currentColor;
+  transition: width var(--duration-fast) var(--ease-luxury);
 }
 
 .link-underline:hover::after {
   width: 100%;
 }
 
-/* Reveal animation */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+/* Accent color fade — not snap */
+.hover-accent {
+  transition: color var(--duration-fast) var(--ease-luxury);
 }
 
-[data-reveal].reveal {
+.hover-accent:hover {
+  color: #b8985a;
+}
+
+/* Image hover — extremely subtle */
+.image-hover {
+  transition: transform var(--duration-slower) var(--ease-luxury);
+}
+
+.image-hover:hover {
+  transform: scale(1.02);
+}
+
+/* Card hover — gentle lift */
+.card-hover {
+  transition: 
+    transform var(--duration-normal) var(--ease-luxury),
+    box-shadow var(--duration-normal) var(--ease-luxury);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   TESTIMONIALS — Calm Authority
+   Gentle stagger, no carousels
+═══════════════════════════════════════════════════════════════════════════════ */
+
+.testimonial {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-reveal),
+    transform var(--duration-slow) var(--ease-reveal);
+}
+
+.testimonial.revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Respect reduced motion */
+.testimonial:nth-child(1) { transition-delay: 0ms; }
+.testimonial:nth-child(2) { transition-delay: 250ms; }
+.testimonial:nth-child(3) { transition-delay: 500ms; }
+
+/* Quote mark fade */
+.quote-mark {
+  opacity: 0;
+  transition: opacity var(--duration-slower) var(--ease-fade);
+}
+
+.testimonial.revealed .quote-mark {
+  opacity: 0.2;
+  transition-delay: 200ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SECTION TRANSITIONS — Let the Eye Rest
+   Whitespace as transition, gentle color shifts
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Section fade between backgrounds */
+.section-transition {
+  transition: background-color var(--duration-slower) var(--ease-fade);
+}
+
+/* Divider line reveal */
+.divider-reveal {
+  width: 0;
+  transition: width var(--duration-slow) var(--ease-luxury);
+}
+
+.divider-reveal.revealed {
+  width: 6rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   HEADER — Subtle State Changes
+═══════════════════════════════════════════════════════════════════════════════ */
+
+.header-luxury {
+  transition: 
+    background-color var(--duration-normal) var(--ease-fade),
+    backdrop-filter var(--duration-normal) var(--ease-fade),
+    border-color var(--duration-normal) var(--ease-fade);
+}
+
+/* Nav link hover */
+.nav-link {
+  position: relative;
+  transition: color var(--duration-fast) var(--ease-luxury);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: #b8985a;
+  transform: translateX(-50%);
+  transition: width var(--duration-fast) var(--ease-luxury);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SCROLLBAR — Minimal Presence
+═══════════════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf9f7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4cfc5;
+  border-radius: 3px;
+  transition: background var(--duration-fast) var(--ease-luxury);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8985a;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d4cfc5 #faf9f7;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   FOCUS STATES — Accessible but Invisible
+═══════════════════════════════════════════════════════════════════════════════ */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 1px solid rgba(184, 152, 90, 0.4);
+  outline-offset: 3px;
+  transition: outline-color var(--duration-fast) var(--ease-luxury);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   PERFORMANCE — Smooth, Stable, Lightweight
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* GPU acceleration hints */
+.reveal,
+.service-reveal,
+.testimonial,
+.image-reveal,
+.hero-content,
+.hero-headline,
+.hero-cta {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for those who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-
-  .link-underline::after {
-    transition: none;
+  
+  .reveal,
+  .service-reveal,
+  .testimonial,
+  .image-reveal,
+  .text-reveal,
+  .headline-line {
+    opacity: 1 !important;
+    transform: none !important;
   }
-}
-
-/* Container utility */
-.container {
-  max-width: 1320px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --animate-shine: shine var(--duration) infinite linear;
-  @keyframes shine {
-  0% {
-    background-position: 0% 0%;
-    }
-  50% {
-    background-position: 100% 100%;
-    }
-  to {
-    background-position: 0% 0%;
-    }
+  
+  .hero-content,
+  .hero-tagline,
+  .hero-headline,
+  .hero-headline-line-1,
+  .hero-headline-line-2,
+  .hero-description,
+  .hero-cta,
+  .hero-bg,
+  .hero-overlay {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
-.dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
+/* Low-power mode optimization */
+@media (prefers-reduced-motion: no-preference) {
+  .image-breathe {
+    animation-play-state: running;
   }
 }
 
-/* Custom animations */
-@keyframes shine {
-  0% {
-    background-position: 200% 50%;
-  }
-  100% {
-    background-position: -200% 50%;
-  }
-}
+/* ═══════════════════════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+═══════════════════════════════════════════════════════════════════════════════ */
 
-.motion-safe\\:animate-shine {
-  animation: shine var(--duration, 14s) ease-in-out infinite;
-}
+/* Delay utilities for staggered animations */
+.delay-100 { transition-delay: 100ms !important; }
+.delay-200 { transition-delay: 200ms !important; }
+.delay-300 { transition-delay: 300ms !important; }
+.delay-400 { transition-delay: 400ms !important; }
+.delay-500 { transition-delay: 500ms !important; }
+.delay-600 { transition-delay: 600ms !important; }
+.delay-800 { transition-delay: 800ms !important; }
+.delay-1000 { transition-delay: 1000ms !important; }
+
+/* Animation delay utilities */
+.anim-delay-100 { animation-delay: 100ms !important; }
+.anim-delay-200 { animation-delay: 200ms !important; }
+.anim-delay-300 { animation-delay: 300ms !important; }
+.anim-delay-500 { animation-delay: 500ms !important; }
+.anim-delay-800 { animation-delay: 800ms !important; }
+.anim-delay-1000 { animation-delay: 1000ms !important; }
