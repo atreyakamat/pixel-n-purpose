@@ -7,8 +7,13 @@
    Design language: Matte black, frosted glass, editorial type
    ═══════════════════════════════════════════════ */
 
-/* ── Google Fonts: Playfair Display (editorial serif) ── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap');
+/* ── Font Note ──
+   Playfair Display is loaded via next/font/google in layout.tsx (self-hosted).
+   CSS variable: --font-display  |  Tailwind class: font-display
+   Inter is also loaded via next/font/google → --font-sans
+   Minipax is loaded via next/font/local below → --font-accent
+── */
+
 
 /* ── Local Font: Minipax ── */
 @font-face {
@@ -23,81 +28,86 @@
 /* ── Design Tokens ── */
 :root {
   /* Canvas layers */
-  --canvas:      #080808;   /* deepest background */
-  --surface:     #111111;   /* slightly elevated */
-  --charcoal:    #1A1A1A;   /* depth/rhythm layer */
-  --panel:       #222222;   /* card surface */
+  --canvas: #080808;
+  /* deepest background */
+  --surface: #111111;
+  /* slightly elevated */
+  --charcoal: #1A1A1A;
+  /* depth/rhythm layer */
+  --panel: #222222;
+  /* card surface */
 
   /* Ink (typography) */
-  --ink:         #F5F5F3;   /* primary white */
-  --ink-dim:     rgba(245, 245, 243, 0.50);
-  --ink-ghost:   rgba(245, 245, 243, 0.25);
-  --ink-rule:    rgba(245, 245, 243, 0.10);
+  --ink: #F5F5F3;
+  /* primary white */
+  --ink-dim: rgba(245, 245, 243, 0.50);
+  --ink-ghost: rgba(245, 245, 243, 0.25);
+  --ink-rule: rgba(245, 245, 243, 0.10);
 
   /* Glass system */
-  --glass-bg:        rgba(255, 255, 255, 0.04);
-  --glass-bg-med:    rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-bg-med: rgba(255, 255, 255, 0.06);
   --glass-bg-strong: rgba(255, 255, 255, 0.09);
-  --glass-border:    rgba(255, 255, 255, 0.08);
-  --glass-border-med:rgba(255, 255, 255, 0.12);
-  --glass-blur:      24px;
-  --glass-blur-sm:   12px;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-med: rgba(255, 255, 255, 0.12);
+  --glass-blur: 24px;
+  --glass-blur-sm: 12px;
 
   /* Spacing unit */
   --space-unit: 8px;
 
   /* Typography scale */
-  --text-hero:   clamp(3.5rem, 8vw, 8rem);
-  --text-h1:     clamp(2.5rem, 5vw, 5rem);
-  --text-h2:     clamp(1.75rem, 3vw, 3rem);
-  --text-h3:     clamp(1.25rem, 2vw, 1.75rem);
-  --text-body:   1rem;
-  --text-sm:     0.875rem;
-  --text-xs:     0.75rem;
-  --text-label:  0.6875rem;
+  --text-hero: clamp(3.5rem, 8vw, 8rem);
+  --text-h1: clamp(2.5rem, 5vw, 5rem);
+  --text-h2: clamp(1.75rem, 3vw, 3rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --text-body: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+  --text-label: 0.6875rem;
 
   /* Letter spacing */
-  --tracking-tight:  -0.02em;
+  --tracking-tight: -0.02em;
   --tracking-normal: 0em;
-  --tracking-wide:   0.08em;
-  --tracking-wider:  0.14em;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.14em;
 
   /* Radius */
-  --radius:    12px;
+  --radius: 12px;
   --radius-lg: 20px;
   --radius-xl: 32px;
 
   /* Transitions */
   --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-reveal:    cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-fast:   200ms;
-  --dur-med:    400ms;
-  --dur-slow:   700ms;
+  --ease-reveal: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 200ms;
+  --dur-med: 400ms;
+  --dur-slow: 700ms;
   --dur-slower: 1000ms;
 
   /* Tailwind compat shims */
   --background: var(--canvas);
   --foreground: var(--ink);
-  --border:     var(--glass-border);
-  --input:      var(--glass-border-med);
-  --ring:       rgba(245, 245, 243, 0.3);
+  --border: var(--glass-border);
+  --input: var(--glass-border-med);
+  --ring: rgba(245, 245, 243, 0.3);
   --radius: 0.75rem;
 }
 
 /* ── Theme tokens for Tailwind v4 ── */
 @theme {
-  --color-canvas:   var(--canvas);
-  --color-surface:  var(--surface);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
   --color-charcoal: var(--charcoal);
-  --color-panel:    var(--panel);
-  --color-ink:      var(--ink);
-  --color-ink-dim:  var(--ink-dim);
-  --color-ink-ghost:var(--ink-ghost);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink-ghost: var(--ink-ghost);
   --color-ink-rule: var(--ink-rule);
 
   --font-display: 'Playfair Display', Georgia, serif;
-  --font-accent:  'Minipax', sans-serif;
-  --font-sans:    var(--font-sans);
+  --font-accent: 'Minipax', sans-serif;
+  --font-sans: var(--font-sans);
 }
 
 @theme inline {
@@ -108,8 +118,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border);
-  --color-input:  var(--input);
-  --color-ring:   var(--ring);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
 /* ── Base Reset ── */
@@ -264,14 +274,37 @@ body {
 }
 
 /* Stagger delays for sequential chapter reveals */
-[data-delay="100"] { transition-delay: 100ms; }
-[data-delay="200"] { transition-delay: 200ms; }
-[data-delay="300"] { transition-delay: 300ms; }
-[data-delay="400"] { transition-delay: 400ms; }
-[data-delay="500"] { transition-delay: 500ms; }
-[data-delay="600"] { transition-delay: 600ms; }
-[data-delay="700"] { transition-delay: 700ms; }
-[data-delay="800"] { transition-delay: 800ms; }
+[data-delay="100"] {
+  transition-delay: 100ms;
+}
+
+[data-delay="200"] {
+  transition-delay: 200ms;
+}
+
+[data-delay="300"] {
+  transition-delay: 300ms;
+}
+
+[data-delay="400"] {
+  transition-delay: 400ms;
+}
+
+[data-delay="500"] {
+  transition-delay: 500ms;
+}
+
+[data-delay="600"] {
+  transition-delay: 600ms;
+}
+
+[data-delay="700"] {
+  transition-delay: 700ms;
+}
+
+[data-delay="800"] {
+  transition-delay: 800ms;
+}
 
 /* ═══════════════════════════════════════
    INTERACTIVE ELEMENTS
@@ -366,9 +399,17 @@ body {
    SECTION UTILITY CLASSES
    ═══════════════════════════════════════ */
 
-.section-canvas   { background-color: var(--canvas); }
-.section-surface  { background-color: var(--surface); }
-.section-charcoal { background-color: var(--charcoal); }
+.section-canvas {
+  background-color: var(--canvas);
+}
+
+.section-surface {
+  background-color: var(--surface);
+}
+
+.section-charcoal {
+  background-color: var(--charcoal);
+}
 
 /* Chapter labeling (01, 02 ...) */
 .chapter-number {
@@ -406,9 +447,18 @@ header {
    SCROLLBAR STYLING
    ═══════════════════════════════════════ */
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--canvas); }
-::-webkit-scrollbar-thumb { background: var(--charcoal); border-radius: 2px; }
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--charcoal);
+  border-radius: 2px;
+}
 
 /* ═══════════════════════════════════════
    REDUCED MOTION SUPPORT
@@ -432,6 +482,7 @@ header {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

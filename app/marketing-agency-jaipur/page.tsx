@@ -209,7 +209,7 @@ export default function MarketingAgencyJaipur() {
         </section>
       </main>
       
-      <Footer isHomePage={false} />
+      <Footer />
     </div>
   );
 }

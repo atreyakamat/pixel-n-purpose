@@ -209,7 +209,7 @@ export default function MarketingAgencyGoa() {
         </section>
       </main>
       
-      <Footer isHomePage={false} />
+      <Footer />
     </div>
   );
 }
