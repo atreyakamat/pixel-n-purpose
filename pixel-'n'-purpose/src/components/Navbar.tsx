@@ -1,20 +1,14 @@
-﻿'use client';
-
 import { motion } from 'motion/react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Page } from '../types';
 
-const navItems = [
-  { label: 'Work', href: '/' },
-  { label: 'Services', href: '/services' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+interface NavbarProps {
+  currentPage: Page;
+  setCurrentPage: (page: Page) => void;
+}
 
-export default function Header() {
-  const pathname = usePathname();
+export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -22,57 +16,56 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isMobileMenuOpen]);
+  const navItems: { label: string; id: Page }[] = [
+    { label: 'Work', id: 'home' },
+    { label: 'Services', id: 'services' },
+    { label: 'About', id: 'about' },
+    { label: 'Contact', id: 'contact' },
+  ];
 
   return (
-    <nav
+    <nav 
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4'
-          : 'py-8'
-      } ${pathname === '/contact' ? 'text-white' : 'mix-blend-difference text-white'}`}
+        isScrolled ? 'bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md py-4' : 'py-8'
+      } ${currentPage === 'contact' ? 'text-white' : 'mix-blend-difference text-white'}`}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        <Link
-          href="/"
+        <button 
+          onClick={() => setCurrentPage('home')}
           className="text-xl md:text-2xl font-serif font-bold tracking-wider uppercase cursor-pointer"
         >
-          Pixel &apos;N&apos; Purpose
-        </Link>
+          Pixel 'N' Purpose
+        </button>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-12 font-sans text-xs tracking-widest uppercase font-medium">
           {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
+            <button
+              key={item.id}
+              onClick={() => setCurrentPage(item.id)}
               className={`hover:opacity-60 transition-opacity cursor-pointer relative py-1 ${
-                pathname === item.href ? 'opacity-100' : 'opacity-70'
+                currentPage === item.id ? 'opacity-100' : 'opacity-70'
               }`}
             >
               {item.label}
-              {pathname === item.href && (
-                <motion.div
+              {currentPage === item.id && (
+                <motion.div 
                   layoutId="nav-underline"
                   className="absolute bottom-0 left-0 w-full h-px bg-current"
                 />
               )}
-            </Link>
+            </button>
           ))}
         </div>
 
         {/* Mobile Toggle */}
-        <button
+        <button 
           className="md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -80,20 +73,22 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="absolute top-full left-0 w-full bg-background-light dark:bg-background-dark border-b border-black/5 dark:border-white/5 p-6 flex flex-col space-y-6 md:hidden text-gray-900 dark:text-white"
         >
           {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
+            <button
+              key={item.id}
+              onClick={() => {
+                setCurrentPage(item.id);
+                setIsMobileMenuOpen(false);
+              }}
               className="text-sm tracking-widest uppercase font-medium text-left"
             >
               {item.label}
-            </Link>
+            </button>
           ))}
         </motion.div>
       )}

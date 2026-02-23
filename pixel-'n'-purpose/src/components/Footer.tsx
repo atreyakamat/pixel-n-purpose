@@ -1,17 +1,21 @@
-﻿import Link from 'next/link';
+import { Page } from '../types';
 
-export default function Footer() {
+interface FooterProps {
+  setCurrentPage: (page: Page) => void;
+}
+
+export default function Footer({ setCurrentPage }: FooterProps) {
   return (
     <footer className="bg-white dark:bg-charcoal border-t border-gray-200 dark:border-gray-800 py-16">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <h4 className="text-lg font-serif font-bold">Pixel &apos;N&apos; Purpose</h4>
+            <h4 className="text-lg font-serif font-bold">Pixel 'N' Purpose</h4>
             <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs font-light">
               A digital studio crafting clarity for forward-thinking brands.
             </p>
           </div>
-
+          
           <div>
             <h5 className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-400 dark:text-gray-600 mb-6">Social</h5>
             <ul className="space-y-4 text-sm font-light">
@@ -25,10 +29,10 @@ export default function Footer() {
           <div>
             <h5 className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-400 dark:text-gray-600 mb-6">Explore</h5>
             <ul className="space-y-4 text-sm font-light">
-              <li><Link href="/" className="hover:text-gray-900 dark:hover:text-white transition-colors">Work</Link></li>
-              <li><Link href="/services" className="hover:text-gray-900 dark:hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="/about" className="hover:text-gray-900 dark:hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/contact" className="hover:text-gray-900 dark:hover:text-white transition-colors">Contact</Link></li>
+              <li><button onClick={() => setCurrentPage('home')} className="hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer">Work</button></li>
+              <li><button onClick={() => setCurrentPage('services')} className="hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer">Services</button></li>
+              <li><button onClick={() => setCurrentPage('about')} className="hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer">About</button></li>
+              <li><button onClick={() => setCurrentPage('contact')} className="hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer">Contact</button></li>
             </ul>
           </div>
 
@@ -43,10 +47,10 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-400 dark:text-gray-600 uppercase tracking-[0.2em] pt-8 border-t border-gray-100 dark:border-gray-900">
-          <p>&copy; 2025 Pixel &apos;N&apos; Purpose. All rights reserved.</p>
+          <p>© 2024 Pixel 'N' Purpose. All rights reserved.</p>
           <div className="mt-4 md:mt-0 space-x-6">
-            <Link href="/privacy-policy" className="hover:text-gray-900 dark:hover:text-white">Privacy</Link>
-            <Link href="/terms-of-service" className="hover:text-gray-900 dark:hover:text-white">Terms</Link>
+            <a href="#" className="hover:text-gray-900 dark:hover:text-white">Privacy</a>
+            <a href="#" className="hover:text-gray-900 dark:hover:text-white">Terms</a>
             <span className="font-mono">EST. 2012 — LDN / NYC</span>
           </div>
         </div>

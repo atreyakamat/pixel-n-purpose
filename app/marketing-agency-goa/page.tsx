@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import StructuredData from '@/components/StructuredData';
 import { localBusinessGoaSchema } from '@/lib/structured-data';
 
@@ -21,7 +19,6 @@ export default function MarketingAgencyGoa() {
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-white">
       <StructuredData data={localBusinessGoaSchema} />
-      <Header isHomePage={false} />
       
       <main className="flex-grow">
         {/* Hero Section */}
@@ -209,7 +206,6 @@ export default function MarketingAgencyGoa() {
         </section>
       </main>
       
-      <Footer isHomePage={false} />
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import WebVitals from "@/components/WebVitals";
 import StructuredData from "@/components/StructuredData";
@@ -20,6 +22,14 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-serif",
+  display: "swap",
+});
+
+// Monospace for labels
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -81,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${minipax.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${minipax.variable} ${jetbrainsMono.variable}`}>
       <head>
         {/* Critical performance optimizations */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -110,14 +120,17 @@ export default function RootLayout({
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
-      <body className="bg-ivory text-charcoal antialiased font-sans">
+      <body className="bg-background-light text-gray-900 dark:bg-background-dark dark:text-gray-100 antialiased font-sans">
+        <div className="noise-bg" />
         <StructuredData data={[organizationSchema, websiteSchema]} />
         <noscript>
           <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#faf9f7', color: '#1a1a1a'}}>
             This website requires JavaScript to function properly. Please enable JavaScript in your browser.
           </div>
         </noscript>
+        <Header />
         {children}
+        <Footer />
         <CookieConsent />
         <WebVitals />
       </body>

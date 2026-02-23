@@ -2,6 +2,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ─── Theme tokens (from pixel-'n'-purpose design system) ─── */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-background-light: #F5F5F5;
+  --color-background-dark: #0A0A0A;
+  --color-charcoal: #141414;
+  --color-matte-black: #0A0A0A;
+  --color-soft-charcoal: #1A1A1A;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════════
    LUXURY BRAND STUDIO — CINEMATIC ANIMATION SYSTEM
    ═══════════════════════════════════════════════════════════════════════════════
@@ -660,6 +673,46 @@ a, button {
 .delay-200 { transition-delay: 200ms !important; }
 .delay-300 { transition-delay: 300ms !important; }
 .delay-400 { transition-delay: 400ms !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   GLASS PANEL DESIGN SYSTEM — from pixel-'n'-purpose
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .glass-panel-light {
+    @apply bg-black/5 backdrop-blur-xl border border-black/10 shadow-lg;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    color: transparent;
+  }
+
+  .text-stroke-light {
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+    color: transparent;
+  }
+}
+
+.grainy-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.noise-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
 .delay-500 { transition-delay: 500ms !important; }
 .delay-600 { transition-delay: 600ms !important; }
 .delay-800 { transition-delay: 800ms !important; }
