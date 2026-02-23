@@ -15,18 +15,18 @@ const inter = Inter({
 
 const minipax = localFont({
   src: "../public/fonts/Minipax-Medium-BF64ab72727a6bb.ttf",
-  variable: "--font-display",
+  variable: "--font-accent",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Pixel & Purpose — Social strategy for brands with presence",
-  description: "Boutique social and ad partner for luxury houses. Quiet ideas. Measurable impact. Professional brand strategy and creative solutions.",
+  title: "Pixel 'N' Purpose — Global Creative Studio",
+  description: "A global creative studio crafting Websites, Portfolios, Packaging, and Photography that build lasting meaning. Design with clarity, structure, and intent.",
   metadataBase: new URL("https://pixelnpurpose.com"),
-  keywords: ["social media strategy", "luxury brands", "digital marketing", "brand identity", "creative agency"],
-  authors: [{ name: "Pixel & Purpose" }],
-  creator: "Pixel & Purpose",
-  publisher: "Pixel & Purpose",
+  keywords: ["website design", "portfolio design", "packaging design", "photography", "creative studio", "brand identity", "global design studio"],
+  authors: [{ name: "Pixel 'N' Purpose" }],
+  creator: "Pixel 'N' Purpose",
+  publisher: "Pixel 'N' Purpose",
   robots: {
     index: true,
     follow: true,
@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pixel ’N’ Purpose | Pixpur Design House",
-    description: "We don’t just brand. We build meaning. Creativity with impact, clarity, and purpose.",
+    title: "Pixel 'N' Purpose — Global Creative Studio",
+    description: "Websites. Portfolios. Packaging. Photography. Design that means something.",
     url: "https://pixelnpurpose.com",
-    siteName: "Pixel ’N’ Purpose | Pixpur Design House",
+    siteName: "Pixel 'N' Purpose",
     locale: "en_US",
     type: "website",
     images: [
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Pixel & Purpose - Social strategy for luxury brands",
+        alt: "Pixel 'N' Purpose — Global Creative Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pixel & Purpose — Social strategy for brands with presence",
-    description: "Boutique social and ad partner for luxury houses. Quiet ideas. Measurable impact.",
+    title: "Pixel 'N' Purpose — Global Creative Studio",
+    description: "Websites. Portfolios. Packaging. Photography. Design that means something.",
     images: ["/og-image.jpg"],
   },
   verification: {
@@ -73,37 +73,31 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${minipax.variable}`}>
       <head>
-        {/* Critical performance optimizations */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="theme-color" content="#F6F5F2" />
-        <meta name="color-scheme" content="light" />
-        
-        {/* Preconnect to external domains */}
+        <meta name="theme-color" content="#080808" />
+        <meta name="color-scheme" content="dark" />
+
+        {/* Preconnect */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Preload critical assets */}
         <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <link rel="preload" href="/PNP-white.png" as="image" />
-        
-        {/* DNS prefetch for performance */}
+
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        
-        {/* Favicon and icons */}
         <link rel="manifest" href="/manifest.json" />
-        
-        {/* Security headers */}
+
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body className="bg-canvas text-ink antialiased font-sans">
         <StructuredData data={[organizationSchema, websiteSchema]} />
         <noscript>
-          <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#F6F5F2', color: '#0B0B0B'}}>
-            This website requires JavaScript to function properly. Please enable JavaScript in your browser.
+          <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#080808', color: '#F5F5F3'}}>
+            This website requires JavaScript to function properly.
           </div>
         </noscript>
         {children}

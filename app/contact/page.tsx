@@ -1,408 +1,277 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import emailjs from '@emailjs/browser'
+import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ScrollReveal from '@/components/ScrollReveal';
 
-export default function Contact() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+type SubmitStatus = 'idle' | 'success' | 'error';
+
+const SERVICE_OPTIONS = [
+  'Website Design',
+  'Portfolio Design',
+  'Packaging Design',
+  'Photography',
+  'Multiple Services',
+  'Other',
+];
+
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    brand: '',
-    message: ''
+    service: '',
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
 
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.width = '100%';
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      }
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
-  }, [isMobileMenuOpen]);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    
+
     try {
-      // EmailJS configuration
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-      
-      console.log('EmailJS Configuration Check:');
-      console.log('- Service ID:', serviceId ? 'Present' : 'Missing');
-      console.log('- Template ID:', templateId ? 'Present' : 'Missing');
-      console.log('- Public Key:', publicKey ? 'Present' : 'Missing');
-      
-      // Check if EmailJS is configured
+
       if (!serviceId || !templateId || !publicKey) {
-        console.error('EmailJS not configured. Missing environment variables.');
-        alert('Email service is not configured. Please contact the administrator.');
+        console.error('EmailJS env vars missing');
         setSubmitStatus('error');
         setIsSubmitting(false);
         return;
       }
-      
-      // Initialize EmailJS with public key
+
       emailjs.init(publicKey);
-      
-      // Prepare template parameters
-      const templateParams = {
+
+      await emailjs.send(serviceId, templateId, {
         from_name: formData.name,
         from_email: formData.email,
-        brand: formData.brand,
+        service_interest: formData.service,
         message: formData.message,
-        to_email: 'hello@pixelnpurpose.com'
-      };
-      
-      console.log('Sending email with parameters:', {
-        service: serviceId,
-        template: templateId,
-        params: { ...templateParams, message: templateParams.message.substring(0, 50) + '...' }
-      });
-      
-      // Send email using EmailJS
-      const result = await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
-      
-      console.log('Email sent successfully!', result);
-      
+        to_email: 'hello@pixelnpurpose.com',
+      }, publicKey);
+
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', brand: '', message: '' });
-      
-      // Show success message
-      alert('Message sent successfully! We will get back to you soon.');
-      
-    } catch (error) {
-      console.error('Email sending failed:', error);
-      
-      // Handle EmailJS specific errors
-      if (error && typeof error === 'object') {
-        const errorObj = error as any;
-        console.error('Error status:', errorObj.status || 'unknown');
-        console.error('Error text:', errorObj.text || 'no message');
-        console.error('Full error object:', JSON.stringify(error, null, 2));
-      }
-      
-      if (error instanceof Error) {
-        console.error('Error message:', error.message);
-        console.error('Error stack:', error.stack);
-      }
-      
+      setFormData({ name: '', email: '', service: '', message: '' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
       setSubmitStatus('error');
-      alert('Failed to send message. Please try again or email us directly at hello@pixelnpurpose.com');
-      
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => setSubmitStatus('idle'), 6000);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-black backdrop-blur-lg pt-1 pb-0 border-none"
-        style={{
-          border: 'none',
-          boxShadow: '0 2px 20px rgba(0, 0, 0, 0.1)',
-          borderBottom: 'none'
-        }}>
-        <div className="w-full flex items-center justify-between px-4 sm:px-6"
-          style={{ border: 'none', boxShadow: 'none' }}>
-          <div className="flex items-start">
-            <a href="/" className="w-[150px] h-[150px] -mt-2 focus:outline-none rounded-lg" aria-label="Pixel & Purpose - Home">
-              <img 
-                src="/PNP-white.png" 
-                alt="Pixel & Purpose Logo" 
-                className="w-full h-full object-contain transition-all duration-500"
-                width="150"
-                height="150"
-              />
-            </a>
-          </div>
-          <nav className="flex items-center gap-6">
-            {/* Hamburger Menu Button */}
-            <button
-              className="p-2 focus:outline-none rounded-lg"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="navigation-menu"
-            >
-              <div className="w-10 h-10 flex flex-col justify-center items-center relative">
-                <span className={`block h-1 w-10 transition-all duration-300 transform ${
-                  isMobileMenuOpen 
-                    ? 'rotate-45 translate-y-0 bg-white' 
-                    : 'translate-y-[-6px] bg-white'
-                }`} />
-                <span className={`block h-1 w-10 transition-all duration-300 transform ${
-                  isMobileMenuOpen 
-                    ? 'opacity-0 scale-0' 
-                    : 'opacity-100 scale-100 bg-white'
-                }`} />
-                <span className={`block h-1 w-10 transition-all duration-300 transform ${
-                  isMobileMenuOpen 
-                    ? '-rotate-45 translate-y-0 bg-white' 
-                    : 'translate-y-[6px] bg-white'
-                }`} />
-              </div>
-            </button>
-          </nav>
-        </div>
-      </header>
+    <div className="relative flex flex-col min-h-screen bg-canvas">
+      <Header />
 
-      {/* Full Screen Menu Overlay */}
-      <div 
-        className={`fixed inset-0 z-[9999] transition-all duration-500 ${
-          isMobileMenuOpen 
-            ? 'opacity-100 visible' 
-            : 'opacity-0 invisible pointer-events-none'
-        }`}
-        id="navigation-menu"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="menu-title"
-      >
-        {/* Black background overlay */}
-        <div className="absolute inset-0 bg-black/95 backdrop-blur-sm" />
-        
-        {/* Close button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-4 right-4 sm:top-8 sm:right-8 z-[10000] p-2 text-white hover:text-white focus:outline-none rounded-lg"
-          aria-label="Close navigation menu"
-        >
-          <div className="w-10 h-10 flex items-center justify-center">
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </div>
-        </button>
-        
-        {/* Menu content */}
-        <div className="relative h-full flex items-center justify-center p-4 overflow-y-auto">
-          <nav aria-label="Main navigation" role="navigation" className="w-full max-w-md">
-            <h2 id="menu-title" className="sr-only">Main Navigation</h2>
-            <ul className="text-center space-y-4 sm:space-y-8" role="list">
-              <li>
-                <a
-                  href="/about"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#services"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-3xl sm:text-4xl md:text-6xl font-display font-bold text-white hover:text-white focus:text-white focus:outline-none rounded-lg transition-colors duration-300 py-2 sm:py-4"
-                >
-                  Services
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-
-      <main className="container pt-40 pb-24">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Let's Create Together
-            </h1>
-            <p className="text-white text-lg leading-relaxed">
-              Ready to elevate your brand's story? Get in touch and let's discuss your vision.
-            </p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-white mb-3 text-sm uppercase tracking-wider">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200"
-                  placeholder="Your name"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-white mb-3 text-sm uppercase tracking-wider">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200"
-                  placeholder="your@email.com"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="brand" className="block text-white mb-3 text-sm uppercase tracking-wider">
-                Brand
-              </label>
-              <input
-                type="text"
-                id="brand"
-                name="brand"
-                value={formData.brand}
-                onChange={handleChange}
-                className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200"
-                placeholder="Brand or company"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-white mb-3 text-sm uppercase tracking-wider">
-                Message *
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={4}
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full bg-transparent border-b border-white pb-3 text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors duration-200 resize-none"
-                placeholder="Tell us about your project..."
-              />
-            </div>
-
-            {/* Privacy Note */}
-            <div className="bg-black rounded-lg p-4 border border-white">
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
+      <main className="flex-1 flex flex-col">
+        {/* ── Hero heading ── */}
+        <section className="section-canvas pt-36 pb-10 md:pt-48 md:pb-12">
+          <div className="container">
+            <ScrollReveal threshold={0.05}>
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-8 h-px bg-ink-ghost" />
+                  <span className="caps text-ink-ghost">Get in Touch</span>
                 </div>
-                <div>
-                  <p className="text-white text-sm leading-relaxed">
-                    <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your enquiry. Read our <a href="/privacy-policy" className="text-white hover:text-white underline">Privacy Policy</a> for details.
-                  </p>
-                </div>
+                <h1
+                  className="font-display font-bold text-ink leading-[1.03]"
+                  style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', letterSpacing: '-0.025em' }}
+                >
+                  Let's build
+                  <br />
+                  <em className="not-italic text-ink-dim">something real.</em>
+                </h1>
               </div>
-            </div>
+            </ScrollReveal>
+          </div>
+        </section>
 
-            <div className="pt-6">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full md:w-auto flex items-center justify-center min-w-[200px] h-12 px-6 bg-white text-black rounded-lg font-bold text-sm tracking-wider hover:bg-gray-200 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
-              
-              {submitStatus === 'success' && (
-                <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 mt-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex-shrink-0">
-                      <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+        {/* ── Form + reassurance ── */}
+        <section className="section-canvas pb-24 md:pb-36 flex-1">
+          <div className="container">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
+
+              {/* ── Left: reassurance text ── */}
+              <ScrollReveal delay={100} threshold={0.05}>
+                <div className="flex flex-col gap-8 lg:sticky lg:top-28">
+                  <div className="glass-subtle rounded-2xl p-8">
+                    <p className="text-ink-dim text-base leading-relaxed">
+                      We take on a limited number of projects each quarter to ensure every client receives our full attention. When you reach out, you're speaking directly with the studio.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-1 h-1 rounded-full bg-ink-ghost mt-2 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm text-ink caps mb-1">Response time</p>
+                        <p className="text-sm text-ink-dim">We reply to every inquiry within 24 hours.</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-green-400 font-medium text-sm">Message sent successfully!</p>
-                      <p className="text-white text-sm mt-1">We'll get back to you within 24 hours.</p>
+                    <div className="flex items-start gap-4">
+                      <div className="w-1 h-1 rounded-full bg-ink-ghost mt-2 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm text-ink caps mb-1">Direct contact</p>
+                        <a href="mailto:hello@pixelnpurpose.com" className="text-sm text-ink-dim link-line">
+                          hello@pixelnpurpose.com
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-1 h-1 rounded-full bg-ink-ghost mt-2 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm text-ink caps mb-1">Privacy</p>
+                        <p className="text-sm text-ink-dim">Your information is never shared. Ever.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              )}
-              
-              {submitStatus === 'error' && (
-                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mt-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex-shrink-0">
-                      <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-red-400 font-medium text-sm">Something went wrong</p>
-                      <p className="text-white text-sm mt-1">Please try again or email us directly at hello@pixelnpurpose.com</p>
-                    </div>
+              </ScrollReveal>
+
+              {/* ── Right: Glass form ── */}
+              <ScrollReveal delay={200} threshold={0.05}>
+                <div
+                  data-layer="glass"
+                  className="glass-md rounded-3xl p-8 md:p-12 relative overflow-hidden"
+                >
+                  <div className="noise-overlay" />
+                  <div className="relative z-10">
+                    {/* Success state */}
+                    {submitStatus === 'success' && (
+                      <div className="text-center py-12">
+                        <div className="w-12 h-12 rounded-full border border-ink-ghost flex items-center justify-center mx-auto mb-6">
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-ink" />
+                          </svg>
+                        </div>
+                        <h3 className="font-display font-bold text-ink text-2xl mb-3">Message received.</h3>
+                        <p className="text-ink-dim text-sm">We'll be in touch within 24 hours.</p>
+                      </div>
+                    )}
+
+                    {submitStatus !== 'success' && (
+                      <form onSubmit={handleSubmit} className="flex flex-col gap-10" noValidate>
+                        {/* Name + Email row */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                          <div className="flex flex-col gap-3">
+                            <label htmlFor="name" className="caps text-ink-ghost">
+                              Your name *
+                            </label>
+                            <input
+                              id="name"
+                              name="name"
+                              type="text"
+                              required
+                              value={formData.name}
+                              onChange={handleChange}
+                              placeholder="Jane Smith"
+                              className="bg-transparent border-0 border-b border-ink-rule pb-3 text-ink placeholder:text-ink-ghost focus:outline-none focus:border-ink-dim transition-colors duration-300 text-base"
+                            />
+                          </div>
+                          <div className="flex flex-col gap-3">
+                            <label htmlFor="email" className="caps text-ink-ghost">
+                              Email *
+                            </label>
+                            <input
+                              id="email"
+                              name="email"
+                              type="email"
+                              required
+                              value={formData.email}
+                              onChange={handleChange}
+                              placeholder="jane@studio.com"
+                              className="bg-transparent border-0 border-b border-ink-rule pb-3 text-ink placeholder:text-ink-ghost focus:outline-none focus:border-ink-dim transition-colors duration-300 text-base"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Service */}
+                        <div className="flex flex-col gap-3">
+                          <label htmlFor="service" className="caps text-ink-ghost">
+                            Service interest
+                          </label>
+                          <select
+                            id="service"
+                            name="service"
+                            value={formData.service}
+                            onChange={handleChange}
+                            className="bg-transparent border-0 border-b border-ink-rule pb-3 text-ink focus:outline-none focus:border-ink-dim transition-colors duration-300 text-base appearance-none cursor-pointer"
+                            style={{ color: formData.service ? 'var(--ink)' : 'var(--ink-ghost)' }}
+                          >
+                            <option value="" disabled style={{ background: '#111', color: 'var(--ink-dim)' }}>
+                              Select a service…
+                            </option>
+                            {SERVICE_OPTIONS.map((s) => (
+                              <option key={s} value={s} style={{ background: '#111', color: 'var(--ink)' }}>
+                                {s}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* Message */}
+                        <div className="flex flex-col gap-3">
+                          <label htmlFor="message" className="caps text-ink-ghost">
+                            Tell us about your project *
+                          </label>
+                          <textarea
+                            id="message"
+                            name="message"
+                            required
+                            rows={5}
+                            value={formData.message}
+                            onChange={handleChange}
+                            placeholder="Describe what you're working on, your timeline, and any other context that would help us respond thoughtfully."
+                            className="bg-transparent border-0 border-b border-ink-rule pb-3 text-ink placeholder:text-ink-ghost focus:outline-none focus:border-ink-dim transition-colors duration-300 text-base resize-none leading-relaxed"
+                          />
+                        </div>
+
+                        {/* Error */}
+                        {submitStatus === 'error' && (
+                          <p className="text-sm text-ink-dim border border-ink-rule rounded-xl px-5 py-4">
+                            Something went wrong. Please email us directly at{' '}
+                            <a href="mailto:hello@pixelnpurpose.com" className="text-ink link-line">
+                              hello@pixelnpurpose.com
+                            </a>
+                          </p>
+                        )}
+
+                        {/* Submit */}
+                        <div className="flex items-center gap-6 pt-2">
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="btn-solid disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            {isSubmitting ? 'Sending…' : 'Send Message'}
+                          </button>
+                          <p className="text-xs text-ink-ghost leading-relaxed max-w-[180px]">
+                            We respond to every message personally.
+                          </p>
+                        </div>
+                      </form>
+                    )}
                   </div>
                 </div>
-              )}
+              </ScrollReveal>
             </div>
-          </form>
-
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-            <p className="text-white mb-2">Or reach us directly:</p>
-            <a 
-              href="mailto:hello@pixelnpurpose.com"
-              className="text-white hover:text-white transition-colors duration-200 font-medium"
-            >
-              hello@pixelnpurpose.com
-            </a>
           </div>
-        </div>
+        </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-white py-8">
-        <div className="container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <nav className="flex items-center gap-6">
-              <a href="/" className="text-white hover:text-white transition-colors">Home</a>
-              <a href="/about" className="text-white hover:text-white transition-colors">About</a>
-              <a href="/contact" className="text-white hover:text-white transition-colors">Contact</a>
-            </nav>
-            <p className="text-white text-sm">
-              © 2025 Pixel & Purpose. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
-  )
+  );
 }
