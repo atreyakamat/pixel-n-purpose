@@ -2,10 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import CookieConsent from "@/components/CookieConsent";
-import WebVitals from "@/components/WebVitals";
 import StructuredData from "@/components/StructuredData";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
@@ -80,9 +76,6 @@ export const metadata: Metadata = {
     description: "Boutique social and ad partner for luxury houses. Quiet ideas. Measurable impact.",
     images: ["/og-image.jpg"],
   },
-  verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
-  },
 };
 
 export default function RootLayout({
@@ -91,48 +84,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${minipax.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${minipax.variable} ${jetbrainsMono.variable} dark`}>
       <head>
-        {/* Critical performance optimizations */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="theme-color" content="#faf9f7" />
-        <meta name="color-scheme" content="light" />
-        
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        
-        {/* Preload critical assets */}
-        <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        
-        {/* DNS prefetch for performance */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        
-        {/* Favicon and icons */}
+        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="dark" />
         <link rel="manifest" href="/manifest.json" />
-        
-        {/* Security headers */}
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
-      <body className="bg-background-light text-gray-900 dark:bg-background-dark dark:text-gray-100 antialiased font-sans">
-        <div className="noise-bg" />
+      <body className="antialiased bg-black text-white">
+        <div className="noise-bg fixed inset-0 pointer-events-none z-[100] opacity-[0.03]" />
         <StructuredData data={[organizationSchema, websiteSchema]} />
-        <noscript>
-          <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#faf9f7', color: '#1a1a1a'}}>
-            This website requires JavaScript to function properly. Please enable JavaScript in your browser.
-          </div>
-        </noscript>
-        <Header />
         {children}
-        <Footer />
-        <CookieConsent />
-        <WebVitals />
       </body>
     </html>
   );

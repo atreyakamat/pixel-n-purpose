@@ -1,213 +1,103 @@
-﻿'use client';
-
-import { motion } from 'motion/react';
-import Link from 'next/link';
-import { ArrowForward } from '@/components/Icons';
-
-const projects = [
-  {
-    id: '1',
-    title: 'Aesop Minimalist',
-    category: 'Web Design',
-    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=2128&auto=format&fit=crop',
-  },
-  {
-    id: '2',
-    title: 'Lumina Ceramics',
-    category: 'Branding',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2187&auto=format&fit=crop',
-  },
-  {
-    id: '3',
-    title: 'Noir Editorial',
-    category: 'Print',
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=2187&auto=format&fit=crop',
-  },
-  {
-    id: '4',
-    title: 'Vertex Audio',
-    category: 'Packaging',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
-  },
-];
-
-const expertise = [
-  { id: '01', title: 'Digital Experience', italic: false, desc: 'Crafting immersive web environments that balance aesthetics with seamless functionality. From corporate platforms to experimental microsites.' },
-  { id: '02', title: 'Brand Identity', italic: true, desc: "Defining the visual and verbal language of tomorrow's leading brands. Logos, typography systems, and comprehensive style guides." },
-  { id: '03', title: 'Art Direction', italic: false, desc: 'Conceptualizing visual narratives for campaigns, editorials, and product launches. Photography, set design, and styling.' },
-  { id: '04', title: 'Packaging', italic: true, desc: 'Tangible brand experiences. Sustainable materials, tactile finishes, and structural design that stands out on the shelf.' },
-];
+import CinematicScene from '@/components/CinematicScene';
+import CustomCursor from '@/components/CustomCursor';
+import { SCENES } from '@/lib/constants';
 
 export default function Home() {
   return (
-    <div className="bg-background-light dark:bg-background-dark">
-      {/* Hero Section */}
-      <header className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background-dark text-white px-6 md:px-12">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-neutral-800 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-pulse" />
-          <div className="absolute bottom-1/4 -right-20 w-[30rem] h-[30rem] bg-neutral-700 rounded-full mix-blend-overlay filter blur-3xl opacity-20" />
+    <main className="relative bg-black min-h-screen overflow-x-hidden">
+      {/* Custom Experience Cursor */}
+      <CustomCursor />
+
+      {/* Cinematic Noise Layer (Fixed) */}
+      <div className="noise-bg fixed inset-0 z-50 pointer-events-none opacity-[0.05]" />
+      
+      {/* Navigation - Minimalist mix-blend-difference */}
+      <nav className="fixed top-0 left-0 w-full z-[100] px-12 py-10 flex justify-between items-center mix-blend-difference pointer-events-none">
+        <div className="flex flex-col gap-1 pointer-events-auto cursor-pointer group">
+          <span className="text-white text-2xl font-serif font-medium tracking-tighter leading-none group-hover:tracking-widest transition-all duration-700 uppercase">
+            Pixel &apos;N&apos; Purpose
+          </span>
+          <span className="text-[7px] tracking-[0.8em] uppercase text-white/40">Creative Studio</span>
         </div>
 
-        <div className="container mx-auto relative z-10 pt-20">
-          <div className="max-w-5xl mx-auto">
-            <div className="glass-panel p-8 md:p-16 rounded-sm relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8"
-              >
-                <span className="block">Design with</span>
-                <span className="block italic font-light ml-8 md:ml-16">Clarity</span>
-                <span className="block text-right">and Intent.</span>
-              </motion.h1>
+        <div className="hidden md:flex items-center space-x-16">
+          {['Websites', 'Portfolio', 'Packaging', 'Photography'].map((item) => (
+            <span key={item} className="text-[10px] tracking-[0.4em] uppercase text-white/40 hover:text-white transition-all cursor-pointer pointer-events-auto relative group">
+              {item}
+              <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full" />
+            </span>
+          ))}
+        </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-col md:flex-row justify-between items-end mt-12 md:mt-20 border-t border-white/10 pt-8"
-              >
-                <p className="max-w-md text-neutral-400 font-light text-lg">
-                  We are a global creative studio shaping brands through minimalist aesthetics and strategic precision.
-                </p>
-                <Link
-                  href="/services"
-                  className="mt-8 md:mt-0 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] hover:gap-4 transition-all duration-300"
-                >
-                  Explore Work <ArrowForward className="w-4 h-4" />
-                </Link>
-              </motion.div>
+        <button className="text-white text-[9px] tracking-[0.4em] uppercase border border-white/10 px-8 py-3 rounded-sm pointer-events-auto hover:bg-white hover:text-black hover:border-white transition-all duration-500 font-bold">
+          Initiate
+        </button>
+      </nav>
+
+      {/* Cinematic Scene Sections */}
+      <div className="relative">
+        {SCENES.map((scene, index) => (
+          <CinematicScene
+            key={scene.id}
+            id={scene.id}
+            frames={scene.frames}
+            title={scene.title}
+            subtitle={scene.subtitle}
+            content={scene.content}
+            isFirst={index === 0}
+          />
+        ))}
+      </div>
+
+      {/* Luxury Footer */}
+      <footer className="relative bg-black py-40 px-12 border-t border-white/5 overflow-hidden">
+        {/* Large Decorative Text */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-serif font-medium text-white/[0.02] select-none whitespace-nowrap pointer-events-none">
+          PIXEL PURPOSE
+        </div>
+
+        <div className="container mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-24 mb-32">
+            <div className="col-span-1 md:col-span-2">
+              <h3 className="text-white text-5xl font-serif font-medium mb-12 tracking-tight max-w-md leading-tight">
+                Ready to transform your brand into a cinematic experience?
+              </h3>
+              <div className="flex gap-4">
+                <button className="px-10 py-4 bg-white text-black text-[10px] tracking-[0.4em] uppercase font-bold hover:scale-105 transition-all">
+                  Let&apos;s Connect
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
-          <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-          <div className="w-[1px] h-12 bg-white" />
-        </div>
-      </header>
-
-      {/* Expertise Section */}
-      <section className="py-32 bg-background-light dark:bg-neutral-900 text-neutral-900 dark:text-white">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="mb-16 flex justify-between items-end">
-            <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-60">Our Expertise</h2>
-            <div className="h-[1px] flex-grow bg-current ml-8 opacity-20" />
-          </div>
-
-          <div className="space-y-4">
-            {expertise.map((item) => (
-              <motion.div
-                key={item.id}
-                whileHover={{ x: 10 }}
-                className="group relative"
-              >
-                <div className="glass-panel-light dark:glass-panel bg-neutral-100 dark:bg-white/5 p-8 md:p-12 transition-all duration-500 hover:bg-neutral-200 dark:hover:bg-white/10 cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center border-l-4 border-transparent hover:border-black dark:hover:border-white">
-                  <div className="mb-4 md:mb-0">
-                    <span className="text-[10px] font-mono opacity-50 mb-2 block">{item.id}</span>
-                    <h3 className={`font-serif text-3xl md:text-5xl ${item.italic ? 'italic' : ''}`}>{item.title}</h3>
-                  </div>
-                  <div className="max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">{item.desc}</p>
-                  </div>
-                  <ArrowForward className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform -rotate-45 group-hover:rotate-0 w-6 h-6" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Work Grid */}
-      <section className="py-32 bg-background-light dark:bg-background-dark text-neutral-900 dark:text-white">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-            {projects.map((project, idx) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.1 }}
-                className={`group cursor-pointer ${idx % 2 !== 0 ? 'md:mt-32' : ''}`}
-              >
-                <div className="aspect-[4/5] overflow-hidden bg-neutral-800 relative mb-8 rounded-sm">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover filter grayscale group-hover:scale-105 transition-transform duration-1000 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 flex items-center justify-center">
-                    <span className="text-white border border-white/30 px-8 py-3 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 text-xs uppercase tracking-widest">
-                      View Case Study
-                    </span>
-                  </div>
-                </div>
-                <div className="flex justify-between items-baseline border-b border-neutral-300 dark:border-neutral-800 pb-6">
-                  <h3 className="font-serif text-2xl md:text-3xl">{project.title}</h3>
-                  <span className="text-[10px] uppercase tracking-[0.2em] opacity-60">{project.category}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-32 text-center">
-            <button className="inline-block border border-neutral-900 dark:border-white px-12 py-5 uppercase tracking-[0.3em] text-[10px] font-bold hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-500 cursor-pointer">
-              All Projects
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-32 bg-neutral-100 dark:bg-black text-neutral-900 dark:text-white border-t border-neutral-200 dark:border-white/10">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
             <div>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="font-serif text-4xl md:text-6xl mb-8 leading-tight"
-              >
-                Let&apos;s create something<br />
-                <span className="italic text-neutral-500 font-light">meaningful.</span>
-              </motion.h2>
-              <p className="max-w-md text-neutral-600 dark:text-neutral-400 font-light text-lg mb-12 leading-relaxed">
-                We are currently accepting new projects for 2025. Reach out to discuss how we can elevate your brand.
+              <span className="text-[10px] tracking-[0.4em] uppercase text-white/30 block mb-8 font-mono">Location_</span>
+              <p className="text-sm text-white/60 leading-relaxed uppercase tracking-widest">
+                Goa, India<br />Remote Global
               </p>
-              <a
-                href="mailto:hello@pixelnpurpose.com"
-                className="text-2xl md:text-4xl font-serif underline decoration-1 underline-offset-8 hover:text-neutral-500 transition-colors"
-              >
-                hello@pixelnpurpose.com
-              </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-12 lg:pl-20">
-              <div>
-                <h4 className="uppercase tracking-[0.3em] text-[10px] font-bold mb-8 opacity-40">Social</h4>
-                <ul className="space-y-6 font-light text-sm">
-                  <li><a href="#" className="hover:underline decoration-neutral-400 underline-offset-4">Instagram</a></li>
-                  <li><a href="#" className="hover:underline decoration-neutral-400 underline-offset-4">LinkedIn</a></li>
-                  <li><a href="#" className="hover:underline decoration-neutral-400 underline-offset-4">Behance</a></li>
-                  <li><a href="#" className="hover:underline decoration-neutral-400 underline-offset-4">Twitter</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="uppercase tracking-[0.3em] text-[10px] font-bold mb-8 opacity-40">Office</h4>
-                <address className="not-italic font-light text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  100 Broadway<br />
-                  New York, NY 10005<br />
-                  United States
-                </address>
+            <div>
+              <span className="text-[10px] tracking-[0.4em] uppercase text-white/30 block mb-8 font-mono">Social_</span>
+              <div className="flex flex-col gap-4">
+                {['Instagram', 'LinkedIn', 'Behance'].map((social) => (
+                  <span key={social} className="text-[10px] tracking-widest uppercase text-white/50 hover:text-white transition-colors cursor-pointer">
+                    {social}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
+
+          <div className="pt-24 border-t border-white/5 flex flex-col md:row justify-between items-center gap-8">
+            <div className="text-white/20 text-[9px] tracking-[0.6em] uppercase">
+              © 2026 Pixel &apos;N&apos; Purpose Studio
+            </div>
+            <div className="text-white/10 text-[7px] tracking-[1em] uppercase">
+              Quiet Ideas. Measurable Impact.
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
+      </footer>
+    </main>
   );
 }
