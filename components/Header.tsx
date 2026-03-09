@@ -51,18 +51,22 @@ export default function Header({ isHomePage = false }: HeaderProps) {
       {/* ── Fixed navbar ── */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${scrolled
-            ? 'py-3 bg-canvas/40 backdrop-blur-2xl border-b border-white/5'
+            ? 'py-3 bg-black/70 backdrop-blur-3xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
             : 'py-6 bg-transparent'
           }`}
         role="banner"
       >
         <div className="container flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" aria-label="Pixel 'N' Purpose — Home" className="flex items-center">
+          <Link 
+            href="/" 
+            aria-label="Pixel 'N' Purpose — Home" 
+            className="flex items-center transition-transform duration-500 hover:scale-105"
+          >
             <img
               src="/PNP-white.png"
               alt="Pixel 'N' Purpose"
-              className="h-9 w-auto object-contain"
+              className="h-9 w-auto object-contain brightness-110 drop-shadow-sm"
               width={110}
               height={36}
             />
@@ -70,11 +74,15 @@ export default function Header({ isHomePage = false }: HeaderProps) {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-10" aria-label="Main navigation">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="link-line caps text-ink-dim hover:text-ink text-[11px] tracking-[0.2em]"
+                className="link-line caps text-white hover:text-white text-[11px] tracking-[0.25em] font-medium opacity-0 animate-[fadeDown_0.5s_ease-out_forwards]"
+                style={{ 
+                  animationDelay: `${0.1 + i * 0.1}s`,
+                  textShadow: '0 0 20px rgba(255,255,255,0.2)' 
+                }}
               >
                 {link.label}
               </Link>
@@ -83,22 +91,22 @@ export default function Header({ isHomePage = false }: HeaderProps) {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] focus:outline-none"
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] focus:outline-none group"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
           >
             <span
-              className={`block h-px w-6 bg-ink transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[7px]' : ''
+              className={`block h-px w-6 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[7px]' : 'group-hover:w-4'
                 }`}
             />
             <span
-              className={`block h-px w-6 bg-ink transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''
+              className={`block h-px w-6 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0 scale-x-0' : ''
                 }`}
             />
             <span
-              className={`block h-px w-6 bg-ink transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[7px]' : ''
+              className={`block h-px w-6 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[7px]' : 'group-hover:w-4'
                 }`}
             />
           </button>
@@ -115,12 +123,12 @@ export default function Header({ isHomePage = false }: HeaderProps) {
           }`}
       >
         {/* Blurred glass background */}
-        <div className="absolute inset-0 bg-canvas/90 backdrop-blur-3xl" />
+        <div className="absolute inset-0 bg-black/95 backdrop-blur-3xl" />
 
         {/* Close button */}
         <button
           onClick={() => setMenuOpen(false)}
-          className="absolute top-5 right-6 z-10 w-10 h-10 flex items-center justify-center text-ink-dim hover:text-ink transition-colors"
+          className="absolute top-5 right-6 z-10 w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
           aria-label="Close navigation"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
@@ -132,21 +140,21 @@ export default function Header({ isHomePage = false }: HeaderProps) {
         <nav className="relative h-full flex items-center justify-center px-8" aria-label="Mobile navigation">
           <ul className="flex flex-col items-center text-center gap-4 w-full max-w-md">
             {NAV_LINKS.map((link, i) => (
-              <li key={link.href}>
+              <li key={link.href} className={`opacity-0 ${menuOpen ? 'animate-[fadeUp_0.5s_ease-out_forwards]' : ''}`} style={{ animationDelay: `${0.2 + i * 0.1}s` }}>
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-display font-bold text-ink hover:text-ink-dim transition-colors duration-300 block py-3"
+                  className="font-display font-bold text-white hover:text-white/70 transition-colors duration-300 block py-3"
                   style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', lineHeight: '1', letterSpacing: '-0.03em' }}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li className="mt-12 pt-8 border-t border-white/10 w-full max-w-xs">
+            <li className={`mt-12 pt-8 border-t border-white/10 w-full max-w-xs opacity-0 ${menuOpen ? 'animate-[fadeUp_0.5s_ease-out_0.6s_forwards]' : ''}`}>
               <Link
                 href="mailto:hello@pixelnpurpose.com"
-                className="caps text-ink-ghost hover:text-ink-dim transition-colors text-xs tracking-widest"
+                className="caps text-white/40 hover:text-white transition-colors text-xs tracking-widest"
               >
                 hello@pixelnpurpose.com
               </Link>
@@ -154,6 +162,17 @@ export default function Header({ isHomePage = false }: HeaderProps) {
           </ul>
         </nav>
       </div>
+
+      <style jsx global>{`
+        @keyframes fadeDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </>
   );
 }
