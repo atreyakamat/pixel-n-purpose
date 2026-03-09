@@ -33,7 +33,7 @@ export default function Hero() {
           <GradientBlinds
             gradientColors={["#293824","#787878"]}
             angle={45}
-            noise={0.5}
+            noise={0}
             blindCount={33}
             blindMinWidth={30}
             mouseDampening={0.15}
@@ -46,10 +46,19 @@ export default function Hero() {
           />
         </div>
 
-        {/* Noise overlay for texture */}
-        <div className="noise-overlay z-10" />
+        {/* Structural Grid */}
+        <div
+          className="absolute inset-0 opacity-[0.04] z-10"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(245,245,243,0.5) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(245,245,243,0.5) 1px, transparent 1px)
+            `,
+            backgroundSize: '80px 80px',
+          }}
+        />
         
-        {/* Bottom gradient vignette for depth */}
+        {/* Vignette */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-canvas/90 z-20" />
       </div>
 
