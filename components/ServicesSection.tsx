@@ -2,6 +2,7 @@
 
 import ScrollReveal from './ScrollReveal';
 import Link from 'next/link';
+import OptimizedImage from './OptimizedImage';
 
 const SERVICES = [
     {
@@ -10,6 +11,7 @@ const SERVICES = [
         description: 'Websites that perform as beautifully as they look — built for speed, clarity, and conversion.',
         detail: 'Strategy · UX/UI · Development · SEO',
         href: '/services#website',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=300&auto=format&fit=crop'
     },
     {
         number: '02',
@@ -17,6 +19,7 @@ const SERVICES = [
         description: 'Portfolios that make the right people stop scrolling and start conversations.',
         detail: 'Layout · Typography · Curation · Identity',
         href: '/services#portfolio',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop'
     },
     {
         number: '03',
@@ -24,6 +27,7 @@ const SERVICES = [
         description: 'Packaging that earns shelf space and builds brand trust at first sight.',
         detail: 'Structure · Print · Materials · Storytelling',
         href: '/services#packaging',
+        image: 'https://images.unsplash.com/photo-1589939705384-5185138a047a?q=80&w=300&auto=format&fit=crop'
     },
     {
         number: '04',
@@ -31,6 +35,7 @@ const SERVICES = [
         description: 'Brand imagery that transforms products and spaces into visual narratives.',
         detail: 'Product · Editorial · Atmosphere · Retouching',
         href: '/services#photography',
+        image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=300&auto=format&fit=crop'
     },
 ];
 
@@ -61,10 +66,20 @@ export default function ServicesSection() {
                             <Link
                                 href={service.href}
                                 data-layer="service-panel"
-                                className="group glass flex flex-col md:flex-row md:items-center justify-between gap-6 p-8 md:p-10 rounded-2xl hover:border-ink-ghost transition-all duration-500 cursor-pointer no-underline"
+                                className="group glass flex flex-col md:flex-row md:items-center justify-between gap-6 p-8 md:p-10 rounded-2xl hover:border-ink-ghost transition-all duration-500 cursor-pointer no-underline relative overflow-hidden"
                             >
+                                {/* Hover Peek Image */}
+                                <div className="absolute right-24 top-1/2 -translate-y-1/2 w-32 h-20 rounded-lg overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0 hidden lg:block shadow-xl z-10 pointer-events-none">
+                                    <OptimizedImage 
+                                        src={service.image} 
+                                        alt={service.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-ink/10 group-hover:bg-transparent transition-colors duration-500" />
+                                </div>
+
                                 {/* Left: number + name */}
-                                <div className="flex items-start md:items-center gap-8 flex-1">
+                                <div className="flex items-start md:items-center gap-8 flex-1 relative z-20">
                                     <span className="chapter-number mt-1 md:mt-0 flex-shrink-0 w-8">
                                         {service.number}
                                     </span>
@@ -80,7 +95,7 @@ export default function ServicesSection() {
                                 </div>
 
                                 {/* Right: description + arrow */}
-                                <div className="flex items-center gap-8 md:max-w-sm lg:max-w-md">
+                                <div className="flex items-center gap-8 md:max-w-sm lg:max-w-md relative z-20">
                                     <p className="text-ink-dim text-sm leading-relaxed flex-1 hidden md:block">
                                         {service.description}
                                     </p>

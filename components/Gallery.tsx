@@ -59,7 +59,7 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     {
       id: 4,
       type: 'image',
-      src: "/grid_images/car-1544342_640.jpg",
+      src: "/grid_images/car.jpg",
       alt: "Premium automotive brand photography",
       size: 'medium' // Automotive detail shots work well in square format
     },
@@ -80,14 +80,14 @@ export default function Gallery({ isHomePage = false }: GalleryProps) {
     {
       id: 6,
       type: 'image',
-      src: "/grid_images/outdoor-dining-1846137_1280.jpg",
+      src: "/grid_images/dining.jpg",
       alt: "Luxury hospitality brand content",
       size: 'medium' // Wide format showcases dining atmosphere
     },
     {
       id: 7,
       type: 'image',
-      src: "/grid_images/opal-4765457_1280.jpg",
+      src: "/grid_images/opal.jpg",
       alt: "Luxury gemstone brand photography",
       size: 'medium' // Gemstone macro shots perfect in square
     },

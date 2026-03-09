@@ -20,31 +20,31 @@ export default function Services({ isHomePage = false }: ServicesProps) {
       title: "Brand Identity & Design",
       boldDesc: "Be Bold. Look Sharp. Leave a mark.",
       description: "We craft identities that don’t just look good — they speak. From logos to rebrands, we design the details that make first impressions unforgettable.",
-      image: "/services-pics/person-600476_1280.jpg"
+      image: "/images/person-600476_1280.jpg"
     },
     {
       title: "Content & Storytelling", 
       boldDesc: "Say it right. Say it bold.",
       description: "Your brand is more than visuals — it’s the words, the tone, the story. We shape messaging that connects, from websites to social to campaigns. Because a brand without a voice is just noise.",
-      image: "/services-pics/camera-6745942.jpg"
+      image: "/images/camera-6745942.jpg"
     },
     {
       title: "Digital Presence & Marketing",
       boldDesc: "Be seen. Be found. Be trusted.",
       description: "From websites to digital campaigns, we build experiences that perform. Smart design meets smart strategy — making your brand impossible to ignore.",
-      image: "/services-pics/domain-5243252.jpg"
+      image: "/images/domain-5243252.jpg"
     },
     {
       title: "Campaigns & Creative Collateral",
       boldDesc: "Ideas that move. Designs that stay.",
       description: " We turn big ideas into branded experiences — launches, campaigns, events, presentations. Wherever your audience is, your brand shows up strong and consistent.",
-      image: "/services-pics/swimmer-1678307 (1).jpg"
+      image: "/images/swimmer-1678307 (1).jpg"
     },
     {
       title: "Consulting & Training",
       boldDesc: "Clarity. Confidence. Control.",
       description: "We don’t just build brands. We empower teams to manage them. Workshops, strategy sessions, creative direction — so your brand stays sharp long after launch.",
-      image: "/services-pics/children-1822688.jpg"
+      image: "/images/ladki.jpg"
     }
   ];
 

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import GradientBlinds from './GradientBlinds';
 
 export default function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -22,55 +23,56 @@ export default function Hero() {
     <section
       id="hero"
       data-layer="section"
-      className="relative min-h-screen overflow-hidden bg-canvas flex items-center"
+      className="relative min-h-screen overflow-hidden bg-canvas flex items-center justify-center text-center"
       role="banner"
     >
-      {/* ── Layer 1: Background (moves at 0.25× scroll) ── */}
+      {/* ── Layer 1: Background ── */}
       <div ref={bgRef} data-layer="background" className="absolute inset-0 will-change-transform">
-        {/* Diagonal grid lines — architectural structure */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(245,245,243,0.5) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(245,245,243,0.5) 1px, transparent 1px)
-            `,
-            backgroundSize: '80px 80px',
-          }}
-        />
-        {/* Noise overlay */}
-        <div className="noise-overlay" />
-        {/* Bottom gradient vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-canvas/60" />
+        {/* Gradient Blinds - EXACT CONFIGURATION PROVIDED BY USER */}
+        <div className="absolute inset-0 z-0">
+          <GradientBlinds
+            gradientColors={["#293824","#787878"]}
+            angle={45}
+            noise={0.5}
+            blindCount={33}
+            blindMinWidth={30}
+            mouseDampening={0.15}
+            mirrorGradient={false}
+            spotlightRadius={0.55}
+            spotlightSoftness={1}
+            spotlightOpacity={1}
+            distortAmount={24}
+            shineDirection="left"
+          />
+        </div>
+
+        {/* Noise overlay for texture */}
+        <div className="noise-overlay z-10" />
+        
+        {/* Bottom gradient vignette for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-canvas/90 z-20" />
       </div>
 
-      {/* ── Layer 2: Glass panel (architectural off-center) ── */}
-      <div
-        data-layer="glass"
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[45vw] max-w-xl h-[70vh] glass opacity-60 hidden lg:block"
-        style={{ borderRadius: '24px 0 0 24px', right: 0 }}
-      />
-
-      {/* ── Layer 3: Content ── */}
-      <div className="relative z-10 container">
-        <div className="max-w-3xl py-32 md:py-40">
+      {/* ── Layer 2: Content ── */}
+      <div className="relative z-30 container flex flex-col items-center">
+        <div className="max-w-4xl pt-20 pb-32 md:pt-24 md:pb-40 -mt-12 md:-mt-16">
           {/* Label */}
           <div
             data-layer="label"
-            className="caps text-ink-ghost mb-8 opacity-0 animate-[fadeUp_0.7s_ease-out_0.2s_forwards]"
+            className="caps text-ink-ghost mb-10 opacity-0 animate-[fadeUp_0.7s_ease-out_0.2s_forwards] font-accent tracking-[0.3em] text-[11px]"
           >
-            Global Creative Studio · Est. 2024
+            Global Creative Studio · Est. 2025
           </div>
 
           {/* Headline */}
           <h1
             data-layer="headline"
-            className="font-display font-bold text-ink leading-[1.02] mb-8 opacity-0 animate-[fadeUp_0.9s_ease-out_0.4s_forwards]"
-            style={{ fontSize: 'clamp(3.2rem, 7vw, 7.5rem)', letterSpacing: '-0.025em' }}
+            className="font-display font-bold text-ink leading-[1] mb-10 opacity-0 animate-[fadeUp_0.9s_ease-out_0.4s_forwards]"
+            style={{ fontSize: 'clamp(3.5rem, 9vw, 9rem)', letterSpacing: '-0.04em' }}
           >
             Design
             <br />
-            <em className="not-italic text-ink-dim">That Means</em>
+            <em className="not-italic text-ink-dim font-medium italic">That Means</em>
             <br />
             Something.
           </h1>
@@ -78,7 +80,7 @@ export default function Hero() {
           {/* Sub-headline */}
           <p
             data-layer="body"
-            className="text-ink-dim text-lg md:text-xl leading-relaxed max-w-md mb-12 opacity-0 animate-[fadeUp_0.9s_ease-out_0.6s_forwards]"
+            className="text-ink-dim text-lg md:text-xl leading-relaxed max-w-2xl mb-14 opacity-0 animate-[fadeUp_0.9s_ease-out_0.6s_forwards] mx-auto"
           >
             Websites, Portfolios, Packaging & Photography — built with clarity, structure, and intent.
           </p>
@@ -86,33 +88,36 @@ export default function Hero() {
           {/* CTAs */}
           <div
             data-layer="cta"
-            className="flex flex-wrap items-center gap-4 opacity-0 animate-[fadeUp_0.9s_ease-out_0.8s_forwards]"
+            className="flex flex-wrap items-center justify-center gap-6 opacity-0 animate-[fadeUp_0.9s_ease-out_0.8s_forwards]"
           >
-            <Link href="/contact" className="btn-solid">
+            <Link href="/contact" className="btn-solid px-12 py-4 rounded-full text-sm font-medium">
               Start a Project
             </Link>
-            <Link href="/services" className="btn-ghost">
+            <Link href="/services" className="btn-ghost group flex items-center gap-2 text-sm font-medium">
               Our Services
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+                <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </Link>
           </div>
 
           {/* Scroll indicator */}
           <div
-            className="flex items-center gap-3 mt-20 opacity-0 animate-[fadeUp_0.9s_ease-out_1.2s_forwards]"
+            className="flex flex-col items-center gap-4 mt-24 opacity-0 animate-[fadeUp_0.9s_ease-out_1.2s_forwards]"
           >
+            <span className="caps text-ink-ghost text-[10px] tracking-[0.4em] mb-2">Explore</span>
             <div className="flex flex-col gap-1 items-center">
-              <div className="w-px h-8 bg-ink-ghost" />
-              <div className="w-px h-3 bg-ink-ghost animate-bounce" />
+              <div className="w-px h-12 bg-gradient-to-b from-ink-ghost/40 to-transparent" />
+              <div className="w-px h-4 bg-ink-ghost animate-bounce" />
             </div>
-            <span className="caps text-ink-ghost">Scroll to explore</span>
           </div>
         </div>
       </div>
 
-      {/* CSS keyframes for staggered entry (defined inline for page isolation) */}
+      {/* Entry Animations */}
       <style>{`
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(40px); }
           to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>

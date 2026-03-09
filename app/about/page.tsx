@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import Link from 'next/link';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const PRINCIPLES = [
   {
@@ -102,24 +103,36 @@ export default function AboutPage() {
         {/* ── Narrative 1 — canvas background ── */}
         <section data-layer="narrative-1" className="section-canvas py-24 md:py-32">
           <div className="container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
               <ScrollReveal threshold={0.1}>
-                <div className="glass-subtle rounded-2xl p-8 md:p-10">
-                  <p className="font-display font-bold text-ink leading-[1.1]" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)' }}>
-                    "We were founded with one belief: brands don't just need advertising — they need meaning."
-                  </p>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                  <OptimizedImage 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop"
+                    alt="Collaborative creative environment"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 noise-overlay opacity-[0.05]" />
                 </div>
               </ScrollReveal>
-              <ScrollReveal delay={200} threshold={0.1}>
-                <div className="flex flex-col gap-6 text-ink-dim text-base leading-relaxed">
-                  <p>
-                    Pixel 'N' Purpose began as a creative studio that wanted to challenge the usual playbook. No jargon, no fluff — just work that's sharp, human, and built to last.
-                  </p>
-                  <p>
-                    We are a place where design, storytelling, and strategy converge. Where intentional people do their best work and help brands say something real.
-                  </p>
-                </div>
-              </ScrollReveal>
+              <div className="flex flex-col gap-8">
+                <ScrollReveal delay={100} threshold={0.1}>
+                  <div className="glass-subtle rounded-2xl p-8 md:p-10">
+                    <p className="font-display font-bold text-ink leading-[1.1]" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)' }}>
+                      "We were founded with one belief: brands don't just need advertising — they need meaning."
+                    </p>
+                  </div>
+                </ScrollReveal>
+                <ScrollReveal delay={200} threshold={0.1}>
+                  <div className="flex flex-col gap-6 text-ink-dim text-base leading-relaxed">
+                    <p>
+                      Pixel 'N' Purpose began as a creative studio that wanted to challenge the usual playbook. No jargon, no fluff — just work that's sharp, human, and built to last.
+                    </p>
+                    <p>
+                      We are a place where design, storytelling, and strategy converge. Where intentional people do their best work and help brands say something real.
+                    </p>
+                  </div>
+                </ScrollReveal>
+              </div>
             </div>
           </div>
         </section>

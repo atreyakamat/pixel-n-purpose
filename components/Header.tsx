@@ -21,7 +21,7 @@ export default function Header({ isHomePage = false }: HeaderProps) {
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 80);
+      setScrolled(y > 50);
     };
     let raf = 0;
     const handler = () => {
@@ -50,31 +50,31 @@ export default function Header({ isHomePage = false }: HeaderProps) {
     <>
       {/* ── Fixed navbar ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-            ? 'bg-canvas/80 backdrop-blur-md border-b border-ink-rule'
-            : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${scrolled
+            ? 'py-3 bg-canvas/40 backdrop-blur-2xl border-b border-white/5'
+            : 'py-6 bg-transparent'
           }`}
         role="banner"
       >
-        <div className="container flex items-center justify-between h-16 md:h-20">
+        <div className="container flex items-center justify-between">
           {/* Logo */}
           <Link href="/" aria-label="Pixel 'N' Purpose — Home" className="flex items-center">
             <img
-              src={scrolled || !isHomePage ? '/PNP-white.png' : '/PNP-white.png'}
+              src="/PNP-white.png"
               alt="Pixel 'N' Purpose"
-              className="h-10 w-auto object-contain"
-              width={120}
-              height={40}
+              className="h-9 w-auto object-contain"
+              width={110}
+              height={36}
             />
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-10" aria-label="Main navigation">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="link-line caps text-ink-dim hover:text-ink"
+                className="link-line caps text-ink-dim hover:text-ink text-[11px] tracking-[0.2em]"
               >
                 {link.label}
               </Link>
@@ -115,7 +115,7 @@ export default function Header({ isHomePage = false }: HeaderProps) {
           }`}
       >
         {/* Blurred glass background */}
-        <div className="absolute inset-0 bg-canvas/95 backdrop-blur-xl" />
+        <div className="absolute inset-0 bg-canvas/90 backdrop-blur-3xl" />
 
         {/* Close button */}
         <button
@@ -123,30 +123,30 @@ export default function Header({ isHomePage = false }: HeaderProps) {
           className="absolute top-5 right-6 z-10 w-10 h-10 flex items-center justify-center text-ink-dim hover:text-ink transition-colors"
           aria-label="Close navigation"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
             <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
           </svg>
         </button>
 
         {/* Nav links */}
         <nav className="relative h-full flex items-center justify-center px-8" aria-label="Mobile navigation">
-          <ul className="flex flex-col items-start gap-2 w-full max-w-md">
+          <ul className="flex flex-col items-center text-center gap-4 w-full max-w-md">
             {NAV_LINKS.map((link, i) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="font-display font-bold text-ink hover:text-ink-dim transition-colors duration-300 block py-3"
-                  style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', lineHeight: '1.05', letterSpacing: '-0.02em' }}
+                  style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', lineHeight: '1', letterSpacing: '-0.03em' }}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li className="mt-8 pt-8 border-t border-ink-rule w-full">
+            <li className="mt-12 pt-8 border-t border-white/10 w-full max-w-xs">
               <Link
                 href="mailto:hello@pixelnpurpose.com"
-                className="caps text-ink-ghost hover:text-ink-dim transition-colors"
+                className="caps text-ink-ghost hover:text-ink-dim transition-colors text-xs tracking-widest"
               >
                 hello@pixelnpurpose.com
               </Link>

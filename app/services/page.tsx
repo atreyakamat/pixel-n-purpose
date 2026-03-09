@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import Link from 'next/link';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const SERVICES = [
     {
@@ -11,6 +12,7 @@ const SERVICES = [
         number: '01',
         name: 'Website Design',
         tagline: 'Digital presence that converts.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
         description:
             'We design websites that function as your most important business asset. Every pixel is intentional, every interaction purposeful. From strategy to launch, we build fast, beautiful, and conversion-optimized digital experiences.',
         includes: [
@@ -27,6 +29,7 @@ const SERVICES = [
         number: '02',
         name: 'Portfolio Design',
         tagline: 'Work that speaks before you do.',
+        image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop',
         description:
             "A great portfolio isn't just a gallery — it's a curated narrative. We design portfolios that make the right people stop, look, and reach out. Built for creatives, architects, photographers, and professionals who want to be taken seriously.",
         includes: [
@@ -43,6 +46,7 @@ const SERVICES = [
         number: '03',
         name: 'Packaging Design',
         tagline: 'Shelves won at first sight.',
+        image: 'https://images.unsplash.com/photo-1589939705384-5185138a047a?q=80&w=1000&auto=format&fit=crop',
         description:
             'Packaging is the first moment of physical brand contact. We design packaging that earns attention without shouting — structured, honest, and memorable. From concept to print-ready files with material guidance.',
         includes: [
@@ -59,6 +63,7 @@ const SERVICES = [
         number: '04',
         name: 'Photography',
         tagline: 'Images that sell ideas.',
+        image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=1000&auto=format&fit=crop',
         description:
             'We create brand photography that transforms products and spaces into visual stories. Calm, intentional, and editorial — our imagery works across digital and print, building consistent brand perception.',
         includes: [
@@ -121,10 +126,10 @@ export default function ServicesPage() {
                         className={`py-24 md:py-36 ${idx % 2 === 0 ? 'section-canvas' : 'section-charcoal'}`}
                     >
                         <div className="container">
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                                 {/* Left column */}
-                                <ScrollReveal threshold={0.1}>
-                                    <div data-layer="chapter-label">
+                                <ScrollReveal threshold={0.1} delay={idx % 2 === 0 ? 0 : 200}>
+                                    <div data-layer="chapter-label" className={idx % 2 === 1 ? 'lg:order-2' : ''}>
                                         <span className="chapter-number">{service.number}</span>
                                         <h2
                                             className="font-display font-bold text-ink mt-4 leading-[1.05]"
@@ -141,7 +146,21 @@ export default function ServicesPage() {
                                         <p className="text-ink-dim text-base leading-relaxed mt-8 max-w-md">
                                             {service.description}
                                         </p>
-                                        <div className="mt-10">
+                                        
+                                        {/* Includes grid below description */}
+                                        <div data-layer="includes-grid" className="mt-12">
+                                            <p className="caps text-ink-ghost mb-6">What this includes</p>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                {service.includes.map((item) => (
+                                                    <div key={item} className="glass-subtle rounded-xl px-4 py-3 flex items-start gap-3 border border-ink-rule/10">
+                                                        <div className="mt-1.5 w-1 h-1 rounded-full bg-ink-ghost flex-shrink-0" />
+                                                        <span className="text-xs text-ink-dim leading-snug">{item}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-12">
                                             <Link href="/contact" className="btn-ghost">
                                                 Get a Quote
                                             </Link>
@@ -149,18 +168,16 @@ export default function ServicesPage() {
                                     </div>
                                 </ScrollReveal>
 
-                                {/* Right column — includes */}
-                                <ScrollReveal delay={200} threshold={0.1}>
-                                    <div data-layer="includes-grid">
-                                        <p className="caps text-ink-ghost mb-6">What this includes</p>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                            {service.includes.map((item) => (
-                                                <div key={item} className="glass-subtle rounded-xl px-5 py-4 flex items-start gap-3">
-                                                    <div className="mt-1 w-1 h-1 rounded-full bg-ink-ghost flex-shrink-0" />
-                                                    <span className="text-sm text-ink-dim leading-snug">{item}</span>
-                                                </div>
-                                            ))}
-                                        </div>
+                                {/* Right column — Image */}
+                                <ScrollReveal delay={idx % 2 === 0 ? 200 : 0} threshold={0.1}>
+                                    <div className={`relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
+                                        <OptimizedImage 
+                                            src={service.image} 
+                                            alt={service.name}
+                                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 noise-overlay opacity-[0.05]" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-canvas/40 to-transparent opacity-60" />
                                     </div>
                                 </ScrollReveal>
                             </div>
