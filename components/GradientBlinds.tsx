@@ -192,7 +192,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
   float d = length(uv0 - offset);
   float r = max(uSpotlightRadius, 1e-4);
   float dn = d / r;
-  float spot = (1.0 - 2.0 * pow(dn, uSpotlightSoftness)) * uSpotlightOpacity;
+  float spot = (1.0 - clamp(pow(dn, uSpotlightSoftness), 0.0, 1.0)) * uSpotlightOpacity;
   vec3 cir = vec3(spot);
   float stripe = fract(uvMod.x * max(uBlindCount, 1.0));
   if (uShineFlip > 0.5) stripe = 1.0 - stripe;
@@ -277,7 +277,7 @@ void main() {
     const ro = new ResizeObserver(resize);
     ro.observe(container);
 
-    const onPointerMove = (e: any) => {
+    const onPointerMove = (e: MouseEvent | PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       const scale = renderer.dpr || 1;
       const x = (e.clientX - rect.left) * scale;
@@ -287,7 +287,8 @@ void main() {
         uniforms.iMouse.value = [x, y];
       }
     };
-    canvas.addEventListener('pointermove', onPointerMove);
+    // Listen on window to catch events even when content overlays the background
+    window.addEventListener('pointermove', onPointerMove);
 
     const loop = (t: number) => {
       rafRef.current = requestAnimationFrame(loop);
@@ -318,7 +319,7 @@ void main() {
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      canvas.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointermove', onPointerMove);
       ro.disconnect();
       if (canvas.parentElement === container) {
         container.removeChild(canvas);

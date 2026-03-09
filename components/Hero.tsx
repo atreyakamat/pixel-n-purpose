@@ -55,7 +55,13 @@ export default function Hero() {
 
       {/* ── Layer 2: Content ── */}
       <div className="relative z-30 container flex flex-col items-center">
-        <div className="max-w-4xl pt-20 pb-32 md:pt-24 md:pb-40 -mt-12 md:-mt-16">
+        {/* Visibility Mask — Subtle radial shadow behind text */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl aspect-square pointer-events-none bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.5)_0%,transparent_70%)] blur-3xl opacity-70 z-[-1]" />
+        
+        <div className="max-w-4xl pt-20 pb-32 md:pt-24 md:pb-40 -mt-12 md:-mt-16 relative">
+          {/* Subtle Glass Card for Text Legibility */}
+          <div className="absolute inset-0 -inset-x-10 -inset-y-6 bg-white/[0.01] backdrop-blur-[1px] rounded-[4rem] z-[-1] hidden md:block" />
+
           {/* Label */}
           <div
             data-layer="label"
@@ -90,7 +96,7 @@ export default function Hero() {
             data-layer="cta"
             className="flex flex-wrap items-center justify-center gap-6 opacity-0 animate-[fadeUp_0.9s_ease-out_0.8s_forwards]"
           >
-            <Link href="/contact" className="btn-solid px-12 py-4 rounded-full text-sm font-medium">
+            <Link href="/contact" className="btn-solid px-12 py-4 rounded-full text-sm font-medium shadow-2xl shadow-black/20">
               Start a Project
             </Link>
             <Link href="/services" className="btn-ghost group flex items-center gap-2 text-sm font-medium">

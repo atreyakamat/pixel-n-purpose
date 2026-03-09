@@ -138,8 +138,17 @@ export default function AboutPage() {
         </section>
 
         {/* ── Narrative 2 — charcoal background ── */}
-        <section data-layer="narrative-2" className="section-charcoal py-24 md:py-32">
-          <div className="container">
+        <section data-layer="narrative-2" className="section-charcoal py-24 md:py-32 relative overflow-hidden">
+          {/* Translucent Background Image */}
+          <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-luminosity">
+            <OptimizedImage 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop"
+              alt="High impact architecture"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          <div className="container relative z-10">
             <ScrollReveal threshold={0.1}>
               <div className="max-w-3xl mx-auto text-center">
                 <div className="flex items-center justify-center gap-4 mb-10">
@@ -205,8 +214,17 @@ export default function AboutPage() {
         </section>
 
         {/* ── Methodology ── */}
-        <section data-layer="methodology" className="section-charcoal py-24 md:py-36">
-          <div className="container">
+        <section data-layer="methodology" className="section-charcoal py-24 md:py-36 relative overflow-hidden">
+          {/* Translucent Background Image */}
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay">
+            <OptimizedImage 
+              src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=2000&auto=format&fit=crop"
+              alt="Strategic process texture"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="container relative z-10">
             <ScrollReveal>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-8 h-px bg-ink-ghost" />

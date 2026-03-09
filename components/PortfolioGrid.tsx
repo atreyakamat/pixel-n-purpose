@@ -10,7 +10,7 @@ const PROJECTS = [
         number: '001', 
         category: 'Website Design', 
         label: 'Minimal Commerce Platform',
-        image: 'https://images.unsplash.com/photo-1517336712691-4c5143d1f344?q=80&w=1000&auto=format&fit=crop' // MacBook Mockup
+        image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1000&auto=format&fit=crop' // MacBook Mockup
     },
     { 
         number: '002', 
