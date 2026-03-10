@@ -71,14 +71,6 @@ export default function Hero() {
           {/* Subtle Glass Card for Text Legibility */}
           <div className="absolute inset-0 -inset-x-10 -inset-y-6 bg-white/[0.01] backdrop-blur-[1px] rounded-[4rem] z-[-1] hidden md:block" />
 
-          {/* Label */}
-          <div
-            data-layer="label"
-            className="caps text-ink-ghost mb-10 opacity-0 animate-[fadeUp_0.7s_ease-out_0.2s_forwards] font-accent tracking-[0.3em] text-[11px]"
-          >
-            Global Creative Studio · Est. 2025
-          </div>
-
           {/* Headline */}
           <h1
             data-layer="headline"
