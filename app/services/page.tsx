@@ -46,7 +46,7 @@ const SERVICES = [
         number: '03',
         name: 'Packaging Design',
         tagline: 'Shelves won at first sight.',
-        image: 'https://images.unsplash.com/photo-1584184924103-e310d9dc85fc?q=80&w=1000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?q=80&w=1000&auto=format&fit=crop',
         description:
             'Packaging is the first moment of physical brand contact. We design packaging that earns attention without shouting — structured, honest, and memorable. From concept to print-ready files with material guidance.',
         includes: [

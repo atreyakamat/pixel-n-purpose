@@ -94,7 +94,7 @@ All with appropriate change frequencies.
 3. **Local**: Goa & Jaipur specific campaigns
 
 ### Keyword Focus:
-- **Brand Keywords**: Pixel N Purpose, Pixpur Design House
+- **Brand Keywords**: Pixel & Purpose, Pixpur Design House
 - **Service Keywords**: Creative branding, social-first marketing, brand storytelling
 - **Location Keywords**: Marketing agency Goa, Marketing agency Jaipur
 - **Industry Keywords**: Luxury brand marketing, startup branding
@@ -108,7 +108,7 @@ All with appropriate change frequencies.
 ```json
 {
   "@type": "Organization",
-  "name": "Pixel 'N' Purpose by Pixpur Design House",
+  "name": "Pixel & Purpose by Pixpur Design House",
   "url": "https://pixelnpurpose.com",
   "contactPoint": { ... },
   "address": [Goa, Jaipur],
@@ -120,7 +120,7 @@ All with appropriate change frequencies.
 ```json
 {
   "@type": "LocalBusiness",
-  "name": "Pixel 'N' Purpose (Goa/Jaipur)",
+  "name": "Pixel & Purpose (Goa/Jaipur)",
   "address": { ... },
   "geo": { ... },
   "openingHours": "Mo-Fr 09:00-18:00"
@@ -131,7 +131,7 @@ All with appropriate change frequencies.
 ```json
 {
   "@type": "WebSite",
-  "name": "Pixel 'N' Purpose",
+  "name": "Pixel & Purpose",
   "url": "https://pixelnpurpose.com",
   "potentialAction": { "SearchAction": ... }
 }

@@ -27,7 +27,7 @@ const SERVICES = [
         description: 'Packaging that earns shelf space and builds brand trust at first sight.',
         detail: 'Structure · Print · Materials · Storytelling',
         href: '/services#packaging',
-        image: 'https://images.unsplash.com/photo-1589939705384-5185138a047a?q=80&w=300&auto=format&fit=crop'
+        image: 'https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?q=80&w=300&auto=format&fit=crop'
     },
     {
         number: '04',

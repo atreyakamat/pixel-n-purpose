@@ -67,7 +67,7 @@ export default function Hero() {
         {/* Visibility Mask — Subtle radial shadow behind text */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl aspect-square pointer-events-none bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.5)_0%,transparent_70%)] blur-3xl opacity-70 z-[-1]" />
         
-        <div className="max-w-4xl pt-20 pb-32 md:pt-24 md:pb-40 -mt-12 md:-mt-16 relative">
+        <div className="max-w-4xl pt-32 pb-32 md:pt-40 md:pb-48 relative">
           {/* Subtle Glass Card for Text Legibility */}
           <div className="absolute inset-0 -inset-x-10 -inset-y-6 bg-white/[0.01] backdrop-blur-[1px] rounded-[4rem] z-[-1] hidden md:block" />
 

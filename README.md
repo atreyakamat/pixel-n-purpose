@@ -1,4 +1,4 @@
-# Pixel N Purpose - Luxury Social Media Agency Website
+# Pixel & Purpose - Luxury Social Media Agency Website
 
 A minimal, editorial single-page website built with Next.js for a boutique social media agency targeting luxury brands.
 

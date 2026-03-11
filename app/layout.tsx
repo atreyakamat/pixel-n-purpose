@@ -28,13 +28,13 @@ const minipax = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Pixel 'N' Purpose — Global Creative Studio",
+  title: "Pixel & Purpose — Global Creative Studio",
   description: "A global creative studio crafting Websites, Portfolios, Packaging, and Photography that build lasting meaning. Design with clarity, structure, and intent.",
   metadataBase: new URL("https://pixelnpurpose.com"),
   keywords: ["website design", "portfolio design", "packaging design", "photography", "creative studio", "brand identity", "global design studio"],
-  authors: [{ name: "Pixel 'N' Purpose" }],
-  creator: "Pixel 'N' Purpose",
-  publisher: "Pixel 'N' Purpose",
+  authors: [{ name: "Pixel & Purpose" }],
+  creator: "Pixel & Purpose",
+  publisher: "Pixel & Purpose",
   robots: {
     index: true,
     follow: true,
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pixel 'N' Purpose — Global Creative Studio",
+    title: "Pixel & Purpose — Global Creative Studio",
     description: "Websites. Portfolios. Packaging. Photography. Design that means something.",
     url: "https://pixelnpurpose.com",
-    siteName: "Pixel 'N' Purpose",
+    siteName: "Pixel & Purpose",
     locale: "en_US",
     type: "website",
     images: [
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Pixel 'N' Purpose — Global Creative Studio",
+        alt: "Pixel & Purpose — Global Creative Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pixel 'N' Purpose — Global Creative Studio",
+    title: "Pixel & Purpose — Global Creative Studio",
     description: "Websites. Portfolios. Packaging. Photography. Design that means something.",
     images: ["/og-image.jpg"],
   },

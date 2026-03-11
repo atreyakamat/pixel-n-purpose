@@ -37,7 +37,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-12 mb-16">
           {/* Brand */}
           <div className="flex flex-col gap-4 max-w-xs">
-            <img src="/PNP-white.png" alt="Pixel 'N' Purpose" className="h-10 w-auto object-contain object-left" width={120} height={40} />
+            <img src="/PNP-white.png" alt="Pixel & Purpose" className="h-10 w-auto object-contain object-left" width={120} height={40} />
             <p className="text-sm text-ink-dim leading-relaxed">
               A global creative studio. Websites. Portfolios. Packaging. Photography.
             </p>
@@ -82,7 +82,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-ink-rule flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-ink-ghost">
-            © {new Date().getFullYear()} Pixel 'N' Purpose by Pixpur Design House. All rights reserved.
+            © {new Date().getFullYear()} Pixel & Purpose by Pixpur Design House. All rights reserved.
           </p>
           <p className="text-xs text-ink-ghost font-accent">
             PIXELNPURPOSE.COM

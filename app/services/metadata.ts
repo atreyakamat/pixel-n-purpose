@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Services — Pixel 'N' Purpose",
+    title: "Services — Pixel & Purpose",
     description: "Website Design, Portfolio Design, Packaging Design, and Photography services from a global creative studio. Each project built with intent.",
 };
+

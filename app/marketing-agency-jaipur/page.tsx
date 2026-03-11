@@ -32,7 +32,7 @@ export default function MarketingAgencyJaipur() {
                 Your Creative Marketing Partner in Jaipur
               </h1>
               <p className="text-xl md:text-2xl text-ink/80 mb-8 leading-relaxed">
-                Pixel 'N' Purpose brings strategic branding, social-first campaigns, and digital marketing expertise to businesses across Jaipur's vibrant market.
+                Pixel & Purpose brings strategic branding, social-first campaigns, and digital marketing expertise to businesses across Jaipur's vibrant market.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
@@ -104,7 +104,7 @@ export default function MarketingAgencyJaipur() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mb-8 text-center">
-                Why Jaipur Businesses Choose Pixel 'N' Purpose
+                Why Jaipur Businesses Choose Pixel & Purpose
               </h2>
               <div className="space-y-6">
                 <div className="bg-white p-6 rounded-xl border border-line">

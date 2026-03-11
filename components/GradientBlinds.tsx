@@ -192,13 +192,16 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
   float d = length(uv0 - offset);
   float r = max(uSpotlightRadius, 1e-4);
   float dn = d / r;
+  
+  // Refined spotlight math for better visibility
   float spot = (1.0 - clamp(pow(dn, uSpotlightSoftness), 0.0, 1.0)) * uSpotlightOpacity;
   vec3 cir = vec3(spot);
+  
   float stripe = fract(uvMod.x * max(uBlindCount, 1.0));
   if (uShineFlip > 0.5) stripe = 1.0 - stripe;
-    vec3 ran = vec3(stripe);
+    vec3 ran = vec3(stripe * 0.5); // Reduce stripe intensity to let gradient show through
 
-    vec3 col = cir + base - ran;
+    vec3 col = base + cir - ran;
     col += (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise;
 
     fragColor = vec4(col, 1.0);
@@ -287,7 +290,6 @@ void main() {
         uniforms.iMouse.value = [x, y];
       }
     };
-    // Listen on window to catch events even when content overlays the background
     window.addEventListener('pointermove', onPointerMove);
 
     const loop = (t: number) => {
@@ -360,6 +362,10 @@ void main() {
       ref={containerRef}
       className={`gradient-blinds-container ${className}`}
       style={{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        inset: 0,
         ...(mixBlendMode && {
           mixBlendMode: mixBlendMode
         })

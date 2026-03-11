@@ -11,7 +11,7 @@ export default function Philosophy() {
             className="section-charcoal py-32 md:py-48 overflow-hidden relative"
         >
             {/* Relatable Translucent Background Image */}
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-luminosity">
+            <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-luminosity">
                 <OptimizedImage 
                     src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=2000&auto=format&fit=crop"
                     alt="Structural minimalist architecture"
@@ -43,7 +43,7 @@ export default function Philosophy() {
                         </p>
                         <div className="mt-12 flex items-center justify-center gap-4">
                             <div className="h-px w-12 bg-ink-rule" />
-                            <span className="caps text-ink-ghost">Pixel 'N' Purpose</span>
+                            <span className="caps text-ink-ghost">Pixel & Purpose</span>
                             <div className="h-px w-12 bg-ink-rule" />
                         </div>
                     </div>
@@ -52,3 +52,4 @@ export default function Philosophy() {
         </section>
     );
 }
+

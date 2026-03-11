@@ -92,7 +92,7 @@ export default function AboutPage() {
                     data-layer="body"
                     className="text-ink-dim text-lg leading-relaxed mt-8 max-w-lg"
                   >
-                    Pixel 'N' Purpose is a global creative studio that treats every brief as a question worth answering with care.
+                    Pixel & Purpose is a global creative studio that treats every brief as a question worth answering with care.
                   </p>
                 </div>
               </div>
@@ -107,8 +107,8 @@ export default function AboutPage() {
               <ScrollReveal threshold={0.1}>
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                   <OptimizedImage 
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop"
-                    alt="Collaborative creative environment"
+                    src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=1000&auto=format&fit=crop"
+                    alt="Subtle minimalist creative environment"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 noise-overlay opacity-[0.05]" />
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 <ScrollReveal delay={200} threshold={0.1}>
                   <div className="flex flex-col gap-6 text-ink-dim text-base leading-relaxed">
                     <p>
-                      Pixel 'N' Purpose began as a creative studio that wanted to challenge the usual playbook. No jargon, no fluff — just work that's sharp, human, and built to last.
+                      Pixel & Purpose began as a creative studio that wanted to challenge the usual playbook. No jargon, no fluff — just work that's sharp, human, and built to last.
                     </p>
                     <p>
                       We are a place where design, storytelling, and strategy converge. Where intentional people do their best work and help brands say something real.

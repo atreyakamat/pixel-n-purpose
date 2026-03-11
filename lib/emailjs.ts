@@ -15,13 +15,14 @@
  *        NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxxxxxx
  *
  * ── Recommended EmailJS Template ──────────────────────────────────────
- * Subject:  New Inquiry from {{from_name}} — Pixel 'N' Purpose
+ * Subject:  New Inquiry from {{from_name}} — Pixel & Purpose
  *
  * Body:
  *   You have a new project inquiry from pixelnpurpose.com
  *
  *   Name:             {{from_name}}
- *   Email:            {{from_email}}
+...
+
  *   Service Interest: {{service_interest}}
  *
  *   Message:

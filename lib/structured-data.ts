@@ -3,8 +3,8 @@
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Pixel 'N' Purpose by Pixpur Design House",
-  "alternateName": "Pixel N Purpose",
+  "name": "Pixel & Purpose by Pixpur Design House",
+  "alternateName": "Pixel & Purpose",
   "url": "https://pixelnpurpose.com",
   "logo": "https://pixelnpurpose.com/PNP-white.png",
   "description": "Creative marketing and branding agency specializing in brand storytelling, social-first campaigns, and digital marketing for startups and luxury brands.",
@@ -38,7 +38,7 @@ export const organizationSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Pixel 'N' Purpose",
+  "name": "Pixel & Purpose",
   "url": "https://pixelnpurpose.com",
   "description": "Creative marketing and branding agency for startups and luxury brands",
   "publisher": {
@@ -55,7 +55,7 @@ export const websiteSchema = {
 export const localBusinessGoaSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Pixel 'N' Purpose (Goa)",
+  "name": "Pixel & Purpose (Goa)",
   "image": "https://pixelnpurpose.com/PNP-white.png",
   "@id": "https://pixelnpurpose.com/marketing-agency-goa",
   "url": "https://pixelnpurpose.com/marketing-agency-goa",
@@ -90,7 +90,7 @@ export const localBusinessGoaSchema = {
 export const localBusinessJaipurSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Pixel 'N' Purpose (Jaipur)",
+  "name": "Pixel & Purpose (Jaipur)",
   "image": "https://pixelnpurpose.com/PNP-white.png",
   "@id": "https://pixelnpurpose.com/marketing-agency-jaipur",
   "url": "https://pixelnpurpose.com/marketing-agency-jaipur",

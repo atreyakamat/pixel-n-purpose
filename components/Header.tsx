@@ -82,24 +82,24 @@ export default function Header({ isHomePage = false }: HeaderProps) {
         role="banner"
       >
         <div 
-          className={`flex items-center gap-8 px-6 py-3 rounded-full border transition-all duration-500 ${
+          className={`flex items-center gap-12 px-10 py-5 rounded-full border transition-all duration-500 ${
             scrolled 
-              ? 'bg-black/90 backdrop-blur-2xl border-white/10 shadow-2xl' 
-              : 'bg-black/40 backdrop-blur-xl border-white/5'
+              ? 'bg-black/93 backdrop-blur-2xl border-white/10 shadow-2xl' 
+              : 'bg-black/43 backdrop-blur-xl border-white/5'
           }`}
         >
           {/* Logo */}
           <Link 
             href="/" 
-            aria-label="Pixel 'N' Purpose — Home" 
-            className="flex items-center transition-transform duration-500 hover:scale-105 pr-4 border-r border-white/10"
+            aria-label="Pixel & Purpose — Home" 
+            className="flex items-center transition-transform duration-500 hover:scale-105 pr-8 border-r border-white/10"
           >
             <img
               src="/PNP-white.png"
-              alt="Pixel 'N' Purpose"
-              className="h-7 w-auto object-contain brightness-110 drop-shadow-sm"
-              width={90}
-              height={30}
+              alt="Pixel & Purpose"
+              className="h-10 w-auto object-contain brightness-110 drop-shadow-md"
+              width={130}
+              height={42}
             />
           </Link>
 
