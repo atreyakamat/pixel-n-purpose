@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useScroll, useTransform, useSpring, motion, useMotionValue, useMotionValueEvent } from 'motion/react';
 import { cn } from '@/lib/utils';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface CinematicSceneProps {
   id: string;
@@ -159,6 +160,18 @@ export default function CinematicScene({ id, frames, title, subtitle, content, i
                   <p className="text-sm text-white/40 leading-relaxed max-w-sm">
                     {content.description.split('.').slice(1).join('.')}
                   </p>
+                  {content.image && (
+                    <div className="mt-12 w-full aspect-[4/3] rounded-sm overflow-hidden border border-white/10 relative group">
+                      <OptimizedImage 
+                        src={content.image} 
+                        alt={`${title} featured work`}
+                        className="w-full h-full"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <span className="text-[10px] tracking-[0.4em] uppercase text-white font-bold">View Project_</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 pointer-events-auto">

@@ -21,6 +21,7 @@ export const SCENES = [
     title: "Websites",
     subtitle: "Structured Digital Architecture",
     content: {
+      image: "/images/image1.jpeg",
       description: "We build digital ecosystems that breathe with your brand. High-performance, SEO-first, and visually uncompromising.",
       cards: [
         { title: "E-Commerce", text: "Luxury shopping experiences that convert through elegance." },
@@ -38,6 +39,7 @@ export const SCENES = [
     title: "Portfolios",
     subtitle: "Expressive Creative Showcases",
     content: {
+      image: "/images/image2.png",
       description: "Our portfolio designs are digital gallery spaces. We focus on the work, ensuring that every interaction adds value to the visual narrative.",
       cards: [
         { title: "Visual Storytelling", text: "Motion-first layouts that guide the viewer." },
