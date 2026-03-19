@@ -12,7 +12,8 @@ const SERVICES = [
         number: '01',
         name: 'Website Design',
         tagline: 'Digital presence that converts.',
-        image: '/images/image1.jpeg',
+        image: '/images/website-design.png',
+        bgImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2000&auto=format&fit=crop',
         description:
             'We design websites that function as your most important business asset. Every pixel is intentional, every interaction purposeful. From strategy to launch, we build fast, beautiful, and conversion-optimized digital experiences.',
         includes: [
@@ -29,7 +30,8 @@ const SERVICES = [
         number: '02',
         name: 'Portfolio Design',
         tagline: 'Work that speaks before you do.',
-        image: '/images/image2.png',
+        image: '/images/portfolio-design.jpg',
+        bgImage: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2000&auto=format&fit=crop',
         description:
             "A great portfolio isn't just a gallery — it's a curated narrative. We design portfolios that make the right people stop, look, and reach out. Built for creatives, architects, photographers, and professionals who want to be taken seriously.",
         includes: [
@@ -47,6 +49,7 @@ const SERVICES = [
         name: 'Packaging Design',
         tagline: 'Shelves won at first sight.',
         image: 'https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?q=80&w=1000&auto=format&fit=crop',
+        bgImage: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2000&auto=format&fit=crop',
         description:
             'Packaging is the first moment of physical brand contact. We design packaging that earns attention without shouting — structured, honest, and memorable. From concept to print-ready files with material guidance.',
         includes: [
@@ -64,6 +67,7 @@ const SERVICES = [
         name: 'Photography',
         tagline: 'Images that sell ideas.',
         image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=1000&auto=format&fit=crop',
+        bgImage: 'https://images.unsplash.com/photo-1493723843671-1d655e8d71c2?q=80&w=2000&auto=format&fit=crop',
         description:
             'We create brand photography that transforms products and spaces into visual stories. Calm, intentional, and editorial — our imagery works across digital and print, building consistent brand perception.',
         includes: [
@@ -100,18 +104,28 @@ export default function ServicesClient() {
                             </div>
                         </ScrollReveal>
                         <ScrollReveal delay={200}>
-                            <div className="glass-subtle rounded-3xl p-10 md:p-16 max-w-4xl">
-                                <h1
-                                    className="font-display font-bold text-ink leading-[1.03]"
-                                    style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', letterSpacing: '-0.025em' }}
-                                >
-                                    Four disciplines.
-                                    <br />
-                                    <em className="not-italic text-ink-dim">One standard.</em>
-                                </h1>
-                                <p className="text-ink-dim text-lg leading-relaxed mt-8 max-w-xl">
-                                    Website Design, Portfolio Design, Packaging, and Photography — each service delivered with the same exacting level of craft and intent.
-                                </p>
+                            <div className="glass-subtle rounded-3xl p-10 md:p-16 max-w-4xl relative overflow-hidden group">
+                                {/* Relatable Background Image */}
+                                <div className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-luminosity transition-transform duration-1000 group-hover:scale-110">
+                                    <OptimizedImage 
+                                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop"
+                                        alt="Global digital network connectivity"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="relative z-10">
+                                    <h1
+                                        className="font-display font-bold text-ink leading-[1.03]"
+                                        style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', letterSpacing: '-0.025em' }}
+                                    >
+                                        Four disciplines.
+                                        <br />
+                                        <em className="not-italic text-ink-dim">One standard.</em>
+                                    </h1>
+                                    <p className="text-ink-dim text-lg leading-relaxed mt-8 max-w-xl">
+                                        Website Design, Portfolio Design, Packaging, and Photography — each service delivered with the same exacting level of craft and intent.
+                                    </p>
+                                </div>
                             </div>
                         </ScrollReveal>
                     </div>
@@ -128,41 +142,52 @@ export default function ServicesClient() {
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                                 {/* Left column */}
                                 <ScrollReveal threshold={0.1} delay={idx % 2 === 0 ? 0 : 200}>
-                                    <div className={idx % 2 === 1 ? 'lg:order-2' : ''}>
-                                        <span className="chapter-number">{service.number}</span>
-                                        <h2
-                                            className="font-display font-bold text-ink mt-4 leading-[1.05]"
-                                            style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', letterSpacing: '-0.02em' }}
-                                        >
-                                            {service.name}
-                                        </h2>
-                                        <p
-                                            className="font-accent text-ink-dim mt-2 caps"
-                                            style={{ letterSpacing: '0.1em' }}
-                                        >
-                                            {service.tagline}
-                                        </p>
-                                        <p className="text-ink-dim text-base leading-relaxed mt-8 max-w-md">
-                                            {service.description}
-                                        </p>
-                                        
-                                        {/* Includes grid */}
-                                        <div className="mt-12">
-                                            <p className="caps text-ink-ghost mb-6">What this includes</p>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                                {service.includes.map((item) => (
-                                                    <div key={item} className="glass-subtle rounded-xl px-4 py-3 flex items-start gap-3 border border-ink-rule/10">
-                                                        <div className="mt-1.5 w-1 h-1 rounded-full bg-ink-ghost flex-shrink-0" />
-                                                        <span className="text-xs text-ink-dim leading-snug">{item}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
+                                    <div className={`relative overflow-hidden group rounded-3xl p-8 md:p-12 glass-subtle ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+                                        {/* Relatable Background Image for each section */}
+                                        <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-luminosity transition-transform duration-1000 group-hover:scale-110">
+                                            <OptimizedImage 
+                                                src={service.bgImage} 
+                                                alt={`${service.name} background`}
+                                                className="w-full h-full object-cover"
+                                            />
                                         </div>
 
-                                        <div className="mt-12">
-                                            <Link href="/contact" className="btn-ghost">
-                                                Get a Quote
-                                            </Link>
+                                        <div className="relative z-10">
+                                            <span className="chapter-number">{service.number}</span>
+                                            <h2
+                                                className="font-display font-bold text-ink mt-4 leading-[1.05]"
+                                                style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', letterSpacing: '-0.02em' }}
+                                            >
+                                                {service.name}
+                                            </h2>
+                                            <p
+                                                className="font-accent text-ink-dim mt-2 caps"
+                                                style={{ letterSpacing: '0.1em' }}
+                                            >
+                                                {service.tagline}
+                                            </p>
+                                            <p className="text-ink-dim text-base leading-relaxed mt-8 max-w-md">
+                                                {service.description}
+                                            </p>
+                                            
+                                            {/* Includes grid */}
+                                            <div className="mt-12">
+                                                <p className="caps text-ink-ghost mb-6">What this includes</p>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                    {service.includes.map((item) => (
+                                                        <div key={item} className="glass-subtle rounded-xl px-4 py-3 flex items-start gap-3 border border-ink-rule/10 bg-white/5">
+                                                            <div className="mt-1.5 w-1 h-1 rounded-full bg-ink-ghost flex-shrink-0" />
+                                                            <span className="text-xs text-ink-dim leading-snug">{item}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-12">
+                                                <Link href="/contact" className="btn-ghost">
+                                                    Get a Quote
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </ScrollReveal>

@@ -71,8 +71,16 @@ export default function AboutPage() {
             <ScrollReveal speed="slow" threshold={0.05}>
               <div
                 data-layer="glass"
-                className="glass-md rounded-3xl px-10 md:px-16 lg:px-20 py-16 md:py-24 max-w-5xl relative overflow-hidden"
+                className="glass-md rounded-3xl px-10 md:px-16 lg:px-20 py-16 md:py-24 max-w-5xl relative overflow-hidden group"
               >
+                {/* Relatable Background Image */}
+                <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-luminosity transition-transform duration-1000 group-hover:scale-110">
+                  <OptimizedImage 
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
+                    alt="Minimalist design studio environment"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="noise-overlay" />
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-10">

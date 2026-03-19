@@ -92,7 +92,7 @@ export default function Header({ isHomePage = false }: HeaderProps) {
           <Link 
             href="/" 
             aria-label="Pixel & Purpose — Home" 
-            className="flex flex-col items-center transition-transform duration-500 hover:scale-105 pr-8 border-r border-white/10"
+            className="flex items-center transition-transform duration-500 hover:scale-105 pr-8 border-r border-white/10"
           >
             <img
               src="/PNP-white.png"
@@ -101,9 +101,6 @@ export default function Header({ isHomePage = false }: HeaderProps) {
               width={180}
               height={56}
             />
-            <span className="text-[7px] tracking-[0.4em] uppercase text-white/40 font-bold mt-1.5 -mb-1">
-              By Pixpur Design House
-            </span>
           </Link>
 
           {/* Desktop Nav */}

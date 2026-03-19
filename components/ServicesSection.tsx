@@ -11,7 +11,7 @@ const SERVICES = [
         description: 'Websites that perform as beautifully as they look — built for speed, clarity, and conversion.',
         detail: 'Strategy · UX/UI · Development · SEO',
         href: '/services#website',
-        image: '/images/image1.jpeg'
+        image: '/images/website-design.png'
     },
     {
         number: '02',
@@ -19,7 +19,7 @@ const SERVICES = [
         description: 'Portfolios that make the right people stop scrolling and start conversations.',
         detail: 'Layout · Typography · Curation · Identity',
         href: '/services#portfolio',
-        image: '/images/image2.png'
+        image: '/images/portfolio-design.jpg'
     },
     {
         number: '03',
