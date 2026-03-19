@@ -43,6 +43,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
     try {
       // EmailJS configuration
@@ -50,33 +51,73 @@ export default function Contact() {
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
       
+      console.log('EmailJS Configuration Check:');
+      console.log('- Service ID:', serviceId ? 'Present' : 'Missing');
+      console.log('- Template ID:', templateId ? 'Present' : 'Missing');
+      console.log('- Public Key:', publicKey ? 'Present' : 'Missing');
+      
       // Check if EmailJS is configured
-      if (!serviceId || !templateId || !publicKey || 
-          serviceId === 'your_service_id_here' || 
-          templateId === 'your_template_id_here' || 
-          publicKey === 'your_public_key_here') {
-        console.error('EmailJS not configured. Please set up your environment variables.');
-        // For now, show success message so the form doesn't break
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', brand: '', message: '' });
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS not configured. Missing environment variables.');
+        alert('Email service is not configured. Please contact the administrator.');
+        setSubmitStatus('error');
+        setIsSubmitting(false);
         return;
       }
       
+      // Initialize EmailJS with public key
+      emailjs.init(publicKey);
+      
+      // Prepare template parameters
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
         brand: formData.brand,
         message: formData.message,
-        to_email: 'hello@pixelnpurpose.com', // Your email address
+        to_email: 'hello@pixelnpurpose.com'
       };
-
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      console.log('Sending email with parameters:', {
+        service: serviceId,
+        template: templateId,
+        params: { ...templateParams, message: templateParams.message.substring(0, 50) + '...' }
+      });
+      
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+      
+      console.log('Email sent successfully!', result);
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', brand: '', message: '' });
+      
+      // Show success message
+      alert('Message sent successfully! We will get back to you soon.');
+      
     } catch (error) {
       console.error('Email sending failed:', error);
+      
+      // Handle EmailJS specific errors
+      if (error && typeof error === 'object') {
+        const errorObj = error as any;
+        console.error('Error status:', errorObj.status || 'unknown');
+        console.error('Error text:', errorObj.text || 'no message');
+        console.error('Full error object:', JSON.stringify(error, null, 2));
+      }
+      
+      if (error instanceof Error) {
+        console.error('Error message:', error.message);
+        console.error('Error stack:', error.stack);
+      }
+      
       setSubmitStatus('error');
+      alert('Failed to send message. Please try again or email us directly at hello@pixelnpurpose.com');
+      
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -286,7 +327,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-white text-sm leading-relaxed">
-                    <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your inquiry. Read our <a href="/privacy-policy" className="text-white hover:text-white underline">Privacy Policy</a> for details.
+                    <strong>Privacy Promise:</strong> We'll never share your information. Your data is secure and used only to respond to your enquiry. Read our <a href="/privacy-policy" className="text-white hover:text-white underline">Privacy Policy</a> for details.
                   </p>
                 </div>
               </div>

@@ -110,12 +110,12 @@ export default function Services({ isHomePage = false }: ServicesProps) {
   return (
     <section id="services" className={`py-16 md:py-24 ${isHomePage ? 'bg-white' : 'bg-panel'}`} role="region" aria-labelledby="services-heading">
       <div className="container">
-        <header data-reveal className="text-center mb-12">
+        <header data-reveal className="text-center mb-12" suppressHydrationWarning>
           <h2 
             id="services-heading"
             className={`font-display text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] ${isHomePage ? 'text-black' : 'text-ink'}`}
           >
-            The Workbench
+            <b>The Workbench</b>
           </h2>
           <p className={`mt-4 max-w-2xl mx-auto ${isHomePage ? 'text-black' : 'text-ink'}`}>
             Elevating luxury brands through strategic social media excellence and premium digital experiences.

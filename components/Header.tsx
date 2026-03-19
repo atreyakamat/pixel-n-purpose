@@ -14,14 +14,15 @@ export default function Header({ isHomePage = false }: HeaderProps) {
   // Track scroll position for smooth header transition and hero detection
   useEffect(() => {
     const handleScroll = () => {
-      const scrollThreshold = 50; // Smooth transition starts after 50px scroll
-      const heroHeight = window.innerHeight; // Assume hero is full viewport height
+      const heroHeight = window.innerHeight; // Full viewport height for hero
+      const scrollPosition = window.scrollY;
       
-      setIsScrolled(window.scrollY > scrollThreshold);
-      
-      // Check if we're still over the hero section
+      // Only change header after scrolling past the entire hero section
       if (isHomePage) {
-        setIsOverHero(window.scrollY < heroHeight - 100); // 100px buffer
+        setIsScrolled(scrollPosition > heroHeight);
+        setIsOverHero(scrollPosition < heroHeight);
+      } else {
+        setIsScrolled(scrollPosition > 50);
       }
     };
 
@@ -41,7 +42,7 @@ export default function Header({ isHomePage = false }: HeaderProps) {
     handleScroll(); // Check initial position
 
     return () => window.removeEventListener('scroll', throttledHandleScroll);
-  }, []);
+  }, [isHomePage]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -206,7 +207,7 @@ export default function Header({ isHomePage = false }: HeaderProps) {
               </li>
               <li>
                 <a
-                  href="/#services"
+                  href="/#brand-showcase"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block w-full text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white hover:text-gray-300 focus:text-gray-300 focus:outline-none rounded-lg transition-all duration-300 py-3 sm:py-6 transform hover:scale-105"
                 >

@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import WebVitals from "@/components/WebVitals";
+import StructuredData from "@/components/StructuredData";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,10 +39,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pixel & Purpose — Social strategy for brands with presence",
+    title: "Pixel ’N’ Purpose | Pixpur Design House",
     description: "We don’t just brand. We build meaning. Creativity with impact, clarity, and purpose.",
     url: "https://pixelnpurpose.com",
-    siteName: "Pixel & Purpose",
+    siteName: "Pixel ’N’ Purpose | Pixpur Design House",
     locale: "en_US",
     type: "website",
     images: [
@@ -85,16 +87,12 @@ export default function RootLayout({
         {/* Preload critical assets */}
         <link rel="preload" href="/fonts/Minipax-Medium-BF64ab72727a6bb.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <link rel="preload" href="/PNP-white.png" as="image" />
-        <link rel="preload" href="/pnp-hero-video.webm" as="video" type="video/webm" />
         
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         
         {/* Favicon and icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         
         {/* Security headers */}
@@ -102,6 +100,7 @@ export default function RootLayout({
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body className="bg-canvas text-ink antialiased font-sans">
+        <StructuredData data={[organizationSchema, websiteSchema]} />
         <noscript>
           <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#F6F5F2', color: '#0B0B0B'}}>
             This website requires JavaScript to function properly. Please enable JavaScript in your browser.
