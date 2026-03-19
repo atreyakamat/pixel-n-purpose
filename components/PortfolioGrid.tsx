@@ -10,7 +10,7 @@ const PROJECTS = [
         number: '001', 
         category: 'Website Design', 
         label: 'Minimal Commerce Platform',
-        image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1000&auto=format&fit=crop' // MacBook Mockup
+        image: '/images/website-design.jpg'
     },
     { 
         number: '002', 
@@ -28,7 +28,7 @@ const PROJECTS = [
         number: '004', 
         category: 'Portfolio', 
         label: 'Creative Director Showcase',
-        image: 'https://images.unsplash.com/photo-1634942537034-2531766767d7?q=80&w=1000&auto=format&fit=crop' // Branding/Portfolio Mockup
+        image: '/images/portfolio-design.png'
     },
     { 
         number: '005', 

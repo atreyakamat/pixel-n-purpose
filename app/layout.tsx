@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Pixel & Purpose" }],
   creator: "Pixel & Purpose",
   publisher: "Pixel & Purpose",
+  icons: {
+    icon: "/pnp-manifest.png",
+    shortcut: "/pnp-manifest.png",
+    apple: "/pnp-manifest.png",
+  },
   robots: {
     index: true,
     follow: true,

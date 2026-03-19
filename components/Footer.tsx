@@ -36,8 +36,13 @@ export default function Footer() {
         {/* Top row: logo + links */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-12 mb-16">
           {/* Brand */}
-          <div className="flex flex-col gap-4 max-w-xs">
-            <img src="/PNP-white.png" alt="Pixel & Purpose" className="h-10 w-auto object-contain object-left" width={120} height={40} />
+          <div className="flex flex-col gap-6 max-w-xs">
+            <div className="flex flex-col gap-3">
+              <img src="/PNP-white.png" alt="Pixel & Purpose" className="h-16 w-auto object-contain object-left" width={200} height={64} />
+              <p className="text-[11px] tracking-[0.4em] uppercase text-ink-ghost font-bold ml-1">
+                By Pixpur Design House
+              </p>
+            </div>
             <p className="text-sm text-ink-dim leading-relaxed">
               A global creative studio. Websites. Portfolios. Packaging. Photography.
             </p>

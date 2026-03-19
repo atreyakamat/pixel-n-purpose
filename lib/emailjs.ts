@@ -10,9 +10,9 @@
  *   3. Create an email template (see template below) → get Template ID
  *   4. Copy your Public Key from Account → API Keys
  *   5. Add to .env.local:
- *        NEXT_PUBLIC_EMAILJS_SERVICE_ID=service_xxxxxxx
- *        NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_xxxxxxx
- *        NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxxxxxx
+ *        NEXT_PUBLIC_EMAILJS_SERVICE_ID=service_31t0n8o
+ *        NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_n32edle
+ *        NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=5oUjsaZQ0kDhDVrm3
  *
  * ── Recommended EmailJS Template ──────────────────────────────────────
  * Subject:  New Inquiry from {{from_name}} — Pixel & Purpose
@@ -48,9 +48,9 @@ export type SendResult =
 
 /** Read EmailJS credentials from env (all must be set). */
 function getConfig(): { serviceId: string; templateId: string; publicKey: string } | null {
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_31t0n8o';
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_n32edle';
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '5oUjsaZQ0kDhDVrm3';
 
     if (!serviceId || !templateId || !publicKey) return null;
     return { serviceId, templateId, publicKey };

@@ -11,6 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: 'https://pixelnpurpose.com/services',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: 'https://pixelnpurpose.com/about',
       lastModified: new Date(),
       changeFrequency: 'monthly',

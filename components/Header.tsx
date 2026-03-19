@@ -82,7 +82,7 @@ export default function Header({ isHomePage = false }: HeaderProps) {
         role="banner"
       >
         <div 
-          className={`flex items-center gap-12 px-10 py-5 rounded-full border transition-all duration-500 ${
+          className={`flex items-center gap-12 px-10 py-3 rounded-full border transition-all duration-500 ${
             scrolled 
               ? 'bg-black/93 backdrop-blur-2xl border-white/10 shadow-2xl' 
               : 'bg-black/43 backdrop-blur-xl border-white/5'
@@ -92,15 +92,18 @@ export default function Header({ isHomePage = false }: HeaderProps) {
           <Link 
             href="/" 
             aria-label="Pixel & Purpose — Home" 
-            className="flex items-center transition-transform duration-500 hover:scale-105 pr-8 border-r border-white/10"
+            className="flex flex-col items-center transition-transform duration-500 hover:scale-105 pr-8 border-r border-white/10"
           >
             <img
               src="/PNP-white.png"
               alt="Pixel & Purpose"
-              className="h-10 w-auto object-contain brightness-110 drop-shadow-md"
-              width={130}
-              height={42}
+              className="h-14 w-auto object-contain brightness-110 drop-shadow-md"
+              width={180}
+              height={56}
             />
+            <span className="text-[7px] tracking-[0.4em] uppercase text-white/40 font-bold mt-1.5 -mb-1">
+              By Pixpur Design House
+            </span>
           </Link>
 
           {/* Desktop Nav */}
