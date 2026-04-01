@@ -48,7 +48,7 @@ const SERVICES = [
         number: '03',
         name: 'Packaging Design',
         tagline: 'Shelves won at first sight.',
-        image: 'https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?q=80&w=1000&auto=format&fit=crop',
+        image: '/grid_images/apparel-1850804.jpg',
         bgImage: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2000&auto=format&fit=crop',
         description:
             'Packaging is the first moment of physical brand contact. We design packaging that earns attention without shouting — structured, honest, and memorable. From concept to print-ready files with material guidance.',
@@ -59,24 +59,6 @@ const SERVICES = [
             'Print-Ready Artwork',
             'Material & Finish Recommendations',
             'Dieline Creation',
-        ],
-    },
-    {
-        id: 'photography',
-        number: '04',
-        name: 'Photography',
-        tagline: 'Images that sell ideas.',
-        image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=1000&auto=format&fit=crop',
-        bgImage: 'https://images.unsplash.com/photo-1493723843671-1d655e8d71c2?q=80&w=2000&auto=format&fit=crop',
-        description:
-            'We create brand photography that transforms products and spaces into visual stories. Calm, intentional, and editorial — our imagery works across digital and print, building consistent brand perception.',
-        includes: [
-            'Product Photography',
-            'Lifestyle & Editorial Shoots',
-            'Atmospheric Brand Imagery',
-            'Post-Processing & Retouching',
-            'Content Calendar Integration',
-            'Licensing Guidance',
         ],
     },
 ];
@@ -118,12 +100,12 @@ export default function ServicesClient() {
                                         className="font-display font-bold text-ink leading-[1.03]"
                                         style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', letterSpacing: '-0.025em' }}
                                     >
-                                        Four disciplines.
+                                        Three disciplines.
                                         <br />
                                         <em className="not-italic text-ink-dim">One standard.</em>
                                     </h1>
                                     <p className="text-ink-dim text-lg leading-relaxed mt-8 max-w-xl">
-                                        Website Design, Portfolio Design, Packaging, and Photography — each service delivered with the same exacting level of craft and intent.
+                                        Website Design, Portfolio Design, and Packaging — each service delivered with the same exacting level of craft and intent.
                                     </p>
                                 </div>
                             </div>

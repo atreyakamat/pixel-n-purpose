@@ -89,7 +89,7 @@ export default function Hero() {
             data-layer="body"
             className="text-ink-dim text-lg md:text-xl leading-relaxed max-w-2xl mb-14 opacity-0 animate-[fadeUp_0.9s_ease-out_0.6s_forwards] mx-auto"
           >
-            Websites, Portfolios, Packaging & Photography — built with clarity, structure, and intent.
+            Websites, Portfolios & Packaging — built with clarity, structure, and intent.
           </p>
 
           {/* CTAs */}

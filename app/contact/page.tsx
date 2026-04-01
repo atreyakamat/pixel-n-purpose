@@ -11,7 +11,6 @@ const SERVICE_OPTIONS = [
   'Website Design',
   'Portfolio Design',
   'Packaging Design',
-  'Photography',
   'Multiple Services',
   'Other / Not sure yet',
 ];

@@ -27,15 +27,7 @@ const SERVICES = [
         description: 'Packaging that earns shelf space and builds brand trust at first sight.',
         detail: 'Structure · Print · Materials · Storytelling',
         href: '/services#packaging',
-        image: 'https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?q=80&w=300&auto=format&fit=crop'
-    },
-    {
-        number: '04',
-        name: 'Photography',
-        description: 'Brand imagery that transforms products and spaces into visual narratives.',
-        detail: 'Product · Editorial · Atmosphere · Retouching',
-        href: '/services#photography',
-        image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=300&auto=format&fit=crop'
+        image: '/grid_images/apparel-1850804.jpg'
     },
 ];
 
@@ -60,7 +52,7 @@ export default function ServicesSection() {
                     {SERVICES.map((service, i) => (
                         <ScrollReveal
                             key={service.number}
-                            delay={[0, 100, 200, 300][i] as 0 | 100 | 200 | 300}
+                            delay={[0, 100, 200][i] as 0 | 100 | 200}
                             threshold={0.1}
                         >
                             <Link

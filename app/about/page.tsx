@@ -172,7 +172,7 @@ export default function AboutPage() {
                   <em className="not-italic text-ink-dim">leave a mark.</em>
                 </p>
                 <p className="text-ink-dim leading-relaxed mt-8 max-w-xl mx-auto">
-                  We work across Websites, Portfolios, Packaging, and Photography — four disciplines that share one requirement: complete creative intention from concept to delivery.
+                  We work across Websites, Portfolios, and Packaging — three disciplines that share one requirement: complete creative intention from concept to delivery.
                 </p>
               </div>
             </ScrollReveal>

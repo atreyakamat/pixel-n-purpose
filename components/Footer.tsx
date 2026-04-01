@@ -44,7 +44,7 @@ export default function Footer() {
               </p>
             </div>
             <p className="text-sm text-ink-dim leading-relaxed">
-              A global creative studio. Websites. Portfolios. Packaging. Photography.
+              A global creative studio. Websites. Portfolios. Packaging.
             </p>
             <div className="flex items-center gap-4 mt-2">
               {SOCIAL_LINKS.map((s) => (

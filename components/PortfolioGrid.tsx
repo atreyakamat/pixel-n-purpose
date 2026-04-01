@@ -9,46 +9,31 @@ const PROJECTS = [
     { 
         number: '001', 
         category: 'Website Design', 
-        label: 'Minimal Commerce Platform',
-        image: '/images/website-design.jpg'
+        label: 'Digital Presence & Platforms',
+        image: '/images/website-design.png',
+        link: '/pdf/website-design.pdf'
     },
     { 
         number: '002', 
-        category: 'Photography', 
-        label: 'Lifestyle Product Series',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop' // Product Mockup
+        category: 'Portfolio Design', 
+        label: 'Creative Showcase Systems',
+        image: '/images/portfolio-design.jpg',
+        link: '/pdf/portfolio-design.pdf'
     },
     { 
         number: '003', 
         category: 'Packaging', 
-        label: 'Artisan Label System',
-        image: 'https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?q=80&w=1000&auto=format&fit=crop' // Apothecary Mockup
-    },
-    { 
-        number: '004', 
-        category: 'Portfolio', 
-        label: 'Creative Director Showcase',
-        image: '/images/portfolio-design.png'
-    },
-    { 
-        number: '005', 
-        category: 'Website Design', 
-        label: 'Architecture Studio Identity',
-        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop' // Tablet/Architecture Mockup
-    },
-    { 
-        number: '006', 
-        category: 'Packaging', 
-        label: 'Luxury Tea Collection',
-        image: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?q=80&w=1000&auto=format&fit=crop' // Tea Packaging Mockup
+        label: 'Artisan Brand Experiences',
+        image: '/grid_images/apparel-1850804.jpg',
+        link: '/pdf/package-design.pdf'
     },
 ];
 
 function ProjectCard({ project, index }: { project: typeof PROJECTS[0], index: number }) {
-    const cardRef = useRef<HTMLDivElement>(null);
+    const cardRef = useRef<HTMLAnchorElement>(null);
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
         if (!cardRef.current) return;
         const rect = cardRef.current.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -62,15 +47,18 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0], index: n
 
     return (
         <ScrollReveal
-            delay={([0, 100, 200, 0, 100, 200][index]) as 0 | 100 | 200}
+            delay={([0, 100, 200][index]) as 0 | 100 | 200}
             threshold={0.05}
         >
-            <div
+            <a 
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 ref={cardRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 data-layer="project-frame"
-                className="group relative aspect-[4/5] bg-charcoal rounded-2xl overflow-hidden border border-white/5 cursor-pointer transition-transform duration-200 ease-out"
+                className="group relative block aspect-[4/5] bg-charcoal rounded-2xl overflow-hidden border border-white/5 cursor-pointer transition-transform duration-200 ease-out"
                 style={{
                     transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
                 }}
@@ -126,7 +114,7 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0], index: n
 
                 {/* Glass shine effect on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-gradient-to-br from-white/5 via-transparent to-transparent" />
-            </div>
+            </a>
         </ScrollReveal>
     );
 }

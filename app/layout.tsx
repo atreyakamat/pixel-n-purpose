@@ -29,9 +29,9 @@ const minipax = localFont({
 
 export const metadata: Metadata = {
   title: "Pixel & Purpose — Global Creative Studio",
-  description: "A global creative studio crafting Websites, Portfolios, Packaging, and Photography that build lasting meaning. Design with clarity, structure, and intent.",
+  description: "A global creative studio crafting Websites, Portfolios, and Packaging that build lasting meaning. Design with clarity, structure, and intent.",
   metadataBase: new URL("https://pixelnpurpose.com"),
-  keywords: ["website design", "portfolio design", "packaging design", "photography", "creative studio", "brand identity", "global design studio"],
+  keywords: ["website design", "portfolio design", "packaging design", "creative studio", "brand identity", "global design studio"],
   authors: [{ name: "Pixel & Purpose" }],
   creator: "Pixel & Purpose",
   publisher: "Pixel & Purpose",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Pixel & Purpose — Global Creative Studio",
-    description: "Websites. Portfolios. Packaging. Photography. Design that means something.",
+    description: "Websites. Portfolios. Packaging. Design that means something.",
     url: "https://pixelnpurpose.com",
     siteName: "Pixel & Purpose",
     locale: "en_US",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Pixel & Purpose — Global Creative Studio",
-    description: "Websites. Portfolios. Packaging. Photography. Design that means something.",
+    description: "Websites. Portfolios. Packaging. Design that means something.",
     images: ["/og-image.jpg"],
   },
   verification: {
