@@ -61,6 +61,24 @@ const SERVICES = [
             'Dieline Creation',
         ],
     },
+    {
+        id: 'photography',
+        number: '04',
+        name: 'Photography',
+        tagline: 'Moments captured with intent.',
+        image: '/grid_images/jewellery-1723638_640.jpg',
+        bgImage: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2000&auto=format&fit=crop',
+        description:
+            'Visual storytelling that translates brand values into high-impact imagery. We specialize in product, lifestyle, and architectural photography that defines a brand\'s aesthetic and builds trust through quality.',
+        includes: [
+            'Product & Still Life Photography',
+            'Lifestyle & Brand Content',
+            'Architectural & Interior Shoots',
+            'Creative Direction & Styling',
+            'Professional Post-Processing',
+            'Asset Management',
+        ],
+    },
 ];
 
 const PROCESS = [
@@ -100,12 +118,12 @@ export default function ServicesClient() {
                                         className="font-display font-bold text-ink leading-[1.03]"
                                         style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)', letterSpacing: '-0.025em' }}
                                     >
-                                        Three disciplines.
+                                        Four disciplines.
                                         <br />
                                         <em className="not-italic text-ink-dim">One standard.</em>
                                     </h1>
                                     <p className="text-ink-dim text-lg leading-relaxed mt-8 max-w-xl">
-                                        Website Design, Portfolio Design, and Packaging — each service delivered with the same exacting level of craft and intent.
+                                        Website Design, Portfolio Design, Packaging, and Photography — each service delivered with the same exacting level of craft and intent.
                                     </p>
                                 </div>
                             </div>

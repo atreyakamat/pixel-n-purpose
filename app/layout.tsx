@@ -110,6 +110,7 @@ export default function RootLayout({
           </div>
         </noscript>
         {children}
+        <CookieConsent />
         <WebVitals />
       </body>
     </html>

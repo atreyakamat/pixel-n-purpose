@@ -10,22 +10,29 @@ const PROJECTS = [
         number: '001', 
         category: 'Website Design', 
         label: 'Digital Presence & Platforms',
-        image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop',
+        image: '/images/website-design.png',
         link: '/pdf/website-design.pdf'
     },
     { 
         number: '002', 
         category: 'Portfolio Design', 
         label: 'Creative Showcase Systems',
-        image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=2000&auto=format&fit=crop',
+        image: '/images/portfolio-design.jpg',
         link: '/pdf/portfolio-design.pdf'
     },
     { 
         number: '003', 
         category: 'Packaging', 
         label: 'Artisan Brand Experiences',
-        image: 'https://images.unsplash.com/photo-1620987278429-ca181541b2b4?q=80&w=2000&auto=format&fit=crop',
+        image: '/grid_images/apparel-1850804.jpg',
         link: '/pdf/package-design.pdf'
+    },
+    { 
+        number: '004', 
+        category: 'Photography', 
+        label: 'Visual Brand Narratives',
+        image: '/grid_images/jewellery-1723638_640.jpg',
+        link: '/services#photography'
     },
 ];
 

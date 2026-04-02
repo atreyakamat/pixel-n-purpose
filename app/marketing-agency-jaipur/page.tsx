@@ -3,49 +3,50 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StructuredData from '@/components/StructuredData';
 import { localBusinessJaipurSchema } from '@/lib/structured-data';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Marketing Agency in Jaipur | Pixel \'N\' Purpose - Creative Branding & Digital Marketing',
-  description: 'Premier creative marketing and branding agency in Jaipur. Specializing in social-first campaigns, brand storytelling, and digital marketing for startups, heritage brands, and local businesses.',
+  title: 'Marketing Agency in Jaipur | Pixel \'N\' Purpose - Brand Strategy & Digital Marketing',
+  description: 'Top creative marketing and branding agency in Jaipur. Specializing in brand storytelling, social-first campaigns, and digital marketing for luxury brands, startups, and heritage businesses.',
   alternates: {
     canonical: 'https://pixelnpurpose.com/marketing-agency-jaipur',
   },
   openGraph: {
     title: 'Marketing Agency in Jaipur | Pixel \'N\' Purpose',
-    description: 'Creative marketing and branding agency serving businesses in Jaipur and beyond.',
+    description: 'Creative marketing and branding agency serving businesses in Jaipur and Rajasthan.',
     url: 'https://pixelnpurpose.com/marketing-agency-jaipur',
   },
 };
 
 export default function MarketingAgencyJaipur() {
   return (
-    <div className="relative flex size-full min-h-screen flex-col bg-white">
+    <div className="relative flex size-full min-h-screen flex-col bg-canvas text-ink">
       <StructuredData data={localBusinessJaipurSchema} />
       <Header isHomePage={false} />
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-canvas to-panel py-20 md:py-32">
+        <section className="section-canvas py-20 md:py-32 border-b border-ink-rule">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-ink mb-6">
-                Your Creative Marketing Partner in Jaipur
+                Your Strategic Marketing Partner in Jaipur
               </h1>
-              <p className="text-xl md:text-2xl text-ink/80 mb-8 leading-relaxed">
-                Pixel & Purpose brings strategic branding, social-first campaigns, and digital marketing expertise to businesses across Jaipur's vibrant market.
+              <p className="text-xl md:text-2xl text-ink-dim mb-8 leading-relaxed">
+                Pixel & Purpose brings brand storytelling, social-first campaigns, and digital marketing expertise to heritage and modern businesses across Jaipur.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
+                <Link 
                   href="/contact" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-ink text-canvas font-bold rounded-lg hover:bg-ink/90 transition-all duration-200"
+                  className="btn-solid"
                 >
                   Get Started
-                </a>
+                </Link>
                 <a 
-                  href="tel:+91XXXXXXXXXX" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-ink font-bold rounded-lg border-2 border-ink hover:bg-ink hover:text-white transition-all duration-200"
+                  href="mailto:hello@pixelnpurpose.com" 
+                  className="btn-ghost"
                 >
-                  Call Us Now
+                  Contact Us
                 </a>
               </div>
             </div>
@@ -53,7 +54,7 @@ export default function MarketingAgencyJaipur() {
         </section>
 
         {/* Services Section */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 section-surface">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mb-12 text-center">
@@ -62,36 +63,36 @@ export default function MarketingAgencyJaipur() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   {
-                    title: 'Brand Identity & Design',
-                    description: 'Create memorable brand identities that honor Jaipur\'s heritage while embracing modern aesthetics.'
+                    title: 'Brand Storytelling',
+                    description: 'Capture the heritage and modern essence of your Jaipur-based brand through compelling narratives.'
                   },
                   {
-                    title: 'Social Media Marketing',
-                    description: 'Social-first campaigns that engage local audiences and showcase your brand\'s unique story.'
+                    title: 'Social Media Management',
+                    description: 'Strategic social media campaigns that engage audiences and build brand loyalty for your business.'
                   },
                   {
-                    title: 'Digital Marketing',
-                    description: 'Comprehensive digital strategies including SEO, PPC, and content marketing for Jaipur businesses.'
+                    title: 'Performance Marketing',
+                    description: 'Data-driven digital marketing strategies including SEO and PPC tailored for the Jaipur market.'
+                  },
+                  {
+                    title: 'Creative Design',
+                    description: 'Premium visual identity and design assets that make your brand stand out in Rajasthan.'
                   },
                   {
                     title: 'E-commerce Solutions',
-                    description: 'Build and grow your online presence with optimized e-commerce strategies and platforms.'
+                    description: 'Optimized digital experiences for Jaipur\'s thriving retail and artisan businesses.'
                   },
                   {
-                    title: 'Content Creation',
-                    description: 'High-quality visual content that captures Jaipur\'s vibrant culture and your brand essence.'
-                  },
-                  {
-                    title: 'Marketing Consulting',
-                    description: 'Strategic guidance to help traditional businesses transition to modern marketing approaches.'
+                    title: 'Marketing Advisory',
+                    description: 'Strategic consulting to help heritage brands transition and thrive in the digital age.'
                   },
                 ].map((service, index) => (
                   <div 
                     key={index}
-                    className="p-6 rounded-xl bg-panel border border-line hover:border-ink/30 transition-all duration-300"
+                    className="p-8 rounded-2xl glass-subtle border border-ink-rule hover:border-ink-ghost transition-all duration-300"
                   >
                     <h3 className="font-display text-xl font-bold text-ink mb-3">{service.title}</h3>
-                    <p className="text-ink/70 leading-relaxed">{service.description}</p>
+                    <p className="text-ink-dim leading-relaxed text-sm">{service.description}</p>
                   </div>
                 ))}
               </div>
@@ -100,110 +101,53 @@ export default function MarketingAgencyJaipur() {
         </section>
 
         {/* Why Choose Us in Jaipur */}
-        <section className="py-16 md:py-24 bg-canvas">
+        <section className="py-16 md:py-24 section-charcoal">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mb-8 text-center">
-                Why Jaipur Businesses Choose Pixel & Purpose
+                Why Jaipur Businesses Partner with Us
               </h2>
               <div className="space-y-6">
-                <div className="bg-white p-6 rounded-xl border border-line">
-                  <h3 className="font-display text-xl font-bold text-ink mb-3">Heritage Meets Innovation</h3>
-                  <p className="text-ink/70 leading-relaxed">
-                    We understand Jaipur's unique blend of tradition and modernity. Our strategies honor cultural heritage while leveraging cutting-edge digital marketing techniques.
+                <div className="glass p-8 border border-ink-rule">
+                  <h3 className="font-display text-xl font-bold text-ink mb-3">Heritage & Modernity</h3>
+                  <p className="text-ink-dim leading-relaxed">
+                    We understand the balance between Jaipur's rich heritage and the needs of a modern digital audience. Our strategies respect tradition while driving innovation.
                   </p>
                 </div>
-                <div className="bg-white p-6 rounded-xl border border-line">
-                  <h3 className="font-display text-xl font-bold text-ink mb-3">Proven Growth Results</h3>
-                  <p className="text-ink/70 leading-relaxed">
-                    We've helped Jaipur businesses scale their online presence, increase customer acquisition by 200%, and build strong brand recognition through strategic campaigns.
+                <div className="glass p-8 border border-ink-rule">
+                  <h3 className="font-display text-xl font-bold text-ink mb-3">Creative Excellence</h3>
+                  <p className="text-ink-dim leading-relaxed">
+                    Our team brings a premium aesthetic and strategic thinking to every project, ensuring your brand stands out in Jaipur's vibrant business community.
                   </p>
                 </div>
-                <div className="bg-white p-6 rounded-xl border border-line">
-                  <h3 className="font-display text-xl font-bold text-ink mb-3">Local Insights, Global Standards</h3>
-                  <p className="text-ink/70 leading-relaxed">
-                    Our team combines deep understanding of Jaipur's market dynamics with international marketing best practices to deliver exceptional results.
+                <div className="glass p-8 border border-ink-rule">
+                  <h3 className="font-display text-xl font-bold text-ink mb-3">Growth Focused</h3>
+                  <p className="text-ink-dim leading-relaxed">
+                    We're not just about looks. We're about results. We help Jaipur businesses expand their reach and grow their impact through effective digital marketing.
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Industries We Serve */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mb-12 text-center">
-                Industries We Serve in Jaipur
-              </h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  'Jewelry & Gems',
-                  'Textiles & Fashion',
-                  'Handicrafts & Art',
-                  'Hospitality & Hotels',
-                  'Real Estate',
-                  'Retail & E-commerce',
-                  'Healthcare & Wellness',
-                  'Education & Training'
-                ].map((industry, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center gap-3 p-4 rounded-lg bg-panel border border-line"
-                  >
-                    <svg className="w-6 h-6 text-ink flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-medium text-ink">{industry}</span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section className="py-16 md:py-24 bg-ink text-white">
+        <section className="py-16 md:py-24 section-canvas border-t border-ink-rule">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-                Ready to Transform Your Brand in Jaipur?
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-ink mb-6">
+                Ready to Grow Your Brand in Jaipur?
               </h2>
-              <p className="text-xl text-white/80 mb-8 leading-relaxed">
-                Let's discuss how we can help your business thrive with strategic marketing and creative excellence.
+              <p className="text-xl text-ink-dim mb-12 leading-relaxed">
+                Let's discuss how we can help your business thrive with strategic marketing and creative campaigns.
               </p>
               
-              {/* Contact Information */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-8">
-                <div className="grid md:grid-cols-2 gap-6 text-left">
-                  <div>
-                    <h3 className="font-display text-lg font-bold mb-3">Email Us</h3>
-                    <a 
-                      href="mailto:hello@pixelnpurpose.com" 
-                      className="text-white/90 hover:text-white transition-colors"
-                    >
-                      hello@pixelnpurpose.com
-                    </a>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold mb-3">Call Us</h3>
-                    <a 
-                      href="tel:+91XXXXXXXXXX" 
-                      className="text-white/90 hover:text-white transition-colors"
-                    >
-                      +91-XXXXXXXXXX
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <a 
+              <Link 
                 href="/contact" 
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-ink font-bold rounded-lg hover:bg-white/90 transition-all duration-200"
+                className="btn-solid"
               >
-                Book a Free Consultation
-              </a>
+                Start a Conversation
+              </Link>
             </div>
           </div>
         </section>

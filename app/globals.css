@@ -15,16 +15,6 @@
 ── */
 
 
-/* ── Local Font: Minipax ── */
-@font-face {
-  font-family: 'Minipax';
-  src: url('/fonts/Minipax-Medium-BF64ab72727a6bb.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'calt' 1;
-}
-
 /* ── Design Tokens ── */
 :root {
   /* Canvas layers */
@@ -105,9 +95,9 @@
   --color-ink-ghost: var(--ink-ghost);
   --color-ink-rule: var(--ink-rule);
 
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-accent: 'Minipax', sans-serif;
-  --font-sans: var(--font-sans);
+  --font-display: var(--font-display), Georgia, serif;
+  --font-accent: var(--font-accent), sans-serif;
+  --font-sans: var(--font-sans), Inter, system-ui, sans-serif;
 }
 
 @theme inline {
@@ -131,7 +121,7 @@ html {
 body {
   background-color: var(--canvas);
   color: var(--ink);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

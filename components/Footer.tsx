@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 const NAV_LINKS = [
   { label: 'Services', href: '/services' },
   { label: 'About', href: '/about' },
@@ -66,9 +68,9 @@ export default function Footer() {
           <nav aria-label="Footer navigation" className="flex flex-col gap-3">
             <p className="caps text-ink-ghost mb-2">Navigate</p>
             {NAV_LINKS.map((link) => (
-              <a key={link.href} href={link.href} className="link-line text-sm text-ink-dim">
+              <Link key={link.href} href={link.href} className="link-line text-sm text-ink-dim">
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -78,9 +80,9 @@ export default function Footer() {
             <a href="mailto:hello@pixelnpurpose.com" className="link-line text-sm text-ink-dim">
               hello@pixelnpurpose.com
             </a>
-            <a href="/contact" className="btn-ghost text-xs inline-block mt-4 w-fit">
+            <Link href="/contact" className="btn-ghost text-xs inline-block mt-4 w-fit">
               Start a project →
-            </a>
+            </Link>
           </div>
         </div>
 

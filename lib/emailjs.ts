@@ -52,6 +52,10 @@ function getConfig(): { serviceId: string; templateId: string; publicKey: string
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_n32edle';
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '5oUjsaZQ0kDhDVrm3';
 
+    if (process.env.NODE_ENV === 'development' && (!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)) {
+        console.warn('[EmailJS] One or more environment variables are missing. Using hardcoded fallbacks.');
+    }
+
     if (!serviceId || !templateId || !publicKey) return null;
     return { serviceId, templateId, publicKey };
 }

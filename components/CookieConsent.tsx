@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false)
@@ -33,12 +34,12 @@ export default function CookieConsent() {
             <p className="text-sm leading-relaxed">
               We use cookies to enhance your browsing experience and analyze our traffic. 
               By clicking "Accept All", you consent to our use of cookies. 
-              <a 
-                href="/privacy-policy" 
+              <Link 
+                href="/privacy" 
                 className="underline hover:no-underline ml-1"
               >
                 Read our Privacy Policy
-              </a>
+              </Link>
             </p>
           </div>
           

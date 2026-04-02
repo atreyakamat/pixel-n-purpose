@@ -11,7 +11,7 @@ const SERVICES = [
         description: 'Websites that perform as beautifully as they look — built for speed, clarity, and conversion.',
         detail: 'Strategy · UX/UI · Development · SEO',
         href: '/services#website',
-        image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=300&auto=format&fit=crop'
+        image: '/images/website-design.png'
     },
     {
         number: '02',
@@ -19,7 +19,7 @@ const SERVICES = [
         description: 'Portfolios that make the right people stop scrolling and start conversations.',
         detail: 'Layout · Typography · Curation · Identity',
         href: '/services#portfolio',
-        image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=300&auto=format&fit=crop'
+        image: '/images/portfolio-design.jpg'
     },
     {
         number: '03',
@@ -27,7 +27,15 @@ const SERVICES = [
         description: 'Packaging that earns shelf space and builds brand trust at first sight.',
         detail: 'Structure · Print · Materials · Storytelling',
         href: '/services#packaging',
-        image: 'https://images.unsplash.com/photo-1620987278429-ca181541b2b4?q=80&w=300&auto=format&fit=crop'
+        image: '/grid_images/apparel-1850804.jpg'
+    },
+    {
+        number: '04',
+        name: 'Photography',
+        description: 'High-impact imagery that captures the soul of your brand and builds aesthetic trust.',
+        detail: 'Product · Lifestyle · Architectural · Styling',
+        href: '/services#photography',
+        image: '/grid_images/jewellery-1723638_640.jpg'
     },
 ];
 
@@ -52,7 +60,7 @@ export default function ServicesSection() {
                     {SERVICES.map((service, i) => (
                         <ScrollReveal
                             key={service.number}
-                            delay={[0, 100, 200][i] as 0 | 100 | 200}
+                            delay={([0, 100, 200, 300][i]) as 0 | 100 | 200 | 300}
                             threshold={0.1}
                         >
                             <Link
