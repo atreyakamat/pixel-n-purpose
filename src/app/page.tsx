@@ -56,8 +56,18 @@ export default function Home() {
   const [filter, setFilter] = useState("All");
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [showContent, setShowContent] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
   
   const filteredPortfolio = filter === "All" ? PORTFOLIO : PORTFOLIO.filter(p => p.category === filter);
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus("submitting");
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setFormStatus("success");
+    setTimeout(() => setFormStatus("idle"), 5000);
+  };
   
   const heroRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
@@ -323,32 +333,36 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.8, ease: [0.85, 0, 0.15, 1] }}
-                  className="group relative aspect-[3/4.5] overflow-hidden rounded-[3rem] bg-white/5 cursor-pointer shadow-2xl"
-                  data-cursor-text="VIEW"
                 >
-                  <Image 
-                    src={item.img} 
-                    alt={item.title} 
-                    fill 
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100"
-                  />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-1000" />
-                  
-                  {/* Content */}
-                  <div className="absolute inset-0 p-10 flex flex-col justify-between">
-                    <div className="flex justify-between items-start">
-                      <span className="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center text-white/20 group-hover:text-white transition-colors duration-500 backdrop-blur-sm">
-                        <Plus className="w-5 h-5 transform group-hover:rotate-45 transition-transform duration-700" />
-                      </span>
-                      <span className="text-primary text-[10px] font-bold tracking-[0.4em] uppercase">{item.category}</span>
+                  <Link 
+                    href={`/work/${item.title.toLowerCase().replace(/ /g, "-")}`}
+                    className="group relative aspect-[3/4.5] overflow-hidden rounded-[3rem] bg-white/5 cursor-pointer shadow-2xl block"
+                    data-cursor-text="VIEW"
+                  >
+                    <Image 
+                      src={item.img} 
+                      alt={item.title} 
+                      fill 
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-1000" />
+                    
+                    {/* Content */}
+                    <div className="absolute inset-0 p-10 flex flex-col justify-between">
+                      <div className="flex justify-between items-start">
+                        <span className="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center text-white/20 group-hover:text-white transition-colors duration-500 backdrop-blur-sm">
+                          <Plus className="w-5 h-5 transform group-hover:rotate-45 transition-transform duration-700" />
+                        </span>
+                        <span className="text-primary text-[10px] font-bold tracking-[0.4em] uppercase">{item.category}</span>
+                      </div>
+                      <div>
+                        <h3 className="text-white font-display font-bold text-4xl group-hover:text-accent transition-colors duration-700 leading-none tracking-tighter mb-4">{item.title}</h3>
+                        <div className="w-0 h-[3px] bg-accent transition-all duration-[1.2s] ease-[0.85, 0, 0.15, 1] group-hover:w-full mt-4" />
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-white font-display font-bold text-4xl group-hover:text-accent transition-colors duration-700 leading-none tracking-tighter mb-4">{item.title}</h3>
-                      <div className="w-0 h-[3px] bg-accent transition-all duration-[1.2s] ease-[0.85, 0, 0.15, 1] group-hover:w-full" />
-                    </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -398,37 +412,64 @@ export default function Home() {
             {/* Right: Form */}
             <div className="bg-background rounded-[4rem] p-12 md:p-20 border border-secondary/5 shadow-inner">
               <h3 className="font-display text-3xl font-bold text-secondary mb-16 uppercase tracking-tighter">Engagement Form</h3>
-              <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
-                <div className="space-y-12">
-                  <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
-                    <input type="text" className="w-full bg-transparent text-secondary text-2xl focus:outline-none placeholder:text-secondary/10 font-bold tracking-tight" placeholder="Full Identity" />
-                  </div>
-                  <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
-                    <input type="email" className="w-full bg-transparent text-secondary text-2xl focus:outline-none placeholder:text-secondary/10 font-bold tracking-tight" placeholder="Coordinate" />
-                  </div>
-                  <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
-                    <select className="w-full bg-transparent text-secondary text-2xl focus:outline-none appearance-none font-bold tracking-tight">
-                      <option className="text-secondary/20">Objective</option>
-                      <option>Portfolio Design</option>
-                      <option>Packaging & Branding</option>
-                      <option>Photography</option>
-                      <option>Web Development</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="pt-20">
-                  <Magnetic>
-                    <button 
-                      data-cursor="hover"
-                      type="submit" 
-                      className="group relative h-48 w-48 flex items-center justify-center bg-secondary rounded-full text-white font-display font-bold text-xl overflow-hidden shadow-2xl transition-transform duration-500 active:scale-95"
+              <form className="space-y-12" onSubmit={handleContactSubmit}>
+                <AnimatePresence mode="wait">
+                  {formStatus === "success" ? (
+                    <motion.div 
+                      key="success"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="py-20 text-center"
                     >
-                      <span className="relative z-10 text-center leading-tight">Send<br/>Request</span>
-                      <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1]" />
-                      <span className="absolute z-20 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1] font-display font-bold text-xl text-center leading-tight">Send<br/>Request</span>
-                    </button>
-                  </Magnetic>
-                </div>
+                      <Star className="w-16 h-16 text-primary mx-auto mb-10 animate-pulse" />
+                      <h4 className="text-secondary font-display font-bold text-4xl mb-4 tracking-tighter uppercase">Initiated.</h4>
+                      <p className="text-secondary/40 font-bold tracking-widest text-xs uppercase">We will coordinate with your team shortly.</p>
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      key="form"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="space-y-12"
+                    >
+                      <div className="space-y-12">
+                        <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
+                          <input required type="text" className="w-full bg-transparent text-secondary text-2xl focus:outline-none placeholder:text-secondary/10 font-bold tracking-tight" placeholder="Full Identity" />
+                        </div>
+                        <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
+                          <input required type="email" className="w-full bg-transparent text-secondary text-2xl focus:outline-none placeholder:text-secondary/10 font-bold tracking-tight" placeholder="Coordinate" />
+                        </div>
+                        <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
+                          <select className="w-full bg-transparent text-secondary text-2xl focus:outline-none appearance-none font-bold tracking-tight">
+                            <option className="text-secondary/20">Objective</option>
+                            <option>Portfolio Design</option>
+                            <option>Packaging & Branding</option>
+                            <option>Photography</option>
+                            <option>Web Development</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="pt-20">
+                        <Magnetic>
+                          <button 
+                            disabled={formStatus === "submitting"}
+                            data-cursor="hover"
+                            type="submit" 
+                            className="group relative h-48 w-48 flex items-center justify-center bg-secondary rounded-full text-white font-display font-bold text-xl overflow-hidden shadow-2xl transition-transform duration-500 active:scale-95 disabled:opacity-50"
+                          >
+                            <span className="relative z-10 text-center leading-tight">
+                              {formStatus === "submitting" ? "Initiating..." : <>Send<br/>Request</>}
+                            </span>
+                            <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1]" />
+                            <span className="absolute z-20 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1] font-display font-bold text-xl text-center leading-tight">Send<br/>Request</span>
+                          </button>
+                        </Magnetic>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </form>
             </div>
           </div>

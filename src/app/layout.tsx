@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -7,16 +7,63 @@ import CustomCursor from "@/components/CustomCursor";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0A0A0A",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "Pixel & Purpose | Award-Winning Creative Agency",
-  description: "High-end creative agency specializing in Portfolio Design, Packaging/Branding, Photography, and Web Development.",
+  title: {
+    default: "Pixel & Purpose | Architects of Visual Prestige",
+    template: "%s | Pixel & Purpose",
+  },
+  description: "High-end creative agency specializing in luxury brand narratives, elite portfolio design, artisan packaging, and high-performance digital monopolies.",
+  keywords: ["Creative Agency", "Luxury Branding", "Web Mastery", "Portfolio Design", "Packaging", "Photography", "Awwwards"],
+  authors: [{ name: "Pixel & Purpose" }],
+  creator: "Pixel & Purpose",
+  publisher: "Pixel & Purpose",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://pixelnpurpose.com",
+    siteName: "Pixel & Purpose",
+    title: "Pixel & Purpose | Architects of Visual Prestige",
+    description: "Engineering digital prestige for global visionaries.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Pixel & Purpose",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pixel & Purpose | Architects of Visual Prestige",
+    description: "Engineering digital prestige for global visionaries.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -25,13 +72,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Pixel & Purpose",
+              "url": "https://pixelnpurpose.com",
+              "logo": "https://pixelnpurpose.com/logo.png",
+              "sameAs": [
+                "https://instagram.com/pixelnpurpose",
+                "https://linkedin.com/company/pixelnpurpose"
+              ],
+              "description": "Architects of Visual Prestige. Engineering digital monopolies for global visionaries."
+            }),
+          }}
+        />
+      </head>
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased selection:bg-primary selection:text-white hide-cursor`}
+        className={`${inter.variable} ${playfair.variable} antialiased selection:bg-primary selection:text-white hide-cursor bg-background`}
       >
         <CustomCursor />
         <SmoothScroll>
-          {children}
+          <div className="relative flex flex-col min-h-screen">
+            {children}
+          </div>
         </SmoothScroll>
       </body>
     </html>
