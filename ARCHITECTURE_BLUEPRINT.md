@@ -1,248 +1,264 @@
-# MASTER ARCHITECTURE BLUEPRINT: Awwwards-Level Creative Agency
+# THE MASTER BLUEPRINT: Engineering Digital Prestige
 
-## 1. Executive Summary
-This document serves as the master build specification and architectural blueprint for the Unnamed Creative Agency's 2026 digital presence. Designed to act as the single source of truth for founders, designers, and developers, this blueprint details the creation of a premium, cinematic, and highly interactive digital experience. The platform will not merely list services; it will prove mastery through its own execution. By combining elite-level motion design, rigorous typography, and an uncompromising performance standard, the site will convert high-value international and local clients across four core verticals: Portfolio Design, Packaging, Photography, and Web Development.
+## 1. Executive Summary & The Manifesto
+We do not build websites; we engineer digital monopolies. This document is the uncompromising architectural blueprint for the Unnamed Creative Agency’s 2026 digital flagship. It is written for founders who demand market dominance, designers who obsess over the sub-pixel, and engineers who build for absolute performance.
+
+The internet is drowning in templates and generic "startup" aesthetics. Our platform will be the antidote. It will be a cinematic, highly tactile, award-winning experience that proves our mastery before the client even reads a word. By fusing elite motion design, rigorous typography, and a zero-compromise technical stack, we will convert high-value global clients across Portfolio Design, Packaging, Photography, and Web Development. This is not a brochure. It is a high-performance conversion engine disguised as art.
 
 ---
 
-## 2. Brand and Product Strategy
+## 2. Brand & Product Strategy
 
-### Brand Positioning
-- **The Stance:** "We don't just design. We build narratives that demand attention."
-- **The Vibe:** Unapologetic aesthetic excellence paired with meticulous strategy. The brand feels scarce, highly sought-after, and expensive.
-- **Differentiation:** We are not a template agency. We bridge the gap between profound artistic beauty and hardcore business conversion. 
+### Brand Positioning: The Unfair Advantage
+- **The Stance:** "We architect visual authority. Your brand is either unforgettable, or it is invisible."
+- **The Vibe:** Authoritative, deeply cinematic, scarce, and expensive. We speak with the quiet confidence of a studio that has nothing to prove but everything to show.
+- **Differentiation:** We reject the false dichotomy between "beautiful" and "converting." We believe that profound aesthetic rigor *is* the ultimate conversion lever. We are the bridge between tactile artisan craft (packaging/portfolios) and elite digital execution.
 
-### Market Positioning
-Targeting founders, marketing directors, and event planners who are visually literate and demanding. They don't want a vendor; they want a creative partner who can elevate their brand to international luxury standards.
+### Market Positioning & The Value Proposition
+We target visionary founders, luxury marketing directors, and elite event planners. They are fatigued by agencies that over-promise and under-deliver. They are looking for a partner with flawless taste and the technical muscle to execute it globally. Our value proposition is simple: We make your brand look like the undisputed leader of your category.
 
-### Conversion Goals & Trust Strategy
-- **Primary Goal:** High-ticket inquiry generation via the "Let's Talk" / Contact flow.
-- **Trust Mechanisms:** 
-  - *Show, Don't Tell:* The site's own micro-interactions and performance are the primary case study.
-  - *Curated Case Studies:* Deep-dive project breakdowns highlighting process, not just final images.
-  - *Micro-copy:* Confident, brief, and definitive statements.
+### Conversion Architecture & Trust Strategy
+- **Primary Goal:** Generate high-ticket, pre-qualified inquiries via a frictionless, high-touch "Let's Talk" flow.
+- **Trust Mechanisms:**
+  - *Proof Through Execution:* The website's own performance, micro-interactions, and spatial rhythm are our ultimate case study.
+  - *Surgical Case Studies:* We don’t just show pretty pictures; we document the strategic problem and the aesthetic triumph.
+  - *Authoritative Micro-copy:* No fluff. Just sharp, definitive statements of value.
 
 ---
 
 ## 3. Product Requirements Document (PRD)
 
-### Problem Statement
-Premium clients struggle to find agencies that can execute both high-end physical branding (packaging/print portfolios) and elite digital experiences (web). Existing agency sites either look beautiful but fail to convert, or convert well but look cheap.
+### The Problem in the Market
+High-net-worth clients are forced to choose between boutique design shops that cannot code, and massive tech agencies that lack artistic soul. Existing agency sites are either beautiful, broken, and slow—or fast, functional, and deeply boring.
 
-### Solution Summary
-A cinematic, scroll-driven digital flagship that seamlessly integrates the agency's multidisciplinary services into one cohesive, luxury narrative, backed by a modern, headless tech stack for ultimate performance.
+### The Solution
+A scroll-driven, cinematic digital flagship that behaves like native software but feels like a high-end editorial magazine. It seamlessly integrates multidisciplinary services into one luxury narrative, backed by a modern headless architecture for instant load times.
 
-### Target Audience & User Personas
-1. **The Visionary Founder:** Needs a complete brand and web overhaul. Low time, high budget. Looking for instant proof of taste.
-2. **The Luxury Event Planner:** Needs exquisite, physical pitch decks and event portfolios. Values tactile aesthetics translated to digital.
-3. **The Brand Director:** Seeking packaging and campaign photography. Needs to see structural concepts and high-impact imagery.
+### User Personas
+1. **The Visionary Founder (Tech/DTC):** Low time, massive ambition. Needs a complete brand and digital ecosystem. Judges instantly on typography, load speed, and motion design.
+2. **The Luxury Event Architect:** Values the physical and tactile. Needs exquisite pitch decks and event branding. Looking for a digital agency that understands print-level detail.
+3. **The Global Brand Director:** Needs packaging concepts and campaign photography. Requires structural brilliance and high-impact visual storytelling.
 
 ### Business Goals & Success Metrics
-- **Goal:** Win Site of the Day (Awwwards/FWA) within 3 months of launch.
-- **Metric:** LCP < 1.5s, 0 Layout Shift, 100% Lighthouse Accessibility score.
-- **Metric:** 4%+ conversion rate from unique visitor to qualified inquiry.
+- **Brand Authority:** Secure Site of the Day (Awwwards/FWA) within 3 months of launch.
+- **Engineering Excellence:** Core Web Vitals perfection (LCP < 1.5s, 0 CLS) and 100% Lighthouse Accessibility.
+- **Revenue Impact:** 5%+ conversion rate from unique target visitor to qualified, high-ticket inquiry.
 
-### Scope & Feature Requirements
-- **In-Scope:** Immersive Home page, dynamic Portfolio grid with filtering, deep-dive Case Study template, About/Studio page, high-conversion Contact section, custom cursor, smooth scrolling, headless CMS integration.
-- **Out-of-Scope (Phase 1):** Client login portals, e-commerce, automated booking calendars (keep inquiries high-touch).
+### Scope Definition
+- **In-Scope (The Flagship):** Immersive Home experience, dynamic WebGL-enhanced Portfolio grid, deep-dive Editorial Case Studies, Studio/About manifesto, high-conversion Contact architecture, custom interactive cursor, momentum scrolling, and full headless CMS integration.
+- **Out-of-Scope (Phase 1):** E-commerce, client login portals, automated booking calendars (we require high-touch human curation for leads).
 
 ---
 
-## 4. Information Architecture and Sitemap
+## 4. Information Architecture and Spatial Logic
 
 ### Sitemap
 ```mermaid
 flowchart TD
-    Home[Home / Index] --> Work[Selected Works / Portfolio]
-    Home --> Services[Disciplines]
-    Home --> Studio[The Studio / About]
-    Home --> Contact[Let's Talk / Contact]
-    Work --> CaseStudy[Individual Case Study Pages]
+    Home[Home: The Manifesto] --> Work[Selected Works: The Proof]
+    Home --> Services[Disciplines: The Arsenal]
+    Home --> Studio[The Studio: The Mindset]
+    Home --> Contact[Let's Talk: The Initiation]
+    Work --> CaseStudy[Individual Case Study: The Deep Dive]
 ```
 
-### Page-by-Page Structure
-1. **Home (`/`):**
-   - Preloader (Brand reveal)
-   - Hero (Parallax background, massive staggered typography)
-   - Studio Thesis (Short, punchy statement of intent)
-   - Disciplines Overview (Interactive hover-reveal list of 4 services)
-   - Featured Works (Curated horizontal scroll or masonry grid)
-   - Monolithic Footer CTA ("Let's Talk")
+### Section-by-Section Hierarchy
+1. **Home (`/`): The Initiation**
+   - **The Preloader:** A dramatic, tension-building brand reveal.
+   - **The Hero:** Parallax depth, massive staggered typography that demands reading.
+   - **The Thesis:** A short, punchy manifesto on why design is a business multiplier.
+   - **The Disciplines:** Interactive, hover-reveal list of 4 services (tactile, immediate feedback).
+   - **The Proof:** Curated featured works in a dynamic grid.
+   - **The Monolith:** A massive, unmissable Footer CTA ("Let's Talk").
 
-2. **Selected Works (`/work`):**
-   - Dynamic Grid with WebGL distortion on image hover.
-   - Fluid category filtering (All, Web, Branding, Photo, Event).
+2. **Selected Works (`/work`): The Gallery**
+   - Fluid category filtering (All, Web, Branding, Photo, Event) without page reloads.
+   - Image hovers trigger subtle WebGL distortion or deep saturation shifts.
 
-3. **Case Study (`/work/[slug]`):**
-   - Immersive hero image/video.
-   - "The Ask" vs "The Execution" text breakdown.
-   - Full-bleed imagery, staggered image grids, video loops.
-   - "Next Project" sticky footer.
-
----
-
-## 5. UX and UI Design Documentation
-
-### Visual Direction & Art Direction
-- **Theme:** "Dark Editorial" or "High-Contrast Light". Let's define the primary mode as **High-Contrast Light** with deep charcoal accents, utilizing negative space heavily.
-- **Grid System:** 12-column fluid grid. Gutters: 24px (desktop), 16px (mobile). Margins: 5vw.
-
-### Color System
-- **Background:** `#F6F5F2` (Off-white canvas)
-- **Primary Text/Accents:** `#0B0B0B` (Deep Charcoal)
-- **Interactive Highlight:** `#FF4500` (Vibrant Vermilion/Coral) or `#C4A484` (Muted Gold) depending on specific brand asset.
-- **Surfaces:** Glassmorphism (`rgba(255,255,255,0.7)`) with heavy background blur (`20px`) for floating elements.
-
-### Typography System
-- **Display (Headings):** *Playfair Display*, *Ogg*, or *PP Editorial New*. Used massively, often overlapping or breaking grid intentionally.
-- **Sans (Body/UI):** *Inter*, *Neue Montreal*, or *Satoshi*. Highly legible, tight tracking for UI elements, open leading for body copy.
-
-### Component Design Principles
-- **Buttons:** Pill-shaped, magnetic pull on hover, inner text rolls up and replaces itself.
-- **Cards:** Borderless. Rely on shadow and scale for depth. On hover, imagery saturates and scales slightly.
-- **Navigation:** Floating pill, disappears on scroll down, reappears on scroll up.
+3. **Case Study (`/work/[slug]`): The Autopsy**
+   - Immersive, full-viewport hero media.
+   - "The Ask" vs "The Execution" dual-column text breakdown.
+   - Full-bleed imagery, staggered grids, and looping video assets.
+   - Sticky "Next Project" footer to trap users in a loop of awe.
 
 ---
 
-## 6. Motion and Interaction System
+## 5. UX and UI Design Documentation: The Aesthetic Code
+
+### Visual Direction: "High-Contrast Editorial"
+We reject clutter. We embrace the luxury of negative space. The design relies on severe contrast, massive scale shifts, and flawless typographic pairing to create a sense of digital haute couture.
+
+### The Grid & Spatial System
+- **Grid:** 12-column fluid grid.
+- **Gutters:** 24px (desktop), 16px (mobile).
+- **Whitespace:** Treated as a primary design element. Margins and paddings are expansive, allowing content to breathe and command focus.
+
+### The Color System
+- **The Canvas:** `#F6F5F2` (Off-white, paper-like warmth. Never pure white).
+- **The Ink:** `#0A0A0A` (Deepest Charcoal. Never pure black, to reduce eye strain while maintaining severity).
+- **The Accent:** `#FF4500` (Vibrant Vermilion) or `#C4A484` (Muted Gold). Used surgically for interactive states and primary CTAs.
+- **The Glass:** Backdrop-blurred surfaces (`rgba(255,255,255,0.6)` with `20px` blur) for floating navigation to maintain depth.
+
+### Typography System: The Voice
+- **Display (Headings):** *Playfair Display* (or *Ogg* / *PP Editorial New*). Used at massive scales. We intentionally let typography overlap or break the grid to create artistic tension.
+- **Sans (Body/UI):** *Inter* (or *Neue Montreal*). Highly legible, brutalist, and structured. Tight tracking for UI elements, open leading for body copy for maximum cognitive ease.
+
+### Component & Interaction Principles
+- **The Anti-Button:** No generic rectangles. Buttons are pill-shaped, feature magnetic pull on hover, and text rolls vertically to indicate action readiness.
+- **Cards:** Borderless. Depth is achieved through scale and shadow on interaction. Hovering an image saturates it and scales it by 1.05x inside an `overflow-hidden` mask.
+- **Navigation:** A floating glass pill. It disappears on scroll down to maximize the viewport, and instantly reappears on scroll up.
+
+---
+
+## 6. Motion and Interaction System: The Choreography
 
 ### Motion Philosophy
-"Fluid, Physics-based, Intentional." No linear easings. Everything must feel like it has weight and momentum.
+"Fluid, Physics-based, Inevitable." Nothing snaps linearly. Everything has mass, momentum, and friction. Motion is not decorative; it directs the user's eye and rewards their curiosity.
 
-### Easing System
-- **Primary Ease:** Custom cubic-bezier (`0.7, 0, 0.3, 1`) for structural movements.
-- **Snappy Ease:** Custom cubic-bezier (`0.34, 1.56, 0.64, 1`) for micro-interactions (buttons, cursor).
+### The Easing System
+- **Structural Ease:** Custom cubic-bezier (`0.7, 0, 0.3, 1`). Used for page transitions, large image reveals, and structural shifts. Feels deliberate and cinematic.
+- **Snappy Ease:** Custom cubic-bezier (`0.34, 1.56, 0.64, 1`). Used for micro-interactions (buttons, cursors, toggles). Feels highly responsive and tactile.
 
-### Specific Patterns
-- **Scroll Behavior:** Momentum scrolling via Lenis.
-- **Cursor:** Custom dot (`mix-blend-difference`). Expands to enclose "VIEW" or "DRAG" when hovering over media.
-- **Reveal Patterns:** Text lines stagger up from a hidden mask (`y: 100% -> 0`). Images unmask using a clip-path sweep.
-- **Page Transitions:** Immediate exit animations, brief loading overlay, staggered entrance on the new page.
+### The Interaction Arsenal
+- **Momentum Scrolling:** Utilizing Lenis to detatch scrolling from the OS, creating a buttery, weightless glide through the content.
+- **The Cursor:** A custom dot (`mix-blend-difference`) that trails the mouse. It expands drastically to enclose text like "VIEW" or "DRAG" when hovering over media, turning the cursor into an interactive tool.
+- **Reveal Patterns:**
+  - *Kinetic Type:* Text lines stagger up from invisible masks (`y: 100% -> 0`).
+  - *Media Sweeps:* Images unmask using directional clip-paths, moving slower than the scroll to create parallax depth.
+- **Page Transitions:** Immediate exit animations, a brief branded loading overlay, and a staggered, choreographed entrance on the new route. No white flashes.
 
-### Reduced Motion
-- Strictly obey `prefers-reduced-motion`. Disable Lenis smooth scroll, replace complex GSAP timelines with simple opacity fades, default cursor to OS standard.
+### Accessibility: Reduced Motion
+We respect user preferences. If `prefers-reduced-motion` is detected, we strip the momentum scroll, convert complex GSAP timelines to elegant opacity fades, and revert to the native OS cursor.
 
 ---
 
-## 7. Technical Stack and Architecture
+## 7. Technical Stack and Architecture: Zero-Compromise Engineering
 
-### Stack Definition
-- **Frontend Framework:** Next.js (App Router, React 19).
-- **Styling:** Tailwind CSS v4 (Utility-first, heavily customized via theme variables).
-- **Motion/Animation:** GSAP (ScrollTrigger, Flip), Framer Motion (AnimatePresence, Layout transitions), Lenis (Smooth Scroll).
-- **CMS:** Sanity.io (Real-time collaborative editing, precise schema control).
-- **Hosting/Deployment:** Vercel (Edge caching, serverless functions).
-- **Assets/Images:** Cloudflare Image Resizing / Next/Image (WebP/AVIF delivery).
+### The Stack
+- **Frontend Framework:** Next.js 15 (App Router, React 19). We leverage Server Components for initial load speed and Client Components strictly for interactive islands.
+- **Styling:** Tailwind CSS v4. Utility-first, heavily customized via theme variables to enforce our design tokens.
+- **Motion Engine:** GSAP (ScrollTrigger for heavy lifting, timelines), Framer Motion (for AnimatePresence, layout routing, and micro-interactions).
+- **Smooth Scroll:** `@studio-freight/react-lenis`.
+- **CMS:** Sanity.io. Headless, real-time collaborative editing with a bespoke Studio schema.
+- **Deployment & Edge:** Vercel. Global edge caching, serverless functions for forms.
+- **Asset Pipeline:** Next/Image combined with Cloudflare/Sanity CDN for auto-formatting to WebP/AVIF and responsive resizing.
 
 ### Architecture Flow
-`Sanity Studio (Content)` -> `GROQ Queries` -> `Next.js (SSG/ISR)` -> `Vercel Edge Network` -> `Client Browser`.
+`Sanity Studio (Data)` -> `GROQ Queries` -> `Next.js (SSG/ISR generation)` -> `Vercel Edge Network` -> `Client Browser (Hydrated Interactive Islands)`.
 
 ### Security & Scaling
-- Environment variables secured in Vercel.
-- API routes rate-limited.
-- Static generation ensures the site can handle massive traffic spikes without backend failure.
+- API routes (e.g., Contact Form) are strictly rate-limited and secured via environment variables.
+- Because the site is statically generated (ISR), it is effectively immune to traffic spikes and database downtime.
 
 ---
 
-## 8. Content Strategy and Copy Framework
+## 8. Content Strategy and Copy Framework: Surgical Precision
 
 ### Brand Voice Rules
-- **Rule 1:** Be definitive. Say "We build" not "We strive to build".
-- **Rule 2:** Less is more. Let the typography and imagery breathe.
-- **Rule 3:** Focus on the outcome. 
+- **Be Definitive:** We do not "strive to provide." We "deliver."
+- **Kill the Fluff:** Eradicate generic agency jargon ("synergy," "innovative solutions"). Use sharp, evocative nouns and active verbs.
+- **Focus on the Outcome:** Clients don't buy a website; they buy market dominance. They don't buy a portfolio; they buy the ability to win the pitch.
 
-### Key Messaging
-- **Hero:** "Crafting Digital Masterpieces."
-- **Services:** "Disciplines of Excellence."
-- **Contact:** "Let's create something extraordinary."
+### Key Messaging Pillars
+- **Homepage Hero:** "Crafting Digital Masterpieces." (The hook).
+- **The Thesis:** "We don't just design. We build narratives that demand attention." (The philosophy).
+- **Services:** "Disciplines of Excellence." (The proof of capability).
+- **The CTA:** "Let's create something extraordinary." (The invitation).
 
 ---
 
 ## 9. CMS and Content Modeling (Sanity.io)
 
+We build structured content, not blobs. This allows the design system to render content perfectly every time.
+
 ### Core Schemas
-1. **`project` document:**
+1. **`project` Document:**
    - `title` (String)
    - `slug` (Slug)
    - `client` (String)
-   - `services` (Array of Strings: Web, Branding, etc.)
-   - `mainImage` (Image with Hotspot)
-   - `gallery` (Array of Images/Videos)
+   - `services` (Array of Strings: Web, Branding, Photo, etc.)
+   - `mainImage` (Image with Hotspot for art direction)
+   - `gallery` (Array of Images/Videos for the case study grid)
    - `challenge` (Portable Text)
    - `solution` (Portable Text)
-2. **`service` document:**
+2. **`service` Document:**
    - `title` (String)
    - `description` (Text)
-   - `icon` (SVG/String)
+   - `icon` (SVG/String reference)
 
 ---
 
 ## 10. Performance, Accessibility, SEO, and Security
 
 ### Performance Strategy
-- **Budget:** Max initial JS payload < 200kb gzipped.
-- **Execution:** Dynamic imports for heavy animation libraries (Three.js if used later). Font subsetting and preloading. Next/Image for all media.
+- **The Budget:** Initial JS payload strictly < 200kb gzipped.
+- **Execution:** Dynamic imports for heavy components. Critical CSS is inlined. Fonts are preloaded and subsetted. Every image is lazy-loaded unless it's in the initial viewport.
 
 ### Accessibility (a11y)
-- Semantic HTML (`<main>`, `<section>`, `<nav>`).
-- Hidden `<h1>` tags if visual design dictates graphic text.
-- `aria-hidden="true"` on purely decorative animated SVGs.
-- Focus trapping inside modals/mobile menus.
+- Flawless semantic HTML (`<main>`, `<article>`, `<nav>`, `<section>`).
+- Hidden `<h1>` tags for screen readers if visual design relies on graphic text.
+- `aria-hidden="true"` on purely decorative animated elements.
+- Full keyboard navigability (Tab focus states styled to match the brand, not hidden).
+- Color contrast meets WCAG AA standards.
 
 ### SEO Implementation
-- Dynamic `<title>` and `<meta>` generation per case study.
-- JSON-LD Structured Data (Organization, Portfolio).
-- Clean semantic URLs (`/work/project-name`).
+- Dynamic `<title>` and `<meta>` tags generated via the CMS per case study.
+- Implementation of JSON-LD Structured Data (Organization, LocalBusiness, Portfolio).
+- Clean, semantic URLs (e.g., `/work/aura-skincare`).
+- Mobile-first indexing optimized.
 
 ---
 
 ## 11. Analytics and Monitoring
 
-- **Analytics:** Plausible Analytics or Fathom (Privacy-first, cookie-less, won't bloat the JS bundle like GA4).
-- **Error Tracking:** Sentry (Catches React boundary errors and Next.js API route failures).
-- **Web Vitals:** Vercel Analytics (Real User Monitoring for LCP, CLS, INP).
+- **Analytics:** Plausible Analytics or Fathom. Privacy-first, cookie-less, and ultra-lightweight (avoids the heavy JS bloat of GA4).
+- **Error Tracking:** Sentry. Catches React boundary errors and Next.js API route failures in real-time.
+- **Web Vitals Monitoring:** Vercel Analytics (Real User Monitoring for LCP, CLS, INP) to ensure we maintain our Awwwards-level performance in the wild.
 
 ---
 
 ## 12. Development Workflow and Delivery Plan
 
-### Phases
+### Milestone Phases
 - **Phase 1: Architecture & Scaffold (Week 1)**
-  - Setup Next.js, Tailwind, Linters, Husky.
-  - Setup Sanity CMS and connect schemas.
+  - Repository setup, Next.js + Tailwind config, Linter/Prettier/Husky hooks.
+  - Sanity CMS deployment and schema definition.
 - **Phase 2: Structural UI & Routing (Week 2)**
-  - Build layout, grid, typography system, and static components.
-  - Connect Sanity data to Next.js templates.
+  - Implementation of the grid, typography system, color tokens, and static components.
+  - Data fetching from Sanity to Next.js templates.
 - **Phase 3: The Motion Layer (Week 3)**
-  - Implement Lenis, Custom Cursor, Preloader.
-  - Add GSAP ScrollTriggers and Framer Motion page transitions.
+  - Implementation of Lenis (smooth scroll), Custom Cursor, and the Preloader.
+  - Integration of GSAP ScrollTriggers and Framer Motion page transitions.
 - **Phase 4: Polish, QA, & Launch (Week 4)**
-  - Cross-browser testing, mobile optimization, Lighthouse audits.
+  - Cross-browser testing (Safari, Chrome, Firefox, Edge).
+  - Mobile optimization and touch-interaction refinement.
+  - Lighthouse audits and final performance tuning.
 
-### Handoff Checklist
-- [ ] Figma tokens perfectly map to `tailwind.config` / `globals.css`.
-- [ ] All assets compressed and loaded into CMS/CDN.
+### Handoff & QA Checklist
+- [ ] Design Tokens strictly mapped to `tailwind.config` / `globals.css`.
+- [ ] All heavy assets compressed, converted to WebP/AVIF, and served via CDN.
+- [ ] Motion timings perfectly match the easing specifications.
 
 ---
 
 ## 13. Risks, Constraints, and Assumptions
 
-- **Risk:** High-end animations degrade performance on low-tier mobile devices.
-  - *Mitigation:* Disable complex WebGL/GSAP on mobile breakpoints. Serve static fallbacks.
-- **Assumption:** Client will provide high-resolution, professionally shot imagery. If client imagery is poor, the design will fail.
-- **Constraint:** React 19 / Next.js 15 App Router requires strict 'use client' boundaries for animation libraries.
+- **Risk:** High-end, physics-based animations degrade performance on low-tier mobile devices or aggressive power-saving modes.
+  - *Mitigation:* We gracefully degrade. Complex GSAP/WebGL effects are disabled on mobile breakpoints and replaced with elegant, static fallbacks.
+- **Assumption:** The visual success of this site relies heavily on the quality of the imagery. If the client-provided case study images are poor, the design will fail to communicate luxury.
+- **Constraint:** React 19 / Next.js 15 App Router requires highly intentional separation of Server Components and Client Components (`'use client'`). Animation logic must be strictly cordoned off to prevent hydration errors and bloat.
 
 ---
 
 ## 14. Launch Readiness Checklist
 
-- [ ] Lighthouse scores: Perf > 90, A11y 100, SEO 100, Best Practices 100.
-- [ ] Forms connected to production email/CRM and tested.
-- [ ] `prefers-reduced-motion` verified on OS level.
-- [ ] Open Graph (OG) images generated and tested for Twitter/LinkedIn sharing.
-- [ ] 301 Redirects mapped if migrating from an old domain.
-- [ ] Sentry error monitoring active in production.
-- [ ] Final visual QA by Creative Director on 4k display and latest iPhone.
+- [ ] **Performance:** Lighthouse scores: Perf > 90, A11y 100, SEO 100, Best Practices 100.
+- [ ] **Functionality:** Contact forms connected to production email/CRM, tested with success/error states.
+- [ ] **Accessibility:** `prefers-reduced-motion` verified. Keyboard navigation flawless.
+- [ ] **Social:** Open Graph (OG) and Twitter Card images generated and tested for high-impact social sharing.
+- [ ] **SEO:** 301 Redirects mapped and implemented if migrating from an old domain. `robots.txt` and `sitemap.xml` active.
+- [ ] **Monitoring:** Sentry error monitoring and Plausible analytics active in production.
+- [ ] **The Final Polish:** Visual QA completed by the Creative Director on a 4K display and the latest flagship mobile devices.
 
 ---
-*End of Document. Prepared for 2026 Elite Launch Standard.*
+*End of Document. Engineered for Absolute Market Dominance.*
