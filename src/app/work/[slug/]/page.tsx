@@ -13,7 +13,7 @@ export default function CaseStudyPage() {
   const slug = params.slug as string;
 
   // This would normally come from a CMS like Sanity
-  const projectTitle = slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  const projectTitle = slug ? slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") : "Case Study";
 
   return (
     <main className="bg-background min-h-screen">
