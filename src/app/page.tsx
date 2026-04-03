@@ -206,25 +206,62 @@ export default function Home() {
       </section>
 
       {/* --- STUDIO MANIFESTO (HORIZONTAL SCROLL) --- */}
-      <section ref={horizontalRef} className="relative h-[300vh] bg-secondary">
+      <section ref={horizontalRef} className="relative h-[400vh] bg-secondary">
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <motion.div style={{ x: xTranslate }} className="flex gap-20 px-[10vw]">
-            <div className="flex-shrink-0 w-[80vw] md:w-[60vw] flex flex-col justify-center">
-              <h2 className="text-primary font-display font-bold text-[10vw] md:text-[8vw] leading-none mb-10 tracking-tighter italic">Manifesto.</h2>
-              <p className="text-white font-display font-semibold text-3xl md:text-5xl leading-tight max-w-4xl tracking-tight">
-                We believe that profound aesthetic rigor is the <span className="text-primary italic">ultimate conversion lever.</span>
+          {/* Progress Indicator */}
+          <div className="absolute bottom-12 left-12 right-12 h-[1px] bg-white/10 z-20 hidden md:block">
+            <motion.div 
+              style={{ scaleX: horizontalScroll }}
+              className="absolute inset-0 bg-primary origin-left"
+            />
+          </div>
+
+          <motion.div style={{ x: xTranslate }} className="flex gap-32 px-[10vw]">
+            <div className="flex-shrink-0 w-[85vw] md:w-[70vw] flex flex-col justify-center">
+              <span className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-8">Studio Thesis</span>
+              <h2 className="text-white font-display font-bold text-[12vw] md:text-[10vw] leading-[0.8] mb-12 tracking-tighter uppercase">
+                Engineering <br/>
+                <span className="text-primary italic font-normal">Prestige.</span>
+              </h2>
+              <p className="text-white/60 font-display font-medium text-2xl md:text-4xl leading-tight max-w-4xl tracking-tight">
+                We believe that profound aesthetic rigor is the <span className="text-white italic">ultimate conversion lever.</span> No fluff. Just authority.
               </p>
             </div>
             
             {MANIFESTO.map((item, i) => (
-              <div key={i} className="flex-shrink-0 w-[80vw] md:w-[40vw] flex flex-col justify-center border-l border-white/10 pl-12 md:pl-20">
-                <span className="text-primary font-bold tracking-[0.4em] uppercase text-sm mb-8">0{i + 1}</span>
-                <h3 className="text-white font-display font-bold text-4xl md:text-6xl mb-8 leading-none tracking-tighter">{item.title}</h3>
-                <p className="text-white/40 text-lg md:text-xl leading-relaxed max-w-sm">
-                  {item.desc}
-                </p>
+              <div key={i} className="flex-shrink-0 w-[85vw] md:w-[50vw] flex flex-col justify-center relative">
+                {/* Background Large Number */}
+                <span className="absolute -top-20 -left-10 text-[30vw] font-display font-bold text-white/[0.03] pointer-events-none select-none leading-none">
+                  0{i + 1}
+                </span>
+                
+                <div className="relative z-10 border-l border-primary/30 pl-12 md:pl-20">
+                  <span className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-10 block">Protocol 0{i + 1}</span>
+                  <h3 className="text-white font-display font-bold text-5xl md:text-7xl mb-10 leading-[0.9] tracking-tighter uppercase">
+                    {item.title.split(' ').map((word, index) => (
+                      <span key={index} className={index === 1 ? 'text-primary italic font-normal block' : 'block'}>
+                        {word}
+                      </span>
+                    ))}
+                  </h3>
+                  <p className="text-white/40 text-xl md:text-2xl leading-relaxed max-w-md font-light">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             ))}
+
+            {/* Ending slide */}
+            <div className="flex-shrink-0 w-[85vw] md:w-[60vw] flex flex-col justify-center items-center text-center">
+              <h2 className="text-white font-display font-bold text-6xl md:text-8xl leading-none mb-12 tracking-tighter uppercase">
+                End of <br/><span className="text-primary italic">Mediocrity.</span>
+              </h2>
+              <Magnetic>
+                <a href="#services" className="h-24 w-24 md:h-32 md:w-32 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all duration-500 group">
+                  <ArrowRight className="w-8 h-8 group-hover:rotate-90 transition-transform duration-500" />
+                </a>
+              </Magnetic>
+            </div>
           </motion.div>
         </div>
       </section>
