@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "fra
 import gsap from "gsap";
 import { ArrowRight, Star, Package, Camera, Code2, MapPin, Phone, Mail, Plus } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import ParallaxText from "@/components/ParallaxText";
 import Magnetic from "@/components/Magnetic";
