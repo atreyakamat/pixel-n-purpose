@@ -37,4 +37,10 @@
   .glass-panel {
     @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
   }
+  
+  @media (hover: hover) and (pointer: fine) {
+    .hide-cursor, .hide-cursor * {
+      cursor: none !important;
+    }
+  }
 }
