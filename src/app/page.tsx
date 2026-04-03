@@ -516,7 +516,7 @@ export default function Home() {
           
           <div className="flex flex-col md:flex-row justify-between items-center pt-20 border-t border-white/5 gap-10">
             <div className="text-white/20 text-[10px] tracking-[0.4em] uppercase font-bold">
-              © {new Date().getFullYear()} Pixel & Purpose. Engineered for Prestige.
+              © 2026 Pixel & Purpose. Engineered for Prestige.
             </div>
             <div className="text-white/20 text-[10px] tracking-[0.4em] uppercase font-bold">
               Designed by Excellence.

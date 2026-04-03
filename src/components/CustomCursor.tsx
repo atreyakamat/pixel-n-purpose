@@ -7,11 +7,13 @@ export default function CustomCursor() {
   const [cursorState, setCursorState] = useState<"default" | "hover" | "text">("default");
   const [cursorText, setCursorText] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const springX = useSpring(-100, { stiffness: 500, damping: 28, mass: 0.5 });
   const springY = useSpring(-100, { stiffness: 500, damping: 28, mass: 0.5 });
 
   useEffect(() => {
+    setMounted(true);
     const updateMousePosition = (e: MouseEvent) => {
       if (!isVisible) setIsVisible(true);
       springX.set(e.clientX);
@@ -40,7 +42,7 @@ export default function CustomCursor() {
     return () => window.removeEventListener("mousemove", updateMousePosition);
   }, [isVisible, springX, springY]);
 
-  if (typeof window === "undefined" || window.matchMedia("(max-width: 768px)").matches) return null;
+  if (!mounted || typeof window === "undefined" || window.matchMedia("(max-width: 768px)").matches) return null;
 
   const variants = {
     default: {
