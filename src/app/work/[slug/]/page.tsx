@@ -16,7 +16,7 @@ export default function CaseStudyPage() {
   const projectTitle = slug ? slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") : "Case Study";
 
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-background min-h-screen text-text-primary">
       <FloatingNavbar />
       
       {/* Hero */}
