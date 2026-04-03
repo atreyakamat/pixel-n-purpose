@@ -72,13 +72,33 @@ export default function Home() {
   
   const heroRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const yHero = useTransform(heroScroll, [0, 1], ["0%", "50%"]);
   const opacityHero = useTransform(heroScroll, [0, 1], [1, 0]);
 
-  const { scrollYProgress: horizontalScroll } = useScroll({ target: horizontalRef });
-  const xTranslate = useTransform(horizontalScroll, [0, 1], ["0%", "-60%"]);
+  const { scrollYProgress: horizontalScroll } = useScroll({ 
+    target: horizontalRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Calculate exact scroll distance: (content width - viewport width)
+  const [xRange, setXRange] = useState(0);
+  useEffect(() => {
+    if (contentRef.current) {
+      setXRange(contentRef.current.scrollWidth - window.innerWidth);
+    }
+    const handleResize = () => {
+      if (contentRef.current) {
+        setXRange(contentRef.current.scrollWidth - window.innerWidth);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [showContent]);
+
+  const xTranslate = useTransform(horizontalScroll, [0, 1], [0, -xRange]);
 
   // Preloader Logic
   useEffect(() => {
@@ -216,46 +236,94 @@ export default function Home() {
             />
           </div>
 
-          <motion.div style={{ x: xTranslate }} className="flex gap-32 px-[10vw]">
+          <motion.div ref={contentRef} style={{ x: xTranslate }} className="flex gap-32 px-[10vw]">
             <div className="flex-shrink-0 w-[85vw] md:w-[70vw] flex flex-col justify-center">
-              <span className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-8">Studio Thesis</span>
-              <h2 className="text-white font-display font-bold text-[12vw] md:text-[10vw] leading-[0.8] mb-12 tracking-tighter uppercase">
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ margin: "-20%" }}
+                className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-8"
+              >
+                Studio Thesis
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ margin: "-20%" }}
+                className="text-white font-display font-bold text-[12vw] md:text-[10vw] leading-[0.8] mb-12 tracking-tighter uppercase"
+              >
                 Engineering <br/>
                 <span className="text-primary italic font-normal">Prestige.</span>
-              </h2>
-              <p className="text-white/60 font-display font-medium text-2xl md:text-4xl leading-tight max-w-4xl tracking-tight">
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                viewport={{ margin: "-20%" }}
+                className="text-white/60 font-display font-medium text-2xl md:text-4xl leading-tight max-w-4xl tracking-tight"
+              >
                 We believe that profound aesthetic rigor is the <span className="text-white italic">ultimate conversion lever.</span> No fluff. Just authority.
-              </p>
+              </motion.p>
             </div>
             
             {MANIFESTO.map((item, i) => (
               <div key={i} className="flex-shrink-0 w-[85vw] md:w-[50vw] flex flex-col justify-center relative">
                 {/* Background Large Number */}
-                <span className="absolute -top-20 -left-10 text-[30vw] font-display font-bold text-white/[0.03] pointer-events-none select-none leading-none">
+                <motion.span 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ margin: "-20%" }}
+                  className="absolute -top-20 -left-10 text-[30vw] font-display font-bold text-white/[0.03] pointer-events-none select-none leading-none"
+                >
                   0{i + 1}
-                </span>
+                </motion.span>
                 
                 <div className="relative z-10 border-l border-primary/30 pl-12 md:pl-20">
-                  <span className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-10 block">Protocol 0{i + 1}</span>
-                  <h3 className="text-white font-display font-bold text-5xl md:text-7xl mb-10 leading-[0.9] tracking-tighter uppercase">
+                  <motion.span 
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ margin: "-20%" }}
+                    className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-10 block"
+                  >
+                    Protocol 0{i + 1}
+                  </motion.span>
+                  <motion.h3 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    viewport={{ margin: "-20%" }}
+                    className="text-white font-display font-bold text-5xl md:text-7xl mb-10 leading-[0.9] tracking-tighter uppercase"
+                  >
                     {item.title.split(' ').map((word, index) => (
                       <span key={index} className={index === 1 ? 'text-primary italic font-normal block' : 'block'}>
                         {word}
                       </span>
                     ))}
-                  </h3>
-                  <p className="text-white/40 text-xl md:text-2xl leading-relaxed max-w-md font-light">
+                  </motion.h3>
+                  <motion.p 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    viewport={{ margin: "-20%" }}
+                    className="text-white/40 text-xl md:text-2xl leading-relaxed max-w-md font-light"
+                  >
                     {item.desc}
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             ))}
 
             {/* Ending slide */}
             <div className="flex-shrink-0 w-[85vw] md:w-[60vw] flex flex-col justify-center items-center text-center">
-              <h2 className="text-white font-display font-bold text-6xl md:text-8xl leading-none mb-12 tracking-tighter uppercase">
+              <motion.h2 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ margin: "-20%" }}
+                className="text-white font-display font-bold text-6xl md:text-8xl leading-none mb-12 tracking-tighter uppercase"
+              >
                 End of <br/><span className="text-primary italic">Mediocrity.</span>
-              </h2>
+              </motion.h2>
               <Magnetic>
                 <a href="#services" className="h-24 w-24 md:h-32 md:w-32 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all duration-500 group">
                   <ArrowRight className="w-8 h-8 group-hover:rotate-90 transition-transform duration-500" />
