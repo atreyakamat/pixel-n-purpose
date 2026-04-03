@@ -3,9 +3,9 @@
 @theme {
   --color-primary: #FF6F61;
   --color-primary-hover: #E65A50;
-  --color-secondary: #334E68;
+  --color-secondary: #0A0A0A;
   --color-accent: #FFE066;
-  --color-background: #F5F5F5;
+  --color-background: #F6F5F2;
   --color-text-primary: #0A0A0A;
   
   --font-display: var(--font-playfair);
@@ -13,20 +13,28 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  * {
+    @apply border-secondary/5;
   }
+  
+  html {
+    scroll-behavior: initial;
+  }
+  
   body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
+  
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     color: var(--color-secondary);
   }
+  
   ::selection {
     background-color: var(--color-primary);
     color: white;
@@ -42,5 +50,14 @@
     .hide-cursor, .hide-cursor * {
       cursor: none !important;
     }
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px var(--color-secondary);
+    color: transparent;
+  }
+  
+  .mask-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
