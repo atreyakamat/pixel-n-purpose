@@ -86,36 +86,15 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0], index: n
                 {/* Noise fill overlay */}
                 <div className="absolute inset-0 noise-overlay opacity-[0.06] pointer-events-none" />
 
-                {/* Project number — always visible */}
-                <div className="absolute top-6 left-6 chapter-number z-10 opacity-80">
-                    {project.number}
-                </div>
-
-                {/* Category tag */}
-                <div className="absolute top-6 right-6 z-10">
-                    <span className="glass px-3 py-1 rounded-full caps text-white/40 text-[9px] tracking-widest border border-white/5">
-                        {project.category}
-                    </span>
-                </div>
-
                 {/* Hover content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-8 z-20">
                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <p className="caps text-white/40 text-[10px] tracking-[0.2em] mb-3">{project.category}</p>
                         <h3
                             className="font-display font-bold text-white leading-tight"
                             style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)' }}
                         >
                             {project.label}
                         </h3>
-                        
-                        <div className="mt-6 flex items-center gap-2 text-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            <span className="caps text-[9px] tracking-widest">View Project</span>
-                            <div className="w-8 h-px bg-white/20" />
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </div>
                     </div>
                 </div>
 

@@ -48,7 +48,7 @@ const SERVICES = [
         number: '03',
         name: 'Packaging Design',
         tagline: 'Shelves won at first sight.',
-        image: '/grid_images/apparel-1850804.jpg',
+        image: '/images/package-design.png',
         bgImage: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2000&auto=format&fit=crop',
         description:
             'Packaging is the first moment of physical brand contact. We design packaging that earns attention without shouting — structured, honest, and memorable. From concept to print-ready files with material guidance.',
@@ -66,7 +66,7 @@ const SERVICES = [
         number: '04',
         name: 'Photography',
         tagline: 'Moments captured with intent.',
-        image: '/grid_images/jewellery-1723638_640.jpg',
+        image: '/images/photography-image.png',
         bgImage: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2000&auto=format&fit=crop',
         description:
             'Visual storytelling that translates brand values into high-impact imagery. We specialize in product, lifestyle, and architectural photography that defines a brand\'s aesthetic and builds trust through quality.',

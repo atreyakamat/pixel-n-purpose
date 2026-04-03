@@ -27,7 +27,7 @@ const SERVICES = [
         description: 'Packaging that earns shelf space and builds brand trust at first sight.',
         detail: 'Structure · Print · Materials · Storytelling',
         href: '/services#packaging',
-        image: '/grid_images/apparel-1850804.jpg'
+        image: '/images/package-design.png'
     },
     {
         number: '04',
@@ -35,7 +35,7 @@ const SERVICES = [
         description: 'High-impact imagery that captures the soul of your brand and builds aesthetic trust.',
         detail: 'Product · Lifestyle · Architectural · Styling',
         href: '/services#photography',
-        image: '/grid_images/jewellery-1723638_640.jpg'
+        image: '/images/photography-image.png'
     },
 ];
 
