@@ -6,10 +6,12 @@ import gsap from "gsap";
 import { ArrowRight, Star, Package, Camera, Code2, MapPin, Phone, Mail, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import FloatingNavbar from "@/components/FloatingNavbar";
-import ParallaxText from "@/components/ParallaxText";
 import Magnetic from "@/components/Magnetic";
 import { cn } from "@/lib/utils";
+
+const ParallaxText = dynamic(() => import("@/components/ParallaxText"), { ssr: false });
 
 // --- Data ---
 const SERVICES = [
@@ -167,6 +169,7 @@ export default function Home() {
             style={{ objectFit: "cover" }} 
             className="opacity-40 grayscale"
             priority
+            quality={90}
           />
         </motion.div>
 

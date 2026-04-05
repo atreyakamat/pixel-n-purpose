@@ -24,6 +24,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pixelnpurpose.com"),
   title: {
     default: "Pixel & Purpose | Architects of Visual Prestige",
     template: "%s | Pixel & Purpose",
