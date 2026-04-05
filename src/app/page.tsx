@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useVelocity } from "framer-motion";
 import gsap from "gsap";
 import { ArrowRight, Star, Package, Camera, Code2, MapPin, Phone, Mail, Plus } from "lucide-react";
 import Image from "next/image";
@@ -85,19 +85,28 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
+  // Kinetic skew based on scroll velocity
+  const scrollVelocity = useVelocity(horizontalScroll);
+  const skewBase = useTransform(scrollVelocity, [-1, 1], [10, -10]);
+  const skew = useSpring(skewBase, { stiffness: 100, damping: 30 });
+
   // Calculate exact scroll distance: (content width - viewport width)
   const [xRange, setXRange] = useState(0);
   useEffect(() => {
-    if (contentRef.current) {
-      setXRange(contentRef.current.scrollWidth - window.innerWidth);
-    }
-    const handleResize = () => {
+    const calculateRange = () => {
       if (contentRef.current) {
         setXRange(contentRef.current.scrollWidth - window.innerWidth);
       }
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    
+    // Initial calculation after a brief delay to ensure layout is ready
+    const timer = setTimeout(calculateRange, 100);
+    
+    window.addEventListener("resize", calculateRange);
+    return () => {
+      window.removeEventListener("resize", calculateRange);
+      clearTimeout(timer);
+    };
   }, [showContent]);
 
   const xTranslate = useTransform(horizontalScroll, [0, 1], [0, -xRange]);
@@ -239,7 +248,7 @@ export default function Home() {
             />
           </div>
 
-          <motion.div ref={contentRef} style={{ x: xTranslate }} className="flex gap-32 px-[10vw]">
+          <motion.div ref={contentRef} style={{ x: xTranslate, skewX: skew }} className="flex gap-32 px-[10vw]">
             <div className="flex-shrink-0 w-[85vw] md:w-[70vw] flex flex-col justify-center">
               <motion.span 
                 initial={{ opacity: 0, x: -20 }}
@@ -271,32 +280,32 @@ export default function Home() {
             </div>
             
             {MANIFESTO.map((item, i) => (
-              <div key={i} className="flex-shrink-0 w-[85vw] md:w-[50vw] flex flex-col justify-center relative">
+              <div key={i} className="flex-shrink-0 w-[85vw] md:w-[55vw] flex flex-col justify-center relative">
                 {/* Background Large Number */}
                 <motion.span 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                   viewport={{ margin: "-20%" }}
-                  className="absolute -top-20 -left-10 text-[30vw] font-display font-bold text-white/[0.03] pointer-events-none select-none leading-none"
+                  className="absolute -top-20 -left-20 text-[40vw] font-display font-bold text-white/[0.02] pointer-events-none select-none leading-none"
                 >
                   0{i + 1}
                 </motion.span>
                 
-                <div className="relative z-10 border-l border-primary/30 pl-12 md:pl-20">
+                <div className="relative z-10 border-l-2 border-primary/20 pl-12 md:pl-24 py-10">
                   <motion.span 
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ margin: "-20%" }}
-                    className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-10 block"
+                    className="text-primary font-bold tracking-[0.6em] uppercase text-[10px] mb-14 block"
                   >
                     Protocol 0{i + 1}
                   </motion.span>
                   <motion.h3 
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
+                    transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
                     viewport={{ margin: "-20%" }}
-                    className="text-white font-display font-bold text-5xl md:text-7xl mb-10 leading-[0.9] tracking-tighter uppercase"
+                    className="text-white font-display font-bold text-6xl md:text-[7vw] mb-14 leading-[0.85] tracking-tighter uppercase"
                   >
                     {item.title.split(' ').map((word, index) => (
                       <span key={index} className={index === 1 ? 'text-primary italic font-normal block' : 'block'}>
@@ -307,9 +316,9 @@ export default function Home() {
                   <motion.p 
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
+                    transition={{ delay: 0.4 }}
                     viewport={{ margin: "-20%" }}
-                    className="text-white/40 text-xl md:text-2xl leading-relaxed max-w-md font-light"
+                    className="text-white/30 text-xl md:text-3xl leading-relaxed max-w-lg font-light tracking-tight"
                   >
                     {item.desc}
                   </motion.p>
@@ -318,18 +327,24 @@ export default function Home() {
             ))}
 
             {/* Ending slide */}
-            <div className="flex-shrink-0 w-[85vw] md:w-[60vw] flex flex-col justify-center items-center text-center">
-              <motion.h2 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+            <div className="flex-shrink-0 w-[85vw] md:w-[70vw] flex flex-col justify-center items-center text-center">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.2, ease: "circOut" }}
                 viewport={{ margin: "-20%" }}
-                className="text-white font-display font-bold text-6xl md:text-8xl leading-none mb-12 tracking-tighter uppercase"
+                className="relative"
               >
-                End of <br/><span className="text-primary italic">Mediocrity.</span>
-              </motion.h2>
+                <h2 className="text-white font-display font-bold text-[10vw] leading-none mb-12 tracking-tighter uppercase relative z-10">
+                  End of <br/><span className="text-primary italic">Mediocrity.</span>
+                </h2>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-primary/10 blur-[120px] rounded-full -z-10" />
+              </motion.div>
+              
               <Magnetic>
-                <a href="#services" className="h-24 w-24 md:h-32 md:w-32 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all duration-500 group">
-                  <ArrowRight className="w-8 h-8 group-hover:rotate-90 transition-transform duration-500" />
+                <a href="#services" className="h-32 w-32 md:h-48 md:w-48 rounded-full border border-white/10 flex flex-col items-center justify-center text-white hover:bg-white hover:text-secondary transition-all duration-700 group mt-10">
+                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase mb-4 opacity-40 group-hover:opacity-100 transition-opacity">Deploy</span>
+                  <ArrowRight className="w-10 h-10 group-hover:rotate-90 transition-transform duration-700" />
                 </a>
               </Magnetic>
             </div>
