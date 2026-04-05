@@ -1,38 +1,28 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useVelocity } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useVelocity } from "framer-motion";
 import gsap from "gsap";
-import { ArrowRight, Star, Package, Camera, Code2, MapPin, Phone, Mail, Plus } from "lucide-react";
+import { ArrowRight, Package, Camera, Code2, Plus } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import Magnetic from "@/components/Magnetic";
 import { cn } from "@/lib/utils";
 
+// Dynamic Imports for non-critical components
 const ParallaxText = dynamic(() => import("@/components/ParallaxText"), { ssr: false });
+const Preloader = dynamic(() => import("@/components/Preloader"), { ssr: false });
+const Exhibitions = dynamic(() => import("@/components/Exhibitions"), { ssr: false });
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: false });
 
 // --- Data ---
 const SERVICES = [
-  { id: "01", title: "Portfolio Design", icon: Star, desc: "Curated narratives that speak before you do. We design portfolios that make the right people stop and look." },
+  { id: "01", title: "Portfolio Design", icon: Package, desc: "Curated narratives that speak before you do. We design portfolios that make the right people stop and look." },
   { id: "02", title: "Packaging & Branding", icon: Package, desc: "Packaging that earns attention without shouting. Structured, honest, and memorable artisan experiences." },
   { id: "03", title: "Photography", icon: Camera, desc: "Visual storytelling that translates brand values into high-impact, trust-building imagery." },
   { id: "04", title: "Web Development", icon: Code2, desc: "Websites that perform beautifully. Engineered for speed, clarity, conversion, and accessibility." },
 ];
-
-const PORTFOLIO = [
-  { id: 1, category: "Event", title: "Gala Symphony", img: "https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?q=80&w=800&auto=format&fit=crop" },
-  { id: 2, category: "Branding", title: "Aura Skincare", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop" },
-  { id: 3, category: "Web", title: "Nexus Platform", img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" },
-  { id: 4, category: "Photo", title: "Urban Shadows", img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" },
-  { id: 5, category: "Branding", title: "Verve Coffee", img: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop" },
-  { id: 6, category: "Web", title: "Lumina App", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" },
-  { id: 7, category: "Event", title: "Horizon Summit", img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop" },
-  { id: 8, category: "Photo", title: "Echoes of Time", img: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" },
-];
-
-const FILTERS = ["All", "Event", "Branding", "Web", "Photo"];
 
 const MANIFESTO = [
   { title: "Visual Authority", desc: "We architect narratives that convert attention into prestige." },
@@ -61,12 +51,9 @@ export default function Home() {
   const [showContent, setShowContent] = useState(false);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
   
-  const filteredPortfolio = filter === "All" ? PORTFOLIO : PORTFOLIO.filter(p => p.category === filter);
-
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus("submitting");
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
     setFormStatus("success");
     setTimeout(() => setFormStatus("idle"), 5000);
@@ -85,12 +72,10 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Kinetic skew based on scroll velocity
   const scrollVelocity = useVelocity(horizontalScroll);
   const skewBase = useTransform(scrollVelocity, [-1, 1], [10, -10]);
   const skew = useSpring(skewBase, { stiffness: 100, damping: 30 });
 
-  // Calculate exact scroll distance: (content width - viewport width)
   const [xRange, setXRange] = useState(0);
   useEffect(() => {
     const calculateRange = () => {
@@ -98,10 +83,7 @@ export default function Home() {
         setXRange(contentRef.current.scrollWidth - window.innerWidth);
       }
     };
-    
-    // Initial calculation after a brief delay to ensure layout is ready
     const timer = setTimeout(calculateRange, 100);
-    
     window.addEventListener("resize", calculateRange);
     return () => {
       window.removeEventListener("resize", calculateRange);
@@ -111,7 +93,6 @@ export default function Home() {
 
   const xTranslate = useTransform(horizontalScroll, [0, 1], [0, -xRange]);
 
-  // Preloader Logic
   useEffect(() => {
     let interval = setInterval(() => {
       setLoadingProgress((prev) => {
@@ -123,7 +104,6 @@ export default function Home() {
         return prev + Math.floor(Math.random() * 15) + 2;
       });
     }, 80);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -138,43 +118,19 @@ export default function Home() {
 
   return (
     <main className="bg-background min-h-screen text-text-primary overflow-hidden selection:bg-primary selection:text-white">
-      {/* --- PRELOADER --- */}
-      <AnimatePresence>
-        {!showContent && (
-          <motion.div 
-            initial={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ duration: 1.2, ease: [0.85, 0, 0.15, 1] }}
-            className="fixed inset-0 z-[9999] bg-secondary flex items-center justify-center"
-          >
-            <div className="flex flex-col items-center">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: `${loadingProgress}%` }}
-                className="h-[2px] bg-primary absolute top-0 left-0"
-              />
-              <div className="text-white text-[15vw] font-display font-bold tracking-tighter leading-none">
-                {Math.min(loadingProgress, 100)}
-              </div>
-              <div className="text-white/20 text-[2vw] uppercase tracking-[0.5em] mt-4 font-sans font-bold">
-                Pixel & Purpose
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Preloader progress={loadingProgress} isComplete={showContent} />
 
       <FloatingNavbar />
 
       {/* --- HERO SECTION --- */}
       <section ref={heroRef} className="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-secondary">
-        {/* Parallax Background */}
         <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 w-full h-full scale-110">
           <div className="absolute inset-0 bg-secondary/80 z-10 mix-blend-multiply" />
           <Image 
             src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" 
             alt="Hero background" 
             fill 
+            sizes="100vw"
             style={{ objectFit: "cover" }} 
             className="opacity-40 grayscale"
             priority
@@ -182,8 +138,7 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* Hero Content */}
-        <div className="relative z-20 max-w-[1400px] mx-auto flex flex-col items-center mt-20">
+        <div className="relative z-20 max-w-[1400px] mx-auto w-full flex flex-col items-center mt-20">
           <div className="overflow-hidden mb-8">
             <p className="hero-text-line text-accent font-bold tracking-[0.5em] uppercase text-xs">Architects of Visual Prestige</p>
           </div>
@@ -208,9 +163,8 @@ export default function Home() {
                     data-cursor-text="EXPLORE"
                     className="group relative h-40 w-40 md:h-48 md:w-48 flex items-center justify-center bg-primary rounded-full text-white font-display font-bold text-xl overflow-hidden shadow-2xl transition-transform duration-300"
                   >
-                    <span className="relative z-10 text-center leading-tight">Explore<br/>Work</span>
+                    <span className="relative z-10 text-center leading-tight text-white group-hover:text-secondary transition-colors duration-500">Explore<br/>Work</span>
                     <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1]" />
-                    <span className="absolute z-20 text-secondary translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1] font-display font-bold text-xl text-center leading-tight">Explore<br/>Work</span>
                   </a>
                 </Magnetic>
               </motion.div>
@@ -218,7 +172,6 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Scroll Indicator */}
         <motion.div 
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-12 right-12 flex flex-col items-center gap-6 z-20 text-white/30"
@@ -240,107 +193,39 @@ export default function Home() {
       {/* --- STUDIO MANIFESTO (HORIZONTAL SCROLL) --- */}
       <section ref={horizontalRef} className="relative h-[400vh] bg-secondary">
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          {/* Progress Indicator */}
           <div className="absolute bottom-12 left-12 right-12 h-[1px] bg-white/10 z-20 hidden md:block">
-            <motion.div 
-              style={{ scaleX: horizontalScroll }}
-              className="absolute inset-0 bg-primary origin-left"
-            />
+            <motion.div style={{ scaleX: horizontalScroll }} className="absolute inset-0 bg-primary origin-left" />
           </div>
 
           <motion.div ref={contentRef} style={{ x: xTranslate, skewX: skew }} className="flex gap-32 px-[10vw]">
             <div className="flex-shrink-0 w-[85vw] md:w-[70vw] flex flex-col justify-center">
-              <motion.span 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ margin: "-20%" }}
-                className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-8"
-              >
-                Studio Thesis
-              </motion.span>
-              <motion.h2 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ margin: "-20%" }}
-                className="text-white font-display font-bold text-[12vw] md:text-[10vw] leading-[0.8] mb-12 tracking-tighter uppercase"
-              >
-                Engineering <br/>
-                <span className="text-primary italic font-normal">Prestige.</span>
+              <motion.span initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ margin: "-20%" }} className="text-primary font-bold tracking-[0.5em] uppercase text-xs mb-8">Studio Thesis</motion.span>
+              <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ margin: "-20%" }} className="text-white font-display font-bold text-[12vw] md:text-[10vw] leading-[0.8] mb-12 tracking-tighter uppercase">
+                Engineering <br/> <span className="text-primary italic font-normal">Prestige.</span>
               </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ margin: "-20%" }}
-                className="text-white/60 font-display font-medium text-2xl md:text-4xl leading-tight max-w-4xl tracking-tight"
-              >
+              <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3 }} viewport={{ margin: "-20%" }} className="text-white/60 font-display font-medium text-2xl md:text-4xl leading-tight max-w-4xl tracking-tight">
                 We believe that profound aesthetic rigor is the <span className="text-white italic">ultimate conversion lever.</span> No fluff. Just authority.
               </motion.p>
             </div>
             
             {MANIFESTO.map((item, i) => (
               <div key={i} className="flex-shrink-0 w-[85vw] md:w-[55vw] flex flex-col justify-center relative">
-                {/* Background Large Number */}
-                <motion.span 
-                  initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ margin: "-20%" }}
-                  className="absolute -top-20 -left-20 text-[40vw] font-display font-bold text-white/[0.02] pointer-events-none select-none leading-none"
-                >
-                  0{i + 1}
-                </motion.span>
-                
+                <motion.span initial={{ opacity: 0, scale: 0.8, rotate: -10 }} whileInView={{ opacity: 1, scale: 1, rotate: 0 }} viewport={{ margin: "-20%" }} className="absolute -top-20 -left-20 text-[40vw] font-display font-bold text-white/[0.02] pointer-events-none select-none leading-none">0{i + 1}</motion.span>
                 <div className="relative z-10 border-l-2 border-primary/20 pl-12 md:pl-24 py-10">
-                  <motion.span 
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ margin: "-20%" }}
-                    className="text-primary font-bold tracking-[0.6em] uppercase text-[10px] mb-14 block"
-                  >
-                    Protocol 0{i + 1}
-                  </motion.span>
-                  <motion.h3 
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
-                    viewport={{ margin: "-20%" }}
-                    className="text-white font-display font-bold text-6xl md:text-[7vw] mb-14 leading-[0.85] tracking-tighter uppercase"
-                  >
-                    {item.title.split(' ').map((word, index) => (
-                      <span key={index} className={index === 1 ? 'text-primary italic font-normal block' : 'block'}>
-                        {word}
-                      </span>
-                    ))}
+                  <motion.span initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ margin: "-20%" }} className="text-primary font-bold tracking-[0.6em] uppercase text-[10px] mb-14 block">Protocol 0{i + 1}</motion.span>
+                  <motion.h3 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }} viewport={{ margin: "-20%" }} className="text-white font-display font-bold text-6xl md:text-[7vw] mb-14 leading-[0.85] tracking-tighter uppercase">
+                    {item.title.split(' ').map((word, index) => (<span key={index} className={index === 1 ? 'text-primary italic font-normal block' : 'block'}>{word}</span>))}
                   </motion.h3>
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    viewport={{ margin: "-20%" }}
-                    className="text-white/30 text-xl md:text-3xl leading-relaxed max-w-lg font-light tracking-tight"
-                  >
-                    {item.desc}
-                  </motion.p>
+                  <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.4 }} viewport={{ margin: "-20%" }} className="text-white/30 text-xl md:text-3xl leading-relaxed max-w-lg font-light tracking-tight">{item.desc}</motion.p>
                 </div>
               </div>
             ))}
 
-            {/* Ending slide */}
             <div className="flex-shrink-0 w-[85vw] md:w-[70vw] flex flex-col justify-center items-center text-center">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.2, ease: "circOut" }}
-                viewport={{ margin: "-20%" }}
-                className="relative"
-              >
-                <h2 className="text-white font-display font-bold text-[10vw] leading-none mb-12 tracking-tighter uppercase relative z-10">
-                  End of <br/><span className="text-primary italic">Mediocrity.</span>
-                </h2>
+              <motion.div initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: "circOut" }} viewport={{ margin: "-20%" }} className="relative">
+                <h2 className="text-white font-display font-bold text-[10vw] leading-none mb-12 tracking-tighter uppercase relative z-10">End of <br/><span className="text-primary italic">Mediocrity.</span></h2>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-primary/10 blur-[120px] rounded-full -z-10" />
               </motion.div>
-              
               <Magnetic>
                 <a href="#services" className="h-32 w-32 md:h-48 md:w-48 rounded-full border border-white/10 flex flex-col items-center justify-center text-white hover:bg-white hover:text-secondary transition-all duration-700 group mt-10">
                   <span className="text-[10px] font-bold tracking-[0.4em] uppercase mb-4 opacity-40 group-hover:opacity-100 transition-opacity">Deploy</span>
@@ -356,27 +241,15 @@ export default function Home() {
       <section id="services" className="py-32 md:py-64 px-8 max-w-[1400px] mx-auto bg-background relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-32">
           <div className="lg:col-span-5">
-            <motion.div 
-              initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
-              className="flex flex-col sticky top-40"
-            >
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="flex flex-col sticky top-40">
               <motion.div variants={fadeSlideUp} className="w-16 h-[3px] bg-primary mb-12" />
-              <motion.h2 variants={fadeSlideUp} className="font-display text-6xl md:text-8xl font-bold text-secondary mb-12 leading-[0.85] tracking-tighter uppercase">
-                Disciplines <br/><span className="italic font-normal text-primary">Arsenal.</span>
-              </motion.h2>
-              <motion.p variants={fadeSlideUp} className="text-text-primary/50 max-w-sm text-lg leading-relaxed uppercase font-bold tracking-widest text-xs">
-                We bridge the gap between artisan craft and elite digital execution.
-              </motion.p>
-              
+              <motion.h2 variants={fadeSlideUp} className="font-display text-6xl md:text-8xl font-bold text-secondary mb-12 leading-[0.85] tracking-tighter uppercase">Disciplines <br/><span className="italic font-normal text-primary">Arsenal.</span></motion.h2>
+              <motion.p variants={fadeSlideUp} className="text-text-primary/50 max-w-sm text-lg leading-relaxed uppercase font-bold tracking-widest text-xs">We bridge the gap between artisan craft and elite digital execution.</motion.p>
               <motion.div variants={fadeSlideUp} className="mt-20">
-                <Magnetic>
-                  <button className="flex items-center gap-6 text-secondary font-bold group">
-                    <span className="h-16 w-16 rounded-full border border-secondary/20 flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-all duration-500 ease-out">
-                      <Plus className="w-6 h-6" />
-                    </span>
-                    <span className="text-xs tracking-[0.4em] uppercase font-bold">Inquire Capabilities</span>
-                  </button>
-                </Magnetic>
+                <Magnetic><button className="flex items-center gap-6 text-secondary font-bold group">
+                  <span className="h-16 w-16 rounded-full border border-secondary/20 flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-all duration-500 ease-out"><Plus className="w-6 h-6" /></span>
+                  <span className="text-xs tracking-[0.4em] uppercase font-bold">Inquire Capabilities</span>
+                </button></Magnetic>
               </motion.div>
             </motion.div>
           </div>
@@ -384,29 +257,14 @@ export default function Home() {
           <div className="lg:col-span-7">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {SERVICES.map((service, i) => (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: i * 0.1, ease: [0.33, 1, 0.68, 1] }}
-                  data-cursor="hover"
-                  className="group bg-white rounded-[3rem] p-10 md:p-14 border border-secondary/5 flex flex-col justify-between aspect-square hover:bg-secondary transition-all duration-700 ease-[0.85, 0, 0.15, 1] shadow-sm hover:shadow-2xl"
-                >
+                <motion.div key={service.id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: i * 0.1, ease: [0.33, 1, 0.68, 1] }} data-cursor="hover" className="group bg-white rounded-[3rem] p-10 md:p-14 border border-secondary/5 flex flex-col justify-between aspect-square hover:bg-secondary transition-all duration-700 ease-[0.85, 0, 0.15, 1] shadow-sm hover:shadow-2xl">
                   <div>
                     <span className="text-primary font-display font-bold text-2xl mb-10 block group-hover:text-accent transition-colors">0{service.id}</span>
-                    <h3 className="font-display font-bold text-3xl md:text-4xl text-secondary group-hover:text-white transition-colors leading-none tracking-tighter">
-                      {service.title}
-                    </h3>
+                    <h3 className="font-display font-bold text-3xl md:text-4xl text-secondary group-hover:text-white transition-colors leading-none tracking-tighter">{service.title}</h3>
                   </div>
-                  
                   <div>
-                    <p className="text-text-primary/40 text-sm group-hover:text-white/40 transition-colors mb-12 leading-relaxed">
-                      {service.desc}
-                    </p>
-                    <div className="w-12 h-12 rounded-full border border-secondary/10 flex items-center justify-center group-hover:border-white/20 text-secondary group-hover:text-white transition-all duration-500">
-                      <ArrowRight className="w-5 h-5 transform group-hover:rotate-[-45deg] transition-transform" />
-                    </div>
+                    <p className="text-text-primary/40 text-sm group-hover:text-white/40 transition-colors mb-12 leading-relaxed">{service.desc}</p>
+                    <div className="w-12 h-12 rounded-full border border-secondary/10 flex items-center justify-center group-hover:border-white/20 text-secondary group-hover:text-white transition-all duration-500"><ArrowRight className="w-5 h-5 transform group-hover:rotate-[-45deg] transition-transform" /></div>
                   </div>
                 </motion.div>
               ))}
@@ -415,199 +273,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- PORTFOLIO SECTION --- */}
-      <section id="portfolio" className="py-32 md:py-64 px-8 bg-secondary">
-        <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-20 mb-32">
-            <div>
-              <div className="w-16 h-[3px] bg-primary mb-12" />
-              <h2 className="font-display text-6xl md:text-9xl font-bold text-white tracking-tighter uppercase leading-[0.8] mb-4">
-                Selected <br/><span className="italic font-normal text-primary">Exhibitions.</span>
-              </h2>
-            </div>
-            
-            {/* Filters */}
-            <div className="flex flex-wrap gap-3 md:gap-4">
-              {FILTERS.map((f) => (
-                <Magnetic key={f}>
-                  <button
-                    onClick={() => setFilter(f)}
-                    className={cn(
-                      "px-8 py-3 rounded-full text-[10px] font-bold tracking-[0.4em] uppercase transition-all duration-700",
-                      filter === f 
-                        ? "bg-primary text-white shadow-xl shadow-primary/20" 
-                        : "bg-white/5 text-white/30 hover:bg-white/10 hover:text-white"
-                    )}
-                  >
-                    {f}
-                  </button>
-                </Magnetic>
-              ))}
-            </div>
-          </div>
-
-          {/* Grid */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <AnimatePresence mode="popLayout">
-              {filteredPortfolio.map((item) => (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.8, ease: [0.85, 0, 0.15, 1] }}
-                >
-                  <Link 
-                    href={`/work/${item.title.toLowerCase().replace(/ /g, "-")}`}
-                    className="group relative aspect-[3/4.5] overflow-hidden rounded-[3rem] bg-white/5 cursor-pointer shadow-2xl block"
-                    data-cursor-text="VIEW"
-                  >
-                    <Image 
-                      src={item.img} 
-                      alt={item.title} 
-                      fill 
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 grayscale group-hover:grayscale-0 brightness-75 group-hover:brightness-100"
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-1000" />
-                    
-                    {/* Content */}
-                    <div className="absolute inset-0 p-10 flex flex-col justify-between">
-                      <div className="flex justify-between items-start">
-                        <span className="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center text-white/20 group-hover:text-white transition-colors duration-500 backdrop-blur-sm">
-                          <Plus className="w-5 h-5 transform group-hover:rotate-45 transition-transform duration-700" />
-                        </span>
-                        <span className="text-primary text-[10px] font-bold tracking-[0.4em] uppercase">{item.category}</span>
-                      </div>
-                      <div>
-                        <h3 className="text-white font-display font-bold text-4xl group-hover:text-accent transition-colors duration-700 leading-none tracking-tighter mb-4">{item.title}</h3>
-                        <div className="w-0 h-[3px] bg-accent transition-all duration-[1.2s] ease-[0.85, 0, 0.15, 1] group-hover:w-full mt-4" />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* --- CONTACT SECTION --- */}
-      <section id="contact" className="py-32 md:py-64 px-8 max-w-[1400px] mx-auto">
-        <div className="bg-white rounded-[4rem] p-12 md:p-32 overflow-hidden relative shadow-2xl border border-secondary/5">
-          {/* Decorative Background */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-          
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-32">
-            {/* Left: Contact Info */}
-            <div className="flex flex-col justify-between">
-              <div>
-                <div className="w-16 h-[3px] bg-primary mb-12" />
-                <h2 className="font-display text-7xl md:text-[8vw] font-bold text-secondary mb-12 leading-[0.8] tracking-tighter uppercase">
-                  Let's <br/><span className="italic font-normal text-primary">Initiate.</span>
-                </h2>
-                <p className="text-text-primary/40 text-xs md:text-sm mb-20 max-w-sm leading-relaxed uppercase font-bold tracking-[0.3em]">
-                  Your brand is either unforgettable, or it is invisible.
-                </p>
-              </div>
-
-              <div className="space-y-16">
-                <div className="flex items-center gap-10 group">
-                  <Magnetic>
-                    <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center shrink-0 group-hover:bg-primary transition-all duration-500">
-                      <Mail className="w-8 h-8 text-secondary group-hover:text-white" />
-                    </div>
-                  </Magnetic>
-                  <a href="mailto:hello@pixelnpurpose.com" data-cursor="hover" className="text-2xl md:text-4xl font-display font-bold text-secondary hover:text-primary transition-colors tracking-tight">hello@pixelnpurpose.com</a>
-                </div>
-                <div className="flex items-center gap-10 group">
-                  <Magnetic>
-                    <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center shrink-0 group-hover:bg-primary transition-all duration-500">
-                      <Phone className="w-8 h-8 text-secondary group-hover:text-white" />
-                    </div>
-                  </Magnetic>
-                  <a href="tel:+1234567890" data-cursor="hover" className="text-2xl md:text-4xl font-display font-bold text-secondary hover:text-primary transition-colors tracking-tight">+1 (234) 567-890</a>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Form */}
-            <div className="bg-background rounded-[4rem] p-12 md:p-20 border border-secondary/5 shadow-inner">
-              <h3 className="font-display text-3xl font-bold text-secondary mb-16 uppercase tracking-tighter">Engagement Form</h3>
-              <form className="space-y-12" onSubmit={handleContactSubmit}>
-                <AnimatePresence mode="wait">
-                  {formStatus === "success" ? (
-                    <motion.div 
-                      key="success"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      className="py-20 text-center"
-                    >
-                      <Star className="w-16 h-16 text-primary mx-auto mb-10 animate-pulse" />
-                      <h4 className="text-secondary font-display font-bold text-4xl mb-4 tracking-tighter uppercase">Initiated.</h4>
-                      <p className="text-secondary/40 font-bold tracking-widest text-xs uppercase">We will coordinate with your team shortly.</p>
-                    </motion.div>
-                  ) : (
-                    <motion.div 
-                      key="form"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="space-y-12"
-                    >
-                      <div className="space-y-12">
-                        <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
-                          <input required type="text" className="w-full bg-transparent text-secondary text-2xl focus:outline-none placeholder:text-secondary/10 font-bold tracking-tight" placeholder="Full Identity" />
-                        </div>
-                        <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
-                          <input required type="email" className="w-full bg-transparent text-secondary text-2xl focus:outline-none placeholder:text-secondary/10 font-bold tracking-tight" placeholder="Coordinate" />
-                        </div>
-                        <div className="relative border-b border-secondary/10 focus-within:border-primary transition-colors py-4">
-                          <select className="w-full bg-transparent text-secondary text-2xl focus:outline-none appearance-none font-bold tracking-tight">
-                            <option className="text-secondary/20">Objective</option>
-                            <option>Portfolio Design</option>
-                            <option>Packaging & Branding</option>
-                            <option>Photography</option>
-                            <option>Web Development</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="pt-20">
-                        <Magnetic>
-                          <button 
-                            disabled={formStatus === "submitting"}
-                            data-cursor="hover"
-                            type="submit" 
-                            className="group relative h-48 w-48 flex items-center justify-center bg-secondary rounded-full text-white font-display font-bold text-xl overflow-hidden shadow-2xl transition-transform duration-500 active:scale-95 disabled:opacity-50"
-                          >
-                            <span className="relative z-10 text-center leading-tight">
-                              {formStatus === "submitting" ? "Initiating..." : <>Send<br/>Request</>}
-                            </span>
-                            <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1]" />
-                            <span className="absolute z-20 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.85, 0, 0.15, 1] font-display font-bold text-xl text-center leading-tight">Send<br/>Request</span>
-                          </button>
-                        </Magnetic>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Exhibitions filter={filter} setFilter={setFilter} />
+      
+      <ContactSection formStatus={formStatus} handleContactSubmit={handleContactSubmit} />
 
       {/* Footer */}
       <footer className="bg-secondary py-32 px-8 overflow-hidden">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-20 mb-32">
-            <div className="font-display font-bold text-[10vw] text-white leading-none tracking-tighter">
-              P<span className="text-primary italic">&</span>P
-            </div>
-            
+            <div className="font-display font-bold text-[10vw] text-white leading-none tracking-tighter">P<span className="text-primary italic">&</span>P</div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-20 md:gap-32">
               <div className="flex flex-col gap-6">
                 <span className="text-white/20 text-[10px] font-bold tracking-[0.4em] uppercase">Navigation</span>
@@ -636,14 +310,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
           <div className="flex flex-col md:flex-row justify-between items-center pt-20 border-t border-white/5 gap-10">
-            <div className="text-white/20 text-[10px] tracking-[0.4em] uppercase font-bold">
-              © 2026 Pixel & Purpose. Engineered for Prestige.
-            </div>
-            <div className="text-white/20 text-[10px] tracking-[0.4em] uppercase font-bold">
-              Designed by Excellence.
-            </div>
+            <div className="text-white/20 text-[10px] tracking-[0.4em] uppercase font-bold">© 2026 Pixel & Purpose. Engineered for Prestige.</div>
+            <div className="text-white/20 text-[10px] tracking-[0.4em] uppercase font-bold">Designed by Excellence.</div>
           </div>
         </div>
       </footer>
