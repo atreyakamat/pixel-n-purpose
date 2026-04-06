@@ -52,24 +52,29 @@ export default function CustomCursor() {
       height: 16,
       x: "-50%",
       y: "-50%",
-      backgroundColor: "var(--color-primary)",
-      mixBlendMode: "difference" as const,
+      backgroundColor: "rgba(26, 26, 26, 0.4)",
+      backdropFilter: "blur(4px)",
+      border: "1px solid rgba(255, 255, 255, 0.2)",
     },
     hover: {
-      width: 48,
-      height: 48,
+      width: 64,
+      height: 64,
       x: "-50%",
       y: "-50%",
-      backgroundColor: "var(--color-primary)",
-      mixBlendMode: "difference" as const,
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      backdropFilter: "blur(12px)",
+      border: "1px solid rgba(255, 255, 255, 0.4)",
+      boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1)",
     },
     text: {
-      width: 80,
-      height: 80,
+      width: 100,
+      height: 100,
       x: "-50%",
       y: "-50%",
-      backgroundColor: "var(--color-primary)",
-      mixBlendMode: "normal" as const,
+      backgroundColor: "rgba(255, 255, 255, 0.15)",
+      backdropFilter: "blur(16px)",
+      border: "1px solid rgba(255, 255, 255, 0.5)",
+      boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1)",
     }
   };
 
@@ -83,7 +88,7 @@ export default function CustomCursor() {
       transition={{ type: "spring", stiffness: 400, damping: 28 }}
     >
       <motion.span 
-        className="text-white text-[10px] font-bold tracking-widest uppercase"
+        className="text-text-primary text-[10px] font-bold tracking-[0.2em] uppercase"
         animate={{ opacity: cursorState === "text" ? 1 : 0, scale: cursorState === "text" ? 1 : 0 }}
         transition={{ duration: 0.2 }}
       >

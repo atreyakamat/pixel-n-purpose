@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FF6F61;
-  --color-primary-hover: #E65A50;
+  --color-primary: #1A1A1A;
+  --color-primary-hover: #333333;
   --color-secondary: #0A0A0A;
-  --color-accent: #FFE066;
-  --color-background: #F6F5F2;
-  --color-text-primary: #0A0A0A;
+  --color-accent: #8E8E8E;
+  --color-background: #FDFDFD;
+  --color-text-primary: #1A1A1A;
   
   --font-display: var(--font-playfair);
   --font-sans: var(--font-inter);
@@ -43,7 +43,11 @@
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+    @apply bg-white/40 backdrop-blur-xl border border-white/30 shadow-sm;
+  }
+
+  .frosted-glass {
+    @apply bg-white/20 backdrop-blur-md border border-white/40 shadow-xl;
   }
   
   @media (hover: hover) and (pointer: fine) {
