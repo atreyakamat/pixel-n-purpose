@@ -8,7 +8,6 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import Magnetic from "@/components/Magnetic";
-import { cn } from "@/lib/utils";
 
 // Dynamic Imports for non-critical components
 const ParallaxText = dynamic(() => import("@/components/ParallaxText"), { ssr: false });
@@ -32,7 +31,7 @@ const MANIFESTO = [
 ];
 
 // --- Animation Variants ---
-const staggerContainer: any = {
+const staggerContainer: import("framer-motion").Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -40,7 +39,7 @@ const staggerContainer: any = {
   }
 };
 
-const fadeSlideUp: any = {
+const fadeSlideUp: import("framer-motion").Variants = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } }
 };
@@ -94,7 +93,7 @@ export default function Home() {
   const xTranslate = useTransform(horizontalScroll, [0, 1], [0, -xRange]);
 
   useEffect(() => {
-    let interval = setInterval(() => {
+    const interval = setInterval(() => {
       setLoadingProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);

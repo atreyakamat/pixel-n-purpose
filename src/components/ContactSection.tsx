@@ -4,19 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, Mail, Phone } from "lucide-react";
 import Magnetic from "./Magnetic";
 
-const fadeSlideUp: any = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } }
-};
-
-const staggerContainer: any = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-};
-
 export default function ContactSection({ 
   formStatus, 
   handleContactSubmit 
@@ -34,7 +21,7 @@ export default function ContactSection({
             <div>
               <div className="w-16 h-[3px] bg-primary mb-12" />
               <h2 className="font-display text-7xl md:text-[8vw] font-bold text-secondary mb-12 leading-[0.8] tracking-tighter uppercase">
-                Let's <br/><span className="italic font-normal text-primary">Initiate.</span>
+                Let&apos;s <br/><span className="italic font-normal text-primary">Initiate.</span>
               </h2>
               <p className="text-text-primary/40 text-xs md:text-sm mb-20 max-w-sm leading-relaxed uppercase font-bold tracking-[0.3em]">
                 Your brand is either unforgettable, or it is invisible.

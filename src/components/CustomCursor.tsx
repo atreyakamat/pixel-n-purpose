@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [cursorState, setCursorState] = useState<"default" | "hover" | "text">("default");
   const [cursorText, setCursorText] = useState("");
   const [isVisible, setIsVisible] = useState(false);
@@ -13,12 +12,15 @@ export default function CustomCursor() {
   const springY = useSpring(-100, { stiffness: 500, damping: 28, mass: 0.5 });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
       if (!isVisible) setIsVisible(true);
       springX.set(e.clientX);
       springY.set(e.clientY);
-      setMousePosition({ x: e.clientX, y: e.clientY });
       
       const target = e.target as HTMLElement;
       
@@ -51,7 +53,7 @@ export default function CustomCursor() {
       x: "-50%",
       y: "-50%",
       backgroundColor: "var(--color-primary)",
-      mixBlendMode: "difference" as any,
+      mixBlendMode: "difference" as const,
     },
     hover: {
       width: 48,
@@ -59,7 +61,7 @@ export default function CustomCursor() {
       x: "-50%",
       y: "-50%",
       backgroundColor: "var(--color-primary)",
-      mixBlendMode: "difference" as any,
+      mixBlendMode: "difference" as const,
     },
     text: {
       width: 80,
@@ -67,7 +69,7 @@ export default function CustomCursor() {
       x: "-50%",
       y: "-50%",
       backgroundColor: "var(--color-primary)",
-      mixBlendMode: "normal" as any,
+      mixBlendMode: "normal" as const,
     }
   };
 
