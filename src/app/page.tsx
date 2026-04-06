@@ -112,7 +112,7 @@ export default function Home() {
   }, [showContent]);
 
   return (
-    <main className="bg-background min-h-screen text-text-primary overflow-hidden selection:bg-primary selection:text-white">
+    <main className="bg-background min-h-screen text-text-primary overflow-x-clip selection:bg-primary selection:text-white">
       <Preloader progress={loadingProgress} isComplete={showContent} />
 
       <FloatingNavbar />
