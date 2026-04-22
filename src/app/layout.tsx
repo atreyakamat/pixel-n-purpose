@@ -94,7 +94,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased selection:bg-primary selection:text-white hide-cursor bg-background relative min-h-screen`}
+        className={`${inter.variable} ${playfair.variable} antialiased selection:bg-primary selection:text-white hide-cursor bg-background relative min-h-screen noise-bg`}
       >
         <CustomCursor />
         <SmoothScroll>
