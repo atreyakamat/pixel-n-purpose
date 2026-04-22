@@ -258,7 +258,7 @@ export default function Home() {
 
       <Exhibitions filter={filter} setFilter={setFilter} />
       
-      <ContactSection formStatus={formStatus} handleContactSubmit={handleContactSubmit} />
+      <ContactSection />
 
       {/* Footer */}
       <footer className="bg-white py-20 px-8 border-t border-secondary/5 overflow-hidden">

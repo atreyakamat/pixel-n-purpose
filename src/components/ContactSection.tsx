@@ -1,16 +1,39 @@
 "use client";
 
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, Mail, Phone } from "lucide-react";
+import emailjs from '@emailjs/browser';
 import Magnetic from "./Magnetic";
 
-export default function ContactSection({ 
-  formStatus, 
-  handleContactSubmit 
-}: { 
-  formStatus: string; 
-  handleContactSubmit: (e: React.FormEvent) => void 
-}) {
+export default function ContactSection() {
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    
+    setFormStatus("submitting");
+    
+    try {
+      // NOTE: Replace these with your actual EmailJS Service ID, Template ID, and Public Key.
+      await emailjs.sendForm(
+        'YOUR_SERVICE_ID', 
+        'YOUR_TEMPLATE_ID', 
+        formRef.current, 
+        'YOUR_PUBLIC_KEY'
+      );
+      setFormStatus("success");
+      setTimeout(() => setFormStatus("idle"), 5000);
+      formRef.current.reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setFormStatus("error");
+      setTimeout(() => setFormStatus("idle"), 5000);
+    }
+  };
+
   return (
     <section id="contact" className="py-32 md:py-64 px-8 max-w-[1400px] mx-auto relative z-10">
       <div className="bg-white rounded-[3rem] p-12 md:p-24 overflow-hidden relative shadow-sm border border-secondary/5">
@@ -50,7 +73,7 @@ export default function ContactSection({
 
           <div className="bg-secondary/5 rounded-[2.5rem] p-10 md:p-16 border border-secondary/5 shadow-inner backdrop-blur-sm">
             <h3 className="font-display text-2xl font-bold text-secondary mb-12 uppercase tracking-tighter">Engagement</h3>
-            <form className="space-y-10" onSubmit={handleContactSubmit}>
+            <form ref={formRef} className="space-y-10" onSubmit={handleContactSubmit}>
               <AnimatePresence mode="wait">
                 {formStatus === "success" ? (
                   <motion.div 
@@ -74,21 +97,24 @@ export default function ContactSection({
                   >
                     <div className="space-y-10">
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Identity" />
+                        <input name="user_name" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Identity" />
                       </div>
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Coordinate" />
+                        <input name="user_email" required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Coordinate" />
                       </div>
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <select className="w-full bg-transparent text-secondary text-xl focus:outline-none appearance-none font-bold tracking-tight">
-                          <option className="text-secondary/20">Objective</option>
-                          <option>Portfolio Design</option>
-                          <option>Packaging & Branding</option>
-                          <option>Photography</option>
-                          <option>Web Development</option>
+                        <select name="objective" className="w-full bg-transparent text-secondary text-xl focus:outline-none appearance-none font-bold tracking-tight">
+                          <option value="Objective" className="text-secondary/20">Objective</option>
+                          <option value="Portfolio Design">Portfolio Design</option>
+                          <option value="Packaging & Branding">Packaging & Branding</option>
+                          <option value="Photography">Photography</option>
+                          <option value="Web Development">Web Development</option>
                         </select>
                       </div>
                     </div>
+                    {formStatus === "error" && (
+                      <p className="text-red-500 text-xs font-bold tracking-widest uppercase">Failed to send. Please try again.</p>
+                    )}
                     <div className="pt-12">
                       <Magnetic>
                         <button 
