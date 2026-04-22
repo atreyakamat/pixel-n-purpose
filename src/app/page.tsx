@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring, useVelocity } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ArrowRight, Package, Camera, Code2, Plus, ArrowDown } from "lucide-react";
 import Image from "next/image";
@@ -48,15 +48,6 @@ export default function Home() {
   const [filter, setFilter] = useState("All");
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [showContent, setShowContent] = useState(false);
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
-  
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus("submitting");
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setFormStatus("success");
-    setTimeout(() => setFormStatus("idle"), 5000);
-  };
   
   const heroRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
