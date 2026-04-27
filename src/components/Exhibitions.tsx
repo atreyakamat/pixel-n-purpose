@@ -7,17 +7,13 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Magnetic from "./Magnetic";
 
-const FILTERS = ["All", "Event", "Branding", "Web", "Photo"];
+const FILTERS = ["All", "Website", "Portfolio", "Packaging", "Photography"];
 
 const PORTFOLIO = [
-  { id: 1, category: "Event", title: "Gala Symphony", img: "https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?q=80&w=800&auto=format&fit=crop" },
-  { id: 2, category: "Branding", title: "Aura Skincare", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop" },
-  { id: 3, category: "Web", title: "Nexus Platform", img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" },
-  { id: 4, category: "Photo", title: "Urban Shadows", img: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" },
-  { id: 5, category: "Branding", title: "Verve Coffee", img: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=800&auto=format&fit=crop" },
-  { id: 6, category: "Web", title: "Lumina App", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" },
-  { id: 7, category: "Event", title: "Horizon Summit", img: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop" },
-  { id: 8, category: "Photo", title: "Echoes of Time", img: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" },
+  { id: 1, category: "Website", title: "Website Projects", img: "/images/website-design.png" },
+  { id: 2, category: "Portfolio", title: "Portfolio Projects", img: "/images/portfolio-design.jpg" },
+  { id: 3, category: "Packaging", title: "Packaging Projects", img: "/images/package-design.png" },
+  { id: 4, category: "Photography", title: "Visual Identity", img: "/images/photography-image.png" },
 ];
 
 export default function Exhibitions({ filter, setFilter }: { filter: string; setFilter: (f: string) => void }) {

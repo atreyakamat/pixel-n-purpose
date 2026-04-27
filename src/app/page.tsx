@@ -17,10 +17,10 @@ const ContactSection = dynamic(() => import("@/components/ContactSection"), { ss
 
 // --- Data ---
 const SERVICES = [
-  { id: "01", title: "Portfolio Design", icon: Package, desc: "Curated narratives that speak before you do. We design portfolios that make the right people stop and look." },
-  { id: "02", title: "Packaging & Branding", icon: Package, desc: "Packaging that earns attention without shouting. Structured, honest, and memorable artisan experiences." },
-  { id: "03", title: "Photography", icon: Camera, desc: "Visual storytelling that translates brand values into high-impact, trust-building imagery." },
-  { id: "04", title: "Web Development", icon: Code2, desc: "Websites that perform beautifully. Engineered for speed, clarity, conversion, and accessibility." },
+  { id: "01", title: "Website Design", icon: Package, desc: "Websites that perform as beautifully as they look — built for speed, clarity, and conversion." },
+  { id: "02", title: "Portfolio Design", icon: Package, desc: "Portfolios that make the right people stop scrolling and start conversations." },
+  { id: "03", title: "Packaging Design", icon: Package, desc: "Packaging that earns shelf space and builds brand trust at first sight." },
+  { id: "04", title: "Photography", icon: Camera, desc: "High-impact imagery that captures the soul of your brand and builds aesthetic trust." },
 ];
 
 const MANIFESTO = [
@@ -125,18 +125,19 @@ export default function Home() {
 
         <div className="relative z-20 max-w-[1400px] mx-auto w-full flex flex-col items-center mt-20">
           <div className="overflow-hidden mb-6">
-            <p className="hero-text-line text-accent font-bold tracking-[0.6em] uppercase text-[9px]">Architects of Visual Prestige</p>
+            <p className="hero-text-line text-accent font-bold tracking-[0.6em] uppercase text-[9px]">Design That Means Something</p>
           </div>
           
           <h1 className="font-display font-bold text-[13vw] md:text-[10vw] lg:text-[8vw] text-secondary leading-[0.8] tracking-tighter mb-16 uppercase">
-            <div className="overflow-hidden h-[1.1em]"><span className="hero-text-line block">Premium</span></div>
-            <div className="overflow-hidden h-[1.1em]"><span className="hero-text-line block text-accent italic font-normal">Design.</span></div>
+            <div className="overflow-hidden h-[1.1em]"><span className="hero-text-line block">Design</span></div>
+            <div className="overflow-hidden h-[1.1em]"><span className="hero-text-line block text-accent italic font-normal text-[10vw]">That Means</span></div>
+            <div className="overflow-hidden h-[1.1em]"><span className="hero-text-line block">Something.</span></div>
           </h1>
 
           <div className="flex flex-col md:flex-row items-center justify-between w-full gap-20 px-10">
             <div className="overflow-hidden text-left max-w-xs">
               <p className="hero-text-line text-[9px] md:text-[10px] text-secondary/30 leading-relaxed font-bold uppercase tracking-[0.2em]">
-                Bespoke digital architecture for elite visionaries. Unapologetic aesthetic rigor.
+                Websites, Portfolios & Packaging — built with clarity, structure, and intent.
               </p>
             </div>
             
@@ -176,12 +177,12 @@ export default function Home() {
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
           <motion.div ref={contentRef} style={{ x: xTranslate }} className="flex gap-40 px-[10vw]">
             <div className="flex-shrink-0 w-[85vw] md:w-[60vw] flex flex-col justify-center">
-              <motion.span initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ margin: "-20%" }} className="text-accent font-bold tracking-[0.6em] uppercase text-[9px] mb-6">Studio Thesis</motion.span>
+              <motion.span initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ margin: "-20%" }} className="text-accent font-bold tracking-[0.6em] uppercase text-[9px] mb-6">Studio Philosophy</motion.span>
               <motion.h2 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ margin: "-20%" }} className="text-secondary font-display font-bold text-[10vw] md:text-[8vw] leading-[0.8] mb-10 tracking-tighter uppercase">
-                Engineering <br/> <span className="text-accent italic font-normal">Prestige.</span>
+                We build what <br/> <span className="text-accent italic font-normal">lasts.</span>
               </motion.h2>
               <motion.p initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} viewport={{ margin: "-20%" }} className="text-secondary/40 font-display font-medium text-lg md:text-2xl leading-tight max-w-2xl tracking-tight">
-                We believe that profound aesthetic rigor is the <span className="text-secondary italic">ultimate conversion lever.</span> No fluff. Just authority.
+                Not what <span className="text-secondary italic">trends.</span> Every project we touch is designed to endure — in memory, in market, and in meaning.
               </motion.p>
             </div>
             
@@ -255,34 +256,37 @@ export default function Home() {
       <footer className="bg-white py-20 px-8 border-t border-secondary/5 overflow-hidden">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-20">
-            <div className="font-display font-bold text-[8vw] text-secondary leading-none tracking-tighter">P<span className="text-accent italic">&</span>P</div>
+            <div className="flex flex-col gap-4">
+              <div className="font-display font-bold text-[8vw] text-secondary leading-none tracking-tighter">P<span className="text-accent italic">&</span>P</div>
+              <p className="text-[9px] tracking-[0.4em] uppercase text-secondary/30 font-bold ml-1">By Pixpur Design House</p>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">
               <div className="flex flex-col gap-5">
                 <span className="text-secondary/20 text-[8px] font-bold tracking-[0.4em] uppercase">Navigation</span>
                 <div className="flex flex-col gap-2">
                   <Magnetic><a href="#" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">Home</a></Magnetic>
-                  <Magnetic><a href="#services" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">Arsenal</a></Magnetic>
-                  <Magnetic><a href="#portfolio" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">Works</a></Magnetic>
+                  <Magnetic><a href="#services" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">Services</a></Magnetic>
+                  <Magnetic><a href="#portfolio" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">Portfolio</a></Magnetic>
                 </div>
               </div>
               <div className="flex flex-col gap-5">
                 <span className="text-secondary/20 text-[8px] font-bold tracking-[0.4em] uppercase">Connect</span>
                 <div className="flex flex-col gap-2">
-                  <Magnetic><a href="#" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">Instagram</a></Magnetic>
-                  <Magnetic><a href="#" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">LinkedIn</a></Magnetic>
+                  <Magnetic><a href="https://www.instagram.com/pixelnpurpose/" target="_blank" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">Instagram</a></Magnetic>
+                  <Magnetic><a href="https://www.linkedin.com/in/pixel-n-purpose-pixpur-design-house-b66360370/" target="_blank" className="text-secondary/60 hover:text-secondary transition-colors font-medium text-[10px] uppercase tracking-wider">LinkedIn</a></Magnetic>
                 </div>
               </div>
               <div className="flex flex-col gap-5 col-span-2 md:col-span-1">
                 <span className="text-secondary/20 text-[8px] font-bold tracking-[0.4em] uppercase">Studio</span>
                 <div className="text-secondary/40 text-[10px] leading-relaxed max-w-[140px] font-medium uppercase tracking-tight">
-                  Bespoke digital architecture.
+                  A global creative studio. Websites. Portfolios. Packaging.
                 </div>
               </div>
             </div>
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-secondary/5 gap-6">
-            <div className="text-secondary/20 text-[7px] tracking-[0.5em] uppercase font-bold">© 2026 Pixel & Purpose. Prestige.</div>
-            <div className="text-secondary/20 text-[7px] tracking-[0.5em] uppercase font-bold">Minimalism is Sophistication.</div>
+            <div className="text-secondary/20 text-[7px] tracking-[0.5em] uppercase font-bold">© 2026 Pixel & Purpose by Pixpur Design House. All rights reserved.</div>
+            <div className="text-secondary/20 text-[7px] tracking-[0.5em] uppercase font-bold">PIXELNPURPOSE.COM</div>
           </div>
         </div>
       </footer>

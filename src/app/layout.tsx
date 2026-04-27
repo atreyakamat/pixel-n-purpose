@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
+  themeColor: "#080808",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -26,11 +26,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://pixelnpurpose.com"),
   title: {
-    default: "Pixel & Purpose | Architects of Visual Prestige",
+    default: "Pixel & Purpose — Global Creative Studio",
     template: "%s | Pixel & Purpose",
   },
-  description: "High-end creative agency specializing in luxury brand narratives, elite portfolio design, artisan packaging, and high-performance digital monopolies.",
-  keywords: ["Creative Agency", "Luxury Branding", "Web Mastery", "Portfolio Design", "Packaging", "Photography", "Awwwards"],
+  description: "A global creative studio crafting Websites, Portfolios, and Packaging that build lasting meaning. Design with clarity, structure, and intent.",
+  keywords: ["website design", "portfolio design", "packaging design", "creative studio", "brand identity", "global design studio"],
   authors: [{ name: "Pixel & Purpose" }],
   creator: "Pixel & Purpose",
   publisher: "Pixel & Purpose",
@@ -39,26 +39,31 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: "/pnp-manifest.png",
+    shortcut: "/pnp-manifest.png",
+    apple: "/pnp-manifest.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://pixelnpurpose.com",
     siteName: "Pixel & Purpose",
-    title: "Pixel & Purpose | Architects of Visual Prestige",
-    description: "Engineering digital prestige for global visionaries.",
+    title: "Pixel & Purpose — Global Creative Studio",
+    description: "Websites. Portfolios. Packaging. Design that means something.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Pixel & Purpose",
+        alt: "Pixel & Purpose — Global Creative Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pixel & Purpose | Architects of Visual Prestige",
-    description: "Engineering digital prestige for global visionaries.",
+    title: "Pixel & Purpose — Global Creative Studio",
+    description: "Websites. Portfolios. Packaging. Design that means something.",
     images: ["/og-image.jpg"],
   },
   robots: {
