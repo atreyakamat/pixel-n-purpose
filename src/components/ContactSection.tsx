@@ -88,19 +88,16 @@ export default function ContactSection() {
                   >
                     <div className="space-y-10">
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input name="user_name" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Name" />
+                        <input name="Name" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Name" />
                       </div>
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input name="user_email" required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Email" />
+                        <input name="Email" required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Email" />
                       </div>
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <select name="objective" className="w-full bg-transparent text-secondary text-xl focus:outline-none appearance-none font-bold tracking-tight">
-                          <option value="Objective" className="text-secondary/20">Objective</option>
-                          <option value="Portfolio Design">Portfolio Design</option>
-                          <option value="Packaging & Branding">Packaging & Branding</option>
-                          <option value="Photography">Photography</option>
-                          <option value="Web Development">Web Development</option>
-                        </select>
+                        <input name="Brand" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Brand / Company" />
+                      </div>
+                      <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
+                        <textarea name="Message" required rows={3} className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight resize-none" placeholder="Message / Project Details"></textarea>
                       </div>
                     </div>
                     {formStatus === "error" && (

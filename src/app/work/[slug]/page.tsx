@@ -14,8 +14,22 @@ export default function CaseStudyPage() {
 
   // This would normally come from a CMS like Sanity
   const projectTitle = slug ? slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") : "Case Study";
-  const isPhotography = slug === "photography" || slug === "photography-image";
-  const hasPdf = ["package-design", "portfolio-design", "website-design"].includes(slug);
+  
+  const pdfMap: Record<string, string> = {
+    "website-projects": "website-design",
+    "portfolio-projects": "portfolio-design",
+    "packaging-projects": "package-design",
+    "website-design": "website-design",
+    "portfolio-design": "portfolio-design",
+    "package-design": "package-design",
+    "website design": "website-design",
+    "portfolio design": "portfolio-design",
+    "package design": "package-design",
+    "packaging design": "package-design",
+  };
+  const pdfName = pdfMap[slug];
+  const hasPdf = !!pdfName;
+  const isPhotography = slug === "visual-identity" || slug === "photography" || slug === "photography-image";
 
   return (
     <main className="bg-background min-h-screen text-text-primary">
@@ -70,14 +84,6 @@ export default function CaseStudyPage() {
                 <span className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Year</span>
                 <p className="text-secondary/60 font-medium">2026</p>
               </div>
-              {hasPdf && (
-                <div>
-                  <span className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Project Deck</span>
-                  <a href={`/pdf/${slug}.pdf`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[10px] font-bold tracking-[0.2em] uppercase text-secondary/60 hover:text-primary transition-colors border-b border-primary pb-1">
-                    Download PDF
-                  </a>
-                </div>
-              )}
             </div>
           </div>
           
@@ -90,14 +96,24 @@ export default function CaseStudyPage() {
                 </p>
               </div>
               
-              <div className="aspect-[16/9] relative overflow-hidden rounded-[2rem] bg-secondary/5 shadow-2xl">
-                <Image 
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop" 
-                  alt="Process" 
-                  fill 
-                  className="object-cover hover:scale-105 transition-transform duration-1000"
-                />
-              </div>
+              {hasPdf ? (
+                <div className="w-full h-[70vh] md:h-[900px] relative overflow-hidden rounded-[2rem] shadow-2xl border border-secondary/10 bg-white">
+                  <iframe 
+                    src={`/pdf/${pdfName}.pdf`} 
+                    className="w-full h-full border-0"
+                    title={`${projectTitle} Document`}
+                  />
+                </div>
+              ) : (
+                <div className="aspect-[16/9] relative overflow-hidden rounded-[2rem] bg-secondary/5 shadow-2xl">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop" 
+                    alt="Process" 
+                    fill 
+                    className="object-cover hover:scale-105 transition-transform duration-1000"
+                  />
+                </div>
+              )}
 
               <div className="space-y-10">
                 <h2 className="text-secondary font-display font-bold text-4xl md:text-6xl tracking-tighter uppercase leading-none">The Execution</h2>
