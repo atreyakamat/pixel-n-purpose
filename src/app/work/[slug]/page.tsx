@@ -14,10 +14,12 @@ export default function CaseStudyPage() {
 
   // This would normally come from a CMS like Sanity
   const projectTitle = slug ? slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") : "Case Study";
+  const isPhotography = slug === "photography" || slug === "photography-image";
+  const hasPdf = ["package-design", "portfolio-design", "website-design"].includes(slug);
 
   return (
     <main className="bg-background min-h-screen text-text-primary">
-      <FloatingNavbar />
+      <FloatingNavbar inquireHref="mailto:info@pixelandpurpose.com" />
       
       {/* Hero */}
       <section className="relative h-[80vh] w-full overflow-hidden bg-secondary">
@@ -68,6 +70,14 @@ export default function CaseStudyPage() {
                 <span className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Year</span>
                 <p className="text-secondary/60 font-medium">2026</p>
               </div>
+              {hasPdf && (
+                <div>
+                  <span className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">Project Deck</span>
+                  <a href={`/pdf/${slug}.pdf`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[10px] font-bold tracking-[0.2em] uppercase text-secondary/60 hover:text-primary transition-colors border-b border-primary pb-1">
+                    Download PDF
+                  </a>
+                </div>
+              )}
             </div>
           </div>
           
@@ -103,10 +113,10 @@ export default function CaseStudyPage() {
       {/* Footer CTA */}
       <section className="py-20 md:py-40 bg-secondary text-white overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-8 flex flex-col items-center text-center">
-          <span className="text-primary font-bold tracking-[0.5em] uppercase text-[10px] mb-12">Next Project</span>
-          <Link href="/" className="group flex flex-col items-center">
-            <h2 className="font-display font-bold text-[12vw] md:text-[10vw] leading-none tracking-tighter uppercase mb-12 hover:italic transition-all duration-700">
-              Aura Skincare
+          <span className="text-white/50 font-bold tracking-[0.5em] uppercase text-[10px] mb-12">Discover More</span>
+          <Link href="/#portfolio" className="group flex flex-col items-center">
+            <h2 className="font-display font-bold text-white text-[12vw] md:text-[10vw] leading-none tracking-tighter uppercase mb-12 hover:italic transition-all duration-700">
+              View Portfolio
             </h2>
             <Magnetic>
               <div className="h-32 w-32 md:h-40 md:w-40 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
@@ -117,8 +127,11 @@ export default function CaseStudyPage() {
         </div>
       </section>
 
-      <footer className="bg-secondary border-t border-white/5 py-10 px-8 text-center text-white/20 text-[10px] font-bold tracking-[0.4em] uppercase">
-        © 2026 Pixel & Purpose. Engineering Prestige.
+      <footer className="bg-white py-16 px-8 border-t border-secondary/5 text-center flex flex-col items-center justify-center gap-6">
+        <Image src="/PNP-black.png" alt="Pixel & Purpose" width={160} height={64} className="object-contain w-32 md:w-40 h-auto opacity-80" />
+        <div className="text-secondary/40 text-[10px] font-bold tracking-[0.4em] uppercase">
+          © 2026 Pixel & Purpose. Engineering Prestige.
+        </div>
       </footer>
     </main>
   );

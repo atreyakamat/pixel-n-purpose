@@ -59,14 +59,6 @@ export default function ContactSection() {
                 </Magnetic>
                 <a href="mailto:hello@pixelnpurpose.com" data-cursor="hover" className="text-xl md:text-3xl font-display font-bold text-secondary hover:text-accent transition-colors tracking-tight">hello@pixelnpurpose.com</a>
               </div>
-              <div className="flex items-center gap-8 group">
-                <Magnetic>
-                  <div className="w-16 h-16 rounded-full bg-secondary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary transition-all duration-500">
-                    <Phone className="w-6 h-6 text-secondary group-hover:text-white" />
-                  </div>
-                </Magnetic>
-                <a href="tel:+1234567890" data-cursor="hover" className="text-xl md:text-3xl font-display font-bold text-secondary hover:text-accent transition-colors tracking-tight">+1 (234) 567-890</a>
-              </div>
             </div>
           </div>
 
@@ -96,10 +88,10 @@ export default function ContactSection() {
                   >
                     <div className="space-y-10">
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input name="user_name" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Identity" />
+                        <input name="user_name" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Name" />
                       </div>
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input name="user_email" required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Coordinate" />
+                        <input name="user_email" required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Email" />
                       </div>
                       <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
                         <select name="objective" className="w-full bg-transparent text-secondary text-xl focus:outline-none appearance-none font-bold tracking-tight">

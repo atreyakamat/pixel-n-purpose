@@ -257,7 +257,9 @@ export default function Home() {
         <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-20">
             <div className="flex flex-col gap-4">
-              <div className="font-display font-bold text-[8vw] text-secondary leading-none tracking-tighter">P<span className="text-accent italic">&</span>P</div>
+              <div className="flex items-center">
+                <Image src="/PNP-black.png" alt="Pixel & Purpose" width={160} height={64} className="object-contain w-32 md:w-48 h-auto" />
+              </div>
               <p className="text-[9px] tracking-[0.4em] uppercase text-secondary/30 font-bold ml-1">By Pixpur Design House</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">

@@ -3,16 +3,17 @@
 import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Magnetic from "./Magnetic";
 
 const navLinks = [
-  { name: "Services", href: "#services" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "About", href: "#about" },
+  { name: "Services", href: "/#services" },
+  { name: "Portfolio", href: "/#portfolio" },
+  { name: "About", href: "/#about" },
 ];
 
-export default function FloatingNavbar() {
+export default function FloatingNavbar({ inquireHref = "/#contact" }: { inquireHref?: string }) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -45,21 +46,21 @@ export default function FloatingNavbar() {
         hasScrolled ? "pt-4" : "pt-8"
       )}
     >
-      <div className="glass-panel w-full max-w-4xl rounded-full px-4 py-2 flex items-center justify-between border border-white/10 bg-white/10 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+      <div className="glass-panel w-full max-w-5xl rounded-full pl-6 pr-4 py-2 flex items-center justify-between border border-white/10 bg-white/10 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
         {/* Logo */}
         <Magnetic>
-          <Link href="/" className="font-display font-bold text-2xl text-secondary tracking-tighter ml-4 p-2">
-            P<span className="text-primary">&</span>P
+          <Link href="/" className="flex items-center">
+            <Image src="/PNP-black.png" alt="Pixel & Purpose" width={160} height={64} className="object-contain h-12 md:h-14 w-auto" priority />
           </Link>
         </Magnetic>
 
         {/* Links */}
-        <nav className="hidden md:flex items-center gap-2">
+        <nav className="hidden md:flex items-center gap-4">
           {navLinks.map((link) => (
             <Magnetic key={link.name}>
               <Link
                 href={link.href}
-                className="text-[10px] font-bold tracking-[0.3em] uppercase text-secondary/60 hover:text-primary transition-colors duration-300 px-4 py-2"
+                className="text-[12px] font-bold tracking-[0.3em] uppercase text-secondary/60 hover:text-primary transition-colors duration-300 px-4 py-2"
               >
                 {link.name}
               </Link>
@@ -70,8 +71,8 @@ export default function FloatingNavbar() {
         {/* CTA */}
         <Magnetic>
           <Link
-            href="#contact"
-            className="bg-secondary text-white text-[10px] font-bold tracking-[0.2em] uppercase px-6 py-3 rounded-full hover:bg-primary transition-colors duration-300 shadow-lg mr-2"
+            href={inquireHref}
+            className="bg-secondary text-white text-[12px] font-bold tracking-[0.2em] uppercase px-8 py-3.5 rounded-full hover:bg-primary transition-colors duration-300 shadow-lg"
           >
             Inquire
           </Link>
