@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, Mail, Phone } from "lucide-react";
+import { Star, Mail } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import Magnetic from "./Magnetic";
 
