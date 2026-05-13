@@ -17,10 +17,24 @@ export default function ContactSection() {
     setFormStatus("submitting");
     
     try {
-      await emailjs.sendForm(
+      const formData = new FormData(formRef.current);
+      
+      const payload = {
+        name: formData.get("Name")?.toString(),
+        Name: formData.get("Name")?.toString(),
+        email: formData.get("Email")?.toString(),
+        Email: formData.get("Email")?.toString(),
+        brand: formData.get("Brand")?.toString(),
+        Brand: formData.get("Brand")?.toString(),
+        message: formData.get("Message")?.toString(),
+        Message: formData.get("Message")?.toString(),
+        reply_to: formData.get("Email")?.toString()
+      };
+
+      await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!, 
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!, 
-        formRef.current, 
+        payload, 
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
       setFormStatus("success");
@@ -42,8 +56,8 @@ export default function ContactSection() {
           <div className="flex flex-col justify-between">
             <div>
               <div className="w-12 h-[2px] bg-secondary mb-10" />
-              <h2 className="font-display text-6xl md:text-[8vw] font-bold text-secondary mb-10 leading-[0.8] tracking-tighter uppercase">
-                Let&apos;s <br/><span className="italic font-normal text-accent">Initiate.</span>
+              <h2 className="font-display text-6xl md:text-[8vw] font-bold text-secondary mb-10 leading-[0.8] tracking-tighter uppercase text-bold-elegant">
+                Let&apos;s <br/><span className="italic font-normal text-accent shimmer-gold px-4 -ml-4 rounded-lg">Initiate.</span>
               </h2>
               <p className="text-secondary/30 text-[9px] md:text-[10px] mb-16 max-w-xs leading-relaxed uppercase font-bold tracking-[0.3em]">
                 Bespoke architecture for elite visionaries.
@@ -87,17 +101,17 @@ export default function ContactSection() {
                     className="space-y-10"
                   >
                     <div className="space-y-10">
-                      <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input name="Name" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Name" />
+                      <div className="relative border-b border-secondary/20 focus-within:border-accent transition-colors py-3">
+                        <input name="Name" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/30 font-bold tracking-tight" placeholder="Name" />
                       </div>
-                      <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input name="Email" required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Email" />
+                      <div className="relative border-b border-secondary/20 focus-within:border-accent transition-colors py-3">
+                        <input name="Email" required type="email" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/30 font-bold tracking-tight" placeholder="Email" />
                       </div>
-                      <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <input name="Brand" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight" placeholder="Brand / Company" />
+                      <div className="relative border-b border-secondary/20 focus-within:border-accent transition-colors py-3">
+                        <input name="Brand" required type="text" className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/30 font-bold tracking-tight" placeholder="Brand / Company" />
                       </div>
-                      <div className="relative border-b border-secondary/10 focus-within:border-secondary transition-colors py-3">
-                        <textarea name="Message" required rows={3} className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/20 font-bold tracking-tight resize-none" placeholder="Message / Project Details"></textarea>
+                      <div className="relative border-b border-secondary/20 focus-within:border-accent transition-colors py-3">
+                        <textarea name="Message" required rows={3} className="w-full bg-transparent text-secondary text-xl focus:outline-none placeholder:text-secondary/30 font-bold tracking-tight resize-none" placeholder="Message / Project Details"></textarea>
                       </div>
                     </div>
                     {formStatus === "error" && (

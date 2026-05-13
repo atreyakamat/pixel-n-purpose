@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import GlobalBackground from "@/components/GlobalBackground";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -101,6 +102,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased selection:bg-primary selection:text-white hide-cursor bg-background relative min-h-screen noise-bg`}
       >
+        <GlobalBackground />
         <CustomCursor />
         <SmoothScroll>
           <div className="relative flex flex-col min-h-screen">
