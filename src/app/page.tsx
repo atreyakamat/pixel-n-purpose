@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ArrowRight, Package, Camera, Code2, Plus, ArrowDown } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import FloatingNavbar from "@/components/FloatingNavbar";
 import Magnetic from "@/components/Magnetic";
@@ -17,10 +18,10 @@ const ContactSection = dynamic(() => import("@/components/ContactSection"), { ss
 
 // --- Data ---
 const SERVICES = [
-  { id: "01", title: "Website Design", icon: Package, desc: "Websites that perform as beautifully as they look — built for speed, clarity, and conversion." },
-  { id: "02", title: "Portfolio Design", icon: Package, desc: "Portfolios that make the right people stop scrolling and start conversations." },
-  { id: "03", title: "Packaging Design", icon: Package, desc: "Packaging that earns shelf space and builds brand trust at first sight." },
-  { id: "04", title: "Photography", icon: Camera, desc: "High-impact imagery that captures the soul of your brand and builds aesthetic trust." },
+  { id: "01", title: "Website Design", icon: Package, desc: "Websites that perform as beautifully as they look — built for speed, clarity, and conversion.", slug: "website-projects", category: "Website" },
+  { id: "02", title: "Portfolio Design", icon: Package, desc: "Portfolios that make the right people stop scrolling and start conversations.", slug: "portfolio-projects", category: "Portfolio" },
+  { id: "03", title: "Packaging Design", icon: Package, desc: "Packaging that earns shelf space and builds brand trust at first sight.", slug: "packaging-projects", category: "Packaging" },
+  { id: "04", title: "Photography", icon: Camera, desc: "High-impact imagery that captures the soul of your brand and builds aesthetic trust.", slug: "visual-identity", category: "Photography" },
 ];
 
 const MANIFESTO = [
@@ -232,15 +233,17 @@ export default function Home() {
           <div className="lg:col-span-7">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {SERVICES.map((service, i) => (
-                <motion.div key={service.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: i * 0.1, ease: [0.33, 1, 0.68, 1] }} data-cursor="hover" className="group bg-white rounded-[2rem] p-8 md:p-10 border border-secondary/5 flex flex-col justify-between aspect-square hover:bg-secondary transition-all duration-700 shadow-sm hover:shadow-lg">
-                  <div>
-                    <span className="text-accent font-display font-bold text-lg mb-6 block transition-colors tracking-widest">0{service.id}</span>
-                    <h3 className="font-display font-bold text-xl md:text-2xl text-secondary group-hover:text-white transition-colors leading-none tracking-tighter uppercase">{service.title}</h3>
-                  </div>
-                  <div>
-                    <p className="text-secondary/30 text-[10px] group-hover:text-white/30 transition-colors mb-8 leading-relaxed max-w-[180px] font-medium">{service.desc}</p>
-                    <div className="w-8 h-8 rounded-full border border-secondary/10 flex items-center justify-center group-hover:border-white/20 text-secondary group-hover:text-white transition-all duration-500"><ArrowRight className="w-4 h-4 transform group-hover:rotate-[-45deg] transition-transform" /></div>
-                  </div>
+                <motion.div key={service.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: i * 0.1, ease: [0.33, 1, 0.68, 1] }} data-cursor="hover" className="group">
+                  <Link href={`/work/${service.slug}`} className="bg-white rounded-[2rem] p-8 md:p-10 border border-secondary/5 flex flex-col justify-between aspect-square hover:bg-secondary transition-all duration-700 shadow-sm hover:shadow-lg block">
+                    <div>
+                      <span className="text-accent font-display font-bold text-lg mb-6 block transition-colors tracking-widest">0{service.id}</span>
+                      <h3 className="font-display font-bold text-xl md:text-2xl text-secondary group-hover:text-white transition-colors leading-none tracking-tighter uppercase">{service.title}</h3>
+                    </div>
+                    <div>
+                      <p className="text-secondary/30 text-[10px] group-hover:text-white/30 transition-colors mb-8 leading-relaxed max-w-[180px] font-medium">{service.desc}</p>
+                      <div className="w-8 h-8 rounded-full border border-secondary/10 flex items-center justify-center group-hover:border-white/20 text-secondary group-hover:text-white transition-all duration-500"><ArrowRight className="w-4 h-4 transform group-hover:rotate-[-45deg] transition-transform" /></div>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
