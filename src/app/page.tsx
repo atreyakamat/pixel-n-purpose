@@ -21,7 +21,7 @@ const SERVICES = [
   { id: "01", title: "Website Design", icon: Package, desc: "Websites that perform as beautifully as they look — built for speed, clarity, and conversion.", slug: "website-projects", category: "Website" },
   { id: "02", title: "Portfolio Design", icon: Package, desc: "Portfolios that make the right people stop scrolling and start conversations.", slug: "portfolio-projects", category: "Portfolio" },
   { id: "03", title: "Packaging Design", icon: Package, desc: "Packaging that earns shelf space and builds brand trust at first sight.", slug: "packaging-projects", category: "Packaging" },
-  { id: "04", title: "Photography", icon: Camera, desc: "High-impact imagery that captures the soul of your brand and builds aesthetic trust.", slug: "visual-identity", category: "Photography" },
+  { id: "04", title: "Photography", icon: Camera, desc: "High-impact imagery that captures the soul of your brand and builds aesthetic trust.", slug: "photography-projects", category: "Photography" },
 ];
 
 const MANIFESTO = [

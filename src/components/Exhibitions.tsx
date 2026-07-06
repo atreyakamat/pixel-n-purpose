@@ -13,7 +13,7 @@ const PORTFOLIO = [
   { id: 1, category: "Website", title: "Website Projects", img: "/images/website-design.png" },
   { id: 2, category: "Portfolio", title: "Portfolio Projects", img: "/images/portfolio-design.jpg" },
   { id: 3, category: "Packaging", title: "Packaging Projects", img: "/images/package-design.png" },
-  { id: 4, category: "Photography", title: "Visual Identity", img: "/images/photography-image.png" },
+  { id: 4, category: "Photography", title: "Photography Projects", img: "/images/photography-image.png" },
 ];
 
 export default function Exhibitions({ filter, setFilter }: { filter: string; setFilter: (f: string) => void }) {

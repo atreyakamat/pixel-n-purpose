@@ -26,14 +26,14 @@ export default function CaseStudyPage() {
     "portfolio design": "portfolio-design",
     "package design": ["packaging-design", "packaging design-2"],
     "packaging design": ["packaging-design", "packaging design-2"],
-    "visual-identity": "photography-design",
+    "photography-projects": "photography-design",
     "photography": "photography-design",
     "photography-image": "photography-design",
   };
   const pdfData = pdfMap[slug];
   const pdfArray = pdfData ? (Array.isArray(pdfData) ? pdfData : [pdfData]) : [];
   const hasPdf = pdfArray.length > 0;
-  const isPhotography = slug === "visual-identity" || slug === "photography" || slug === "photography-image";
+  const isPhotography = slug === "photography-projects" || slug === "photography" || slug === "photography-image";
 
   return (
     <main className="bg-background min-h-screen text-text-primary">
