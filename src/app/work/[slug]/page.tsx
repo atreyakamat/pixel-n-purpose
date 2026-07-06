@@ -15,20 +15,24 @@ export default function CaseStudyPage() {
   // This would normally come from a CMS like Sanity
   const projectTitle = slug ? slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") : "Case Study";
   
-  const pdfMap: Record<string, string> = {
+  const pdfMap: Record<string, string | string[]> = {
     "website-projects": "website-design",
     "portfolio-projects": "portfolio-design",
-    "packaging-projects": "package-design",
+    "packaging-projects": ["packaging-design", "packaging design-2"],
     "website-design": "website-design",
     "portfolio-design": "portfolio-design",
-    "package-design": "package-design",
+    "package-design": ["packaging-design", "packaging design-2"],
     "website design": "website-design",
     "portfolio design": "portfolio-design",
-    "package design": "package-design",
-    "packaging design": "package-design",
+    "package design": ["packaging-design", "packaging design-2"],
+    "packaging design": ["packaging-design", "packaging design-2"],
+    "visual-identity": "photography-design",
+    "photography": "photography-design",
+    "photography-image": "photography-design",
   };
-  const pdfName = pdfMap[slug];
-  const hasPdf = !!pdfName;
+  const pdfData = pdfMap[slug];
+  const pdfArray = pdfData ? (Array.isArray(pdfData) ? pdfData : [pdfData]) : [];
+  const hasPdf = pdfArray.length > 0;
   const isPhotography = slug === "visual-identity" || slug === "photography" || slug === "photography-image";
 
   return (
@@ -97,12 +101,16 @@ export default function CaseStudyPage() {
               </div>
               
               {hasPdf ? (
-                <div className="w-full h-[70vh] md:h-[900px] relative overflow-hidden rounded-[2rem] shadow-2xl border border-secondary/10 bg-white">
-                  <iframe 
-                    src={`/pdf/${pdfName}.pdf`} 
-                    className="w-full h-full border-0"
-                    title={`${projectTitle} Document`}
-                  />
+                <div className="space-y-12">
+                  {pdfArray.map((pdf, index) => (
+                    <div key={index} className="w-full h-[70vh] md:h-[900px] relative overflow-hidden rounded-[2rem] shadow-2xl border border-secondary/10 bg-white">
+                      <iframe 
+                        src={`/pdf/${pdf}.pdf`} 
+                        className="w-full h-full border-0"
+                        title={`${projectTitle} Document ${index + 1}`}
+                      />
+                    </div>
+                  ))}
                 </div>
               ) : (
                 <div className="aspect-[16/9] relative overflow-hidden rounded-[2rem] bg-secondary/5 shadow-2xl">

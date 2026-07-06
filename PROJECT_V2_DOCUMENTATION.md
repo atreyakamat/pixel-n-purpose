@@ -40,7 +40,7 @@ The agency offered four primary disciplines, each with dedicated sections and do
 - **PortfolioGrid**: A refined 3-column grid showcasing "Selected Work":
   - **Website Projects**: Linked to `/pdf/website-design.pdf`
   - **Portfolio Projects**: Linked to `/pdf/portfolio-design.pdf`
-  - **Packaging Projects**: Linked to `/pdf/package-design.pdf`
+  - **Packaging Projects**: Linked to `/pdf/packaging-design.pdf`
 - **Hero**: A full-screen video background (`pnp-hero-video.webm`) with high-impact typography.
 - **GlassPanel / ShineBorder**: Specialized containers utilizing glassmorphism and animated borders.
 - **ScrollReveal**: A wrapper component ensuring elements animate into view with precision.
